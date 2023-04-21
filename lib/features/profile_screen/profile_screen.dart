@@ -1,13 +1,12 @@
 //
 
-import 'package:chatty/core/presentation/user_cubit/user_cubit.dart';
+import 'package:chatty/core/presentation/auth_bloc/auth_bloc.dart';
 import 'package:chatty/features/profile_screen/presentation/bloc/profile_data_bloc.dart';
 import 'package:chatty/features/profile_screen/presentation/widgets/profile_data_form/profile_data_form.dart';
 import 'package:chatty/features/profile_screen/presentation/widgets/profile_image_selector/profile_image_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../dependancy_injection.dart' as di;
 import 'presentation/widgets/save_profile_buttton.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -20,9 +19,9 @@ class ProfileScreen extends StatelessWidget {
         BlocProvider(
           create: (_) => ProfileDataBloc(),
         ),
-        BlocProvider<UserCubit>(
-          create: (context) => di.locator(),
-        ),
+        // BlocProvider<ProfileCubit>(
+        //   create: (context) => di.locator(),
+        // ),
       ],
       child: const _ProfileScreenContent(),
     );
@@ -67,6 +66,8 @@ class _ProfileScreenContent extends StatelessWidget {
 
   _saveChanges(BuildContext context) {
     final state = context.read<ProfileDataBloc>().state;
-    context.read<UserCubit>().updateProfile(state.toUpdatedUser());
+    context
+        .read<AuthBloc>()
+        .add(AuthEvent.updateProfile(updated: state.toUpdatedUser()));
   }
 }

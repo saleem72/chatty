@@ -2,8 +2,7 @@
 
 import 'dart:io';
 
-import 'package:chatty/core/domain/models/app_user.dart';
-import 'package:chatty/core/presentation/user_cubit/user_cubit.dart';
+import 'package:chatty/core/presentation/auth_bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -24,14 +23,14 @@ class ProfileImageSelector extends StatelessWidget {
   }
 
   Widget _content(BuildContext context) {
-    return BlocBuilder<UserCubit, AppUser>(
+    return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
         return AspectRatio(
           aspectRatio: 1,
           child: Stack(
             children: [
               _PickedImage(
-                url: state.imageUrl,
+                url: state.user?.imageUrl,
               ),
               const Align(
                 alignment: Alignment.bottomRight,
@@ -99,7 +98,8 @@ class _PickButtonState extends State<_PickButton> {
   _uploadImage(BuildContext context) {
     final image = context.read<ImagePickerCubit>().state;
     if (image != null) {
-      context.read<UserCubit>().uploadImage(image);
+      context.read<AuthBloc>().add(
+          AuthEvent.uploadProfileImage(image: image)); //.uploadImage(image);
     }
   }
 }

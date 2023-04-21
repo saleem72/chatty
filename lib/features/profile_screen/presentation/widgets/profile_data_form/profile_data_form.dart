@@ -1,6 +1,6 @@
 //
 
-import 'package:chatty/core/presentation/user_cubit/user_cubit.dart';
+import 'package:chatty/core/presentation/auth_bloc/auth_bloc.dart';
 import 'package:chatty/core/presentation/widgets/app_text_field.dart';
 import 'package:chatty/features/profile_screen/presentation/bloc/profile_data_bloc.dart';
 import 'package:flutter/material.dart';
@@ -21,13 +21,17 @@ class _ProfileDataFormState extends State<ProfileDataForm> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      final user = context.read<UserCubit>().state;
-      _nameText.text = user.name ?? '';
-      _emailText.text = user.email ?? '';
-      _aboutText.text = user.about ?? '';
-      context
-          .read<ProfileDataBloc>()
-          .add(ProfileDataEvent.userHasChanged(user: user));
+      final user = context.read<AuthBloc>().state.user;
+
+      _nameText.text = user?.name ?? '';
+      _emailText.text = user?.email ?? '';
+      _aboutText.text = user?.about ?? '';
+      if (user != null) {
+        context
+            .read<ProfileDataBloc>()
+            .add(ProfileDataEvent.userHasChanged(user: user));
+        // context.read<ProfileCubit>().setUser(user);
+      }
     });
   }
 

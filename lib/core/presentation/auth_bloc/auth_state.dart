@@ -17,22 +17,21 @@ enum AuthStatus { unKnown, authzorized, unAuthzorized }
 
 class AuthState extends Equatable {
   final AuthStatus status;
-  final String userId;
+  final AppUser? user;
 
   const AuthState._({
     required this.status,
-    required this.userId,
+    this.user,
   });
 
   @override
-  List<Object?> get props => [status, userId];
+  List<Object?> get props => [status, user];
 
-  factory AuthState.initial() =>
-      const AuthState._(status: AuthStatus.unKnown, userId: ',');
+  factory AuthState.initial() => const AuthState._(status: AuthStatus.unKnown);
   factory AuthState.authzorized({
-    required String userId,
+    required AppUser user,
   }) =>
-      AuthState._(status: AuthStatus.authzorized, userId: userId);
+      AuthState._(status: AuthStatus.authzorized, user: user);
   factory AuthState.unAuthzorized() =>
-      const AuthState._(status: AuthStatus.unAuthzorized, userId: '');
+      const AuthState._(status: AuthStatus.unAuthzorized);
 }

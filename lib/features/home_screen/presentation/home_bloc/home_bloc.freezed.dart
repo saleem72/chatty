@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'users_bloc.dart';
+part of 'home_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$UsersEvent {
+mixin _$HomeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() logout,
@@ -63,16 +63,15 @@ mixin _$UsersEvent {
 }
 
 /// @nodoc
-abstract class $UsersEventCopyWith<$Res> {
-  factory $UsersEventCopyWith(
-          UsersEvent value, $Res Function(UsersEvent) then) =
-      _$UsersEventCopyWithImpl<$Res, UsersEvent>;
+abstract class $HomeEventCopyWith<$Res> {
+  factory $HomeEventCopyWith(HomeEvent value, $Res Function(HomeEvent) then) =
+      _$HomeEventCopyWithImpl<$Res, HomeEvent>;
 }
 
 /// @nodoc
-class _$UsersEventCopyWithImpl<$Res, $Val extends UsersEvent>
-    implements $UsersEventCopyWith<$Res> {
-  _$UsersEventCopyWithImpl(this._value, this._then);
+class _$HomeEventCopyWithImpl<$Res, $Val extends HomeEvent>
+    implements $HomeEventCopyWith<$Res> {
+  _$HomeEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -88,7 +87,7 @@ abstract class _$$_LogoutCopyWith<$Res> {
 
 /// @nodoc
 class __$$_LogoutCopyWithImpl<$Res>
-    extends _$UsersEventCopyWithImpl<$Res, _$_Logout>
+    extends _$HomeEventCopyWithImpl<$Res, _$_Logout>
     implements _$$_LogoutCopyWith<$Res> {
   __$$_LogoutCopyWithImpl(_$_Logout _value, $Res Function(_$_Logout) _then)
       : super(_value, _then);
@@ -101,7 +100,7 @@ class _$_Logout implements _Logout {
 
   @override
   String toString() {
-    return 'UsersEvent.logout()';
+    return 'HomeEvent.logout()';
   }
 
   @override
@@ -182,7 +181,7 @@ class _$_Logout implements _Logout {
   }
 }
 
-abstract class _Logout implements UsersEvent {
+abstract class _Logout implements HomeEvent {
   const factory _Logout() = _$_Logout;
 }
 
@@ -197,7 +196,7 @@ abstract class _$$_NewChatsCopyWith<$Res> {
 
 /// @nodoc
 class __$$_NewChatsCopyWithImpl<$Res>
-    extends _$UsersEventCopyWithImpl<$Res, _$_NewChats>
+    extends _$HomeEventCopyWithImpl<$Res, _$_NewChats>
     implements _$$_NewChatsCopyWith<$Res> {
   __$$_NewChatsCopyWithImpl(
       _$_NewChats _value, $Res Function(_$_NewChats) _then)
@@ -227,7 +226,7 @@ class _$_NewChats implements _NewChats {
 
   @override
   String toString() {
-    return 'UsersEvent.newChats(user: $user)';
+    return 'HomeEvent.newChats(user: $user)';
   }
 
   @override
@@ -316,7 +315,7 @@ class _$_NewChats implements _NewChats {
   }
 }
 
-abstract class _NewChats implements UsersEvent {
+abstract class _NewChats implements HomeEvent {
   const factory _NewChats({required final AppUser user}) = _$_NewChats;
 
   AppUser get user;
@@ -336,7 +335,7 @@ abstract class _$$_SubscripToChatsCopyWith<$Res> {
 
 /// @nodoc
 class __$$_SubscripToChatsCopyWithImpl<$Res>
-    extends _$UsersEventCopyWithImpl<$Res, _$_SubscripToChats>
+    extends _$HomeEventCopyWithImpl<$Res, _$_SubscripToChats>
     implements _$$_SubscripToChatsCopyWith<$Res> {
   __$$_SubscripToChatsCopyWithImpl(
       _$_SubscripToChats _value, $Res Function(_$_SubscripToChats) _then)
@@ -366,7 +365,7 @@ class _$_SubscripToChats implements _SubscripToChats {
 
   @override
   String toString() {
-    return 'UsersEvent.subscripToChats(userId: $userId)';
+    return 'HomeEvent.subscripToChats(userId: $userId)';
   }
 
   @override
@@ -455,7 +454,7 @@ class _$_SubscripToChats implements _SubscripToChats {
   }
 }
 
-abstract class _SubscripToChats implements UsersEvent {
+abstract class _SubscripToChats implements HomeEvent {
   const factory _SubscripToChats({required final String userId}) =
       _$_SubscripToChats;
 
@@ -466,7 +465,7 @@ abstract class _SubscripToChats implements UsersEvent {
 }
 
 /// @nodoc
-mixin _$UsersState {
+mixin _$HomeState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -538,16 +537,15 @@ mixin _$UsersState {
 }
 
 /// @nodoc
-abstract class $UsersStateCopyWith<$Res> {
-  factory $UsersStateCopyWith(
-          UsersState value, $Res Function(UsersState) then) =
-      _$UsersStateCopyWithImpl<$Res, UsersState>;
+abstract class $HomeStateCopyWith<$Res> {
+  factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
+      _$HomeStateCopyWithImpl<$Res, HomeState>;
 }
 
 /// @nodoc
-class _$UsersStateCopyWithImpl<$Res, $Val extends UsersState>
-    implements $UsersStateCopyWith<$Res> {
-  _$UsersStateCopyWithImpl(this._value, this._then);
+class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
+    implements $HomeStateCopyWith<$Res> {
+  _$HomeStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -564,7 +562,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$UsersStateCopyWithImpl<$Res, _$_Initial>
+    extends _$HomeStateCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
@@ -577,7 +575,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'UsersState.initial()';
+    return 'HomeState.initial()';
   }
 
   @override
@@ -682,7 +680,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements UsersState {
+abstract class _Initial implements HomeState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -695,7 +693,7 @@ abstract class _$$HomeLoggedOutCopyWith<$Res> {
 
 /// @nodoc
 class __$$HomeLoggedOutCopyWithImpl<$Res>
-    extends _$UsersStateCopyWithImpl<$Res, _$HomeLoggedOut>
+    extends _$HomeStateCopyWithImpl<$Res, _$HomeLoggedOut>
     implements _$$HomeLoggedOutCopyWith<$Res> {
   __$$HomeLoggedOutCopyWithImpl(
       _$HomeLoggedOut _value, $Res Function(_$HomeLoggedOut) _then)
@@ -709,7 +707,7 @@ class _$HomeLoggedOut implements HomeLoggedOut {
 
   @override
   String toString() {
-    return 'UsersState.loggedOut()';
+    return 'HomeState.loggedOut()';
   }
 
   @override
@@ -814,7 +812,7 @@ class _$HomeLoggedOut implements HomeLoggedOut {
   }
 }
 
-abstract class HomeLoggedOut implements UsersState {
+abstract class HomeLoggedOut implements HomeState {
   const factory HomeLoggedOut() = _$HomeLoggedOut;
 }
 
@@ -828,7 +826,7 @@ abstract class _$$_LoadedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_LoadedCopyWithImpl<$Res>
-    extends _$UsersStateCopyWithImpl<$Res, _$_Loaded>
+    extends _$HomeStateCopyWithImpl<$Res, _$_Loaded>
     implements _$$_LoadedCopyWith<$Res> {
   __$$_LoadedCopyWithImpl(_$_Loaded _value, $Res Function(_$_Loaded) _then)
       : super(_value, _then);
@@ -857,7 +855,7 @@ class _$_Loaded implements _Loaded {
 
   @override
   String toString() {
-    return 'UsersState.loaded(user: $user)';
+    return 'HomeState.loaded(user: $user)';
   }
 
   @override
@@ -970,7 +968,7 @@ class _$_Loaded implements _Loaded {
   }
 }
 
-abstract class _Loaded implements UsersState {
+abstract class _Loaded implements HomeState {
   const factory _Loaded({required final AppUser user}) = _$_Loaded;
 
   AppUser get user;
@@ -990,7 +988,7 @@ abstract class _$$_LoadingCopyWith<$Res> {
 
 /// @nodoc
 class __$$_LoadingCopyWithImpl<$Res>
-    extends _$UsersStateCopyWithImpl<$Res, _$_Loading>
+    extends _$HomeStateCopyWithImpl<$Res, _$_Loading>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
       : super(_value, _then);
@@ -1019,7 +1017,7 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'UsersState.loading(user: $user)';
+    return 'HomeState.loading(user: $user)';
   }
 
   @override
@@ -1132,7 +1130,7 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements UsersState {
+abstract class _Loading implements HomeState {
   const factory _Loading({required final AppUser user}) = _$_Loading;
 
   AppUser get user;
@@ -1152,7 +1150,7 @@ abstract class _$$NewUserStateCopyWith<$Res> {
 
 /// @nodoc
 class __$$NewUserStateCopyWithImpl<$Res>
-    extends _$UsersStateCopyWithImpl<$Res, _$NewUserState>
+    extends _$HomeStateCopyWithImpl<$Res, _$NewUserState>
     implements _$$NewUserStateCopyWith<$Res> {
   __$$NewUserStateCopyWithImpl(
       _$NewUserState _value, $Res Function(_$NewUserState) _then)
@@ -1182,7 +1180,7 @@ class _$NewUserState implements NewUserState {
 
   @override
   String toString() {
-    return 'UsersState.newUser(user: $user)';
+    return 'HomeState.newUser(user: $user)';
   }
 
   @override
@@ -1295,7 +1293,7 @@ class _$NewUserState implements NewUserState {
   }
 }
 
-abstract class NewUserState implements UsersState {
+abstract class NewUserState implements HomeState {
   const factory NewUserState({required final AppUser user}) = _$NewUserState;
 
   AppUser get user;
@@ -1315,7 +1313,7 @@ abstract class _$$_OnLineUsersCopyWith<$Res> {
 
 /// @nodoc
 class __$$_OnLineUsersCopyWithImpl<$Res>
-    extends _$UsersStateCopyWithImpl<$Res, _$_OnLineUsers>
+    extends _$HomeStateCopyWithImpl<$Res, _$_OnLineUsers>
     implements _$$_OnLineUsersCopyWith<$Res> {
   __$$_OnLineUsersCopyWithImpl(
       _$_OnLineUsers _value, $Res Function(_$_OnLineUsers) _then)
@@ -1350,7 +1348,7 @@ class _$_OnLineUsers implements _OnLineUsers {
 
   @override
   String toString() {
-    return 'UsersState.onlineUsers(users: $users)';
+    return 'HomeState.onlineUsers(users: $users)';
   }
 
   @override
@@ -1464,7 +1462,7 @@ class _$_OnLineUsers implements _OnLineUsers {
   }
 }
 
-abstract class _OnLineUsers implements UsersState {
+abstract class _OnLineUsers implements HomeState {
   const factory _OnLineUsers({required final List<AppUser> users}) =
       _$_OnLineUsers;
 
@@ -1487,7 +1485,7 @@ abstract class _$$HomeFailureStateCopyWith<$Res> {
 
 /// @nodoc
 class __$$HomeFailureStateCopyWithImpl<$Res>
-    extends _$UsersStateCopyWithImpl<$Res, _$HomeFailureState>
+    extends _$HomeStateCopyWithImpl<$Res, _$HomeFailureState>
     implements _$$HomeFailureStateCopyWith<$Res> {
   __$$HomeFailureStateCopyWithImpl(
       _$HomeFailureState _value, $Res Function(_$HomeFailureState) _then)
@@ -1525,7 +1523,7 @@ class _$HomeFailureState implements HomeFailureState {
 
   @override
   String toString() {
-    return 'UsersState.failure(failure: $failure)';
+    return 'HomeState.failure(failure: $failure)';
   }
 
   @override
@@ -1638,7 +1636,7 @@ class _$HomeFailureState implements HomeFailureState {
   }
 }
 
-abstract class HomeFailureState implements UsersState {
+abstract class HomeFailureState implements HomeState {
   const factory HomeFailureState({required final HomeFailure failure}) =
       _$HomeFailureState;
 

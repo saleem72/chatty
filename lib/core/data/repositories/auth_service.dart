@@ -183,9 +183,13 @@ class FirebaseAuthManager implements IAuthService {
   }
 
   @override
-  Future<Either<AuthFailure, User>> currrentUser() async {
-    final user = auth.currentUser;
-    if (user != null) {
+  Future<Either<AuthFailure, AppUser>> currrentUser() async {
+    final authUser = auth.currentUser;
+    if (authUser != null) {
+      final user = await _getUser(authUser.uid);
+      if (user == null) {
+        return const Left(AuthFailure.unknownError());
+      }
       return right(user);
     } else {
       return const Left(AuthFailure.unknownError());

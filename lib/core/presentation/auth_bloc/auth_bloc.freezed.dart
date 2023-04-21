@@ -21,6 +21,9 @@ mixin _$AuthEvent {
     required TResult Function() checkForAuthStatus,
     required TResult Function() signInAnonymously,
     required TResult Function() logout,
+    required TResult Function(UpdatedUser updated) updateProfile,
+    required TResult Function(File image) uploadProfileImage,
+    required TResult Function(User user) newUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +31,9 @@ mixin _$AuthEvent {
     TResult? Function()? checkForAuthStatus,
     TResult? Function()? signInAnonymously,
     TResult? Function()? logout,
+    TResult? Function(UpdatedUser updated)? updateProfile,
+    TResult? Function(File image)? uploadProfileImage,
+    TResult? Function(User user)? newUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +41,9 @@ mixin _$AuthEvent {
     TResult Function()? checkForAuthStatus,
     TResult Function()? signInAnonymously,
     TResult Function()? logout,
+    TResult Function(UpdatedUser updated)? updateProfile,
+    TResult Function(File image)? uploadProfileImage,
+    TResult Function(User user)? newUser,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +52,9 @@ mixin _$AuthEvent {
     required TResult Function(_CheckForAuthStatus value) checkForAuthStatus,
     required TResult Function(_SignInAnonymously value) signInAnonymously,
     required TResult Function(_Logout value) logout,
+    required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UploadProfileImage value) uploadProfileImage,
+    required TResult Function(_NewUser value) newUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +62,9 @@ mixin _$AuthEvent {
     TResult? Function(_CheckForAuthStatus value)? checkForAuthStatus,
     TResult? Function(_SignInAnonymously value)? signInAnonymously,
     TResult? Function(_Logout value)? logout,
+    TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UploadProfileImage value)? uploadProfileImage,
+    TResult? Function(_NewUser value)? newUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +72,9 @@ mixin _$AuthEvent {
     TResult Function(_CheckForAuthStatus value)? checkForAuthStatus,
     TResult Function(_SignInAnonymously value)? signInAnonymously,
     TResult Function(_Logout value)? logout,
+    TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UploadProfileImage value)? uploadProfileImage,
+    TResult Function(_NewUser value)? newUser,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -97,12 +115,20 @@ class __$$_CheckForAuthStatusCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CheckForAuthStatus implements _CheckForAuthStatus {
+class _$_CheckForAuthStatus
+    with DiagnosticableTreeMixin
+    implements _CheckForAuthStatus {
   const _$_CheckForAuthStatus();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'AuthEvent.checkForAuthStatus()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'AuthEvent.checkForAuthStatus'));
   }
 
   @override
@@ -120,6 +146,9 @@ class _$_CheckForAuthStatus implements _CheckForAuthStatus {
     required TResult Function() checkForAuthStatus,
     required TResult Function() signInAnonymously,
     required TResult Function() logout,
+    required TResult Function(UpdatedUser updated) updateProfile,
+    required TResult Function(File image) uploadProfileImage,
+    required TResult Function(User user) newUser,
   }) {
     return checkForAuthStatus();
   }
@@ -130,6 +159,9 @@ class _$_CheckForAuthStatus implements _CheckForAuthStatus {
     TResult? Function()? checkForAuthStatus,
     TResult? Function()? signInAnonymously,
     TResult? Function()? logout,
+    TResult? Function(UpdatedUser updated)? updateProfile,
+    TResult? Function(File image)? uploadProfileImage,
+    TResult? Function(User user)? newUser,
   }) {
     return checkForAuthStatus?.call();
   }
@@ -140,6 +172,9 @@ class _$_CheckForAuthStatus implements _CheckForAuthStatus {
     TResult Function()? checkForAuthStatus,
     TResult Function()? signInAnonymously,
     TResult Function()? logout,
+    TResult Function(UpdatedUser updated)? updateProfile,
+    TResult Function(File image)? uploadProfileImage,
+    TResult Function(User user)? newUser,
     required TResult orElse(),
   }) {
     if (checkForAuthStatus != null) {
@@ -154,6 +189,9 @@ class _$_CheckForAuthStatus implements _CheckForAuthStatus {
     required TResult Function(_CheckForAuthStatus value) checkForAuthStatus,
     required TResult Function(_SignInAnonymously value) signInAnonymously,
     required TResult Function(_Logout value) logout,
+    required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UploadProfileImage value) uploadProfileImage,
+    required TResult Function(_NewUser value) newUser,
   }) {
     return checkForAuthStatus(this);
   }
@@ -164,6 +202,9 @@ class _$_CheckForAuthStatus implements _CheckForAuthStatus {
     TResult? Function(_CheckForAuthStatus value)? checkForAuthStatus,
     TResult? Function(_SignInAnonymously value)? signInAnonymously,
     TResult? Function(_Logout value)? logout,
+    TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UploadProfileImage value)? uploadProfileImage,
+    TResult? Function(_NewUser value)? newUser,
   }) {
     return checkForAuthStatus?.call(this);
   }
@@ -174,6 +215,9 @@ class _$_CheckForAuthStatus implements _CheckForAuthStatus {
     TResult Function(_CheckForAuthStatus value)? checkForAuthStatus,
     TResult Function(_SignInAnonymously value)? signInAnonymously,
     TResult Function(_Logout value)? logout,
+    TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UploadProfileImage value)? uploadProfileImage,
+    TResult Function(_NewUser value)? newUser,
     required TResult orElse(),
   }) {
     if (checkForAuthStatus != null) {
@@ -205,12 +249,20 @@ class __$$_SignInAnonymouslyCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SignInAnonymously implements _SignInAnonymously {
+class _$_SignInAnonymously
+    with DiagnosticableTreeMixin
+    implements _SignInAnonymously {
   const _$_SignInAnonymously();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'AuthEvent.signInAnonymously()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'AuthEvent.signInAnonymously'));
   }
 
   @override
@@ -228,6 +280,9 @@ class _$_SignInAnonymously implements _SignInAnonymously {
     required TResult Function() checkForAuthStatus,
     required TResult Function() signInAnonymously,
     required TResult Function() logout,
+    required TResult Function(UpdatedUser updated) updateProfile,
+    required TResult Function(File image) uploadProfileImage,
+    required TResult Function(User user) newUser,
   }) {
     return signInAnonymously();
   }
@@ -238,6 +293,9 @@ class _$_SignInAnonymously implements _SignInAnonymously {
     TResult? Function()? checkForAuthStatus,
     TResult? Function()? signInAnonymously,
     TResult? Function()? logout,
+    TResult? Function(UpdatedUser updated)? updateProfile,
+    TResult? Function(File image)? uploadProfileImage,
+    TResult? Function(User user)? newUser,
   }) {
     return signInAnonymously?.call();
   }
@@ -248,6 +306,9 @@ class _$_SignInAnonymously implements _SignInAnonymously {
     TResult Function()? checkForAuthStatus,
     TResult Function()? signInAnonymously,
     TResult Function()? logout,
+    TResult Function(UpdatedUser updated)? updateProfile,
+    TResult Function(File image)? uploadProfileImage,
+    TResult Function(User user)? newUser,
     required TResult orElse(),
   }) {
     if (signInAnonymously != null) {
@@ -262,6 +323,9 @@ class _$_SignInAnonymously implements _SignInAnonymously {
     required TResult Function(_CheckForAuthStatus value) checkForAuthStatus,
     required TResult Function(_SignInAnonymously value) signInAnonymously,
     required TResult Function(_Logout value) logout,
+    required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UploadProfileImage value) uploadProfileImage,
+    required TResult Function(_NewUser value) newUser,
   }) {
     return signInAnonymously(this);
   }
@@ -272,6 +336,9 @@ class _$_SignInAnonymously implements _SignInAnonymously {
     TResult? Function(_CheckForAuthStatus value)? checkForAuthStatus,
     TResult? Function(_SignInAnonymously value)? signInAnonymously,
     TResult? Function(_Logout value)? logout,
+    TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UploadProfileImage value)? uploadProfileImage,
+    TResult? Function(_NewUser value)? newUser,
   }) {
     return signInAnonymously?.call(this);
   }
@@ -282,6 +349,9 @@ class _$_SignInAnonymously implements _SignInAnonymously {
     TResult Function(_CheckForAuthStatus value)? checkForAuthStatus,
     TResult Function(_SignInAnonymously value)? signInAnonymously,
     TResult Function(_Logout value)? logout,
+    TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UploadProfileImage value)? uploadProfileImage,
+    TResult Function(_NewUser value)? newUser,
     required TResult orElse(),
   }) {
     if (signInAnonymously != null) {
@@ -311,12 +381,18 @@ class __$$_LogoutCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Logout implements _Logout {
+class _$_Logout with DiagnosticableTreeMixin implements _Logout {
   const _$_Logout();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'AuthEvent.logout()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'AuthEvent.logout'));
   }
 
   @override
@@ -334,6 +410,9 @@ class _$_Logout implements _Logout {
     required TResult Function() checkForAuthStatus,
     required TResult Function() signInAnonymously,
     required TResult Function() logout,
+    required TResult Function(UpdatedUser updated) updateProfile,
+    required TResult Function(File image) uploadProfileImage,
+    required TResult Function(User user) newUser,
   }) {
     return logout();
   }
@@ -344,6 +423,9 @@ class _$_Logout implements _Logout {
     TResult? Function()? checkForAuthStatus,
     TResult? Function()? signInAnonymously,
     TResult? Function()? logout,
+    TResult? Function(UpdatedUser updated)? updateProfile,
+    TResult? Function(File image)? uploadProfileImage,
+    TResult? Function(User user)? newUser,
   }) {
     return logout?.call();
   }
@@ -354,6 +436,9 @@ class _$_Logout implements _Logout {
     TResult Function()? checkForAuthStatus,
     TResult Function()? signInAnonymously,
     TResult Function()? logout,
+    TResult Function(UpdatedUser updated)? updateProfile,
+    TResult Function(File image)? uploadProfileImage,
+    TResult Function(User user)? newUser,
     required TResult orElse(),
   }) {
     if (logout != null) {
@@ -368,6 +453,9 @@ class _$_Logout implements _Logout {
     required TResult Function(_CheckForAuthStatus value) checkForAuthStatus,
     required TResult Function(_SignInAnonymously value) signInAnonymously,
     required TResult Function(_Logout value) logout,
+    required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UploadProfileImage value) uploadProfileImage,
+    required TResult Function(_NewUser value) newUser,
   }) {
     return logout(this);
   }
@@ -378,6 +466,9 @@ class _$_Logout implements _Logout {
     TResult? Function(_CheckForAuthStatus value)? checkForAuthStatus,
     TResult? Function(_SignInAnonymously value)? signInAnonymously,
     TResult? Function(_Logout value)? logout,
+    TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UploadProfileImage value)? uploadProfileImage,
+    TResult? Function(_NewUser value)? newUser,
   }) {
     return logout?.call(this);
   }
@@ -388,6 +479,9 @@ class _$_Logout implements _Logout {
     TResult Function(_CheckForAuthStatus value)? checkForAuthStatus,
     TResult Function(_SignInAnonymously value)? signInAnonymously,
     TResult Function(_Logout value)? logout,
+    TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UploadProfileImage value)? uploadProfileImage,
+    TResult Function(_NewUser value)? newUser,
     required TResult orElse(),
   }) {
     if (logout != null) {
@@ -399,4 +493,503 @@ class _$_Logout implements _Logout {
 
 abstract class _Logout implements AuthEvent {
   const factory _Logout() = _$_Logout;
+}
+
+/// @nodoc
+abstract class _$$_UpdateProfileCopyWith<$Res> {
+  factory _$$_UpdateProfileCopyWith(
+          _$_UpdateProfile value, $Res Function(_$_UpdateProfile) then) =
+      __$$_UpdateProfileCopyWithImpl<$Res>;
+  @useResult
+  $Res call({UpdatedUser updated});
+}
+
+/// @nodoc
+class __$$_UpdateProfileCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$_UpdateProfile>
+    implements _$$_UpdateProfileCopyWith<$Res> {
+  __$$_UpdateProfileCopyWithImpl(
+      _$_UpdateProfile _value, $Res Function(_$_UpdateProfile) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? updated = null,
+  }) {
+    return _then(_$_UpdateProfile(
+      updated: null == updated
+          ? _value.updated
+          : updated // ignore: cast_nullable_to_non_nullable
+              as UpdatedUser,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_UpdateProfile with DiagnosticableTreeMixin implements _UpdateProfile {
+  const _$_UpdateProfile({required this.updated});
+
+  @override
+  final UpdatedUser updated;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AuthEvent.updateProfile(updated: $updated)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'AuthEvent.updateProfile'))
+      ..add(DiagnosticsProperty('updated', updated));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateProfile &&
+            (identical(other.updated, updated) || other.updated == updated));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, updated);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UpdateProfileCopyWith<_$_UpdateProfile> get copyWith =>
+      __$$_UpdateProfileCopyWithImpl<_$_UpdateProfile>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() checkForAuthStatus,
+    required TResult Function() signInAnonymously,
+    required TResult Function() logout,
+    required TResult Function(UpdatedUser updated) updateProfile,
+    required TResult Function(File image) uploadProfileImage,
+    required TResult Function(User user) newUser,
+  }) {
+    return updateProfile(updated);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? checkForAuthStatus,
+    TResult? Function()? signInAnonymously,
+    TResult? Function()? logout,
+    TResult? Function(UpdatedUser updated)? updateProfile,
+    TResult? Function(File image)? uploadProfileImage,
+    TResult? Function(User user)? newUser,
+  }) {
+    return updateProfile?.call(updated);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? checkForAuthStatus,
+    TResult Function()? signInAnonymously,
+    TResult Function()? logout,
+    TResult Function(UpdatedUser updated)? updateProfile,
+    TResult Function(File image)? uploadProfileImage,
+    TResult Function(User user)? newUser,
+    required TResult orElse(),
+  }) {
+    if (updateProfile != null) {
+      return updateProfile(updated);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CheckForAuthStatus value) checkForAuthStatus,
+    required TResult Function(_SignInAnonymously value) signInAnonymously,
+    required TResult Function(_Logout value) logout,
+    required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UploadProfileImage value) uploadProfileImage,
+    required TResult Function(_NewUser value) newUser,
+  }) {
+    return updateProfile(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CheckForAuthStatus value)? checkForAuthStatus,
+    TResult? Function(_SignInAnonymously value)? signInAnonymously,
+    TResult? Function(_Logout value)? logout,
+    TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UploadProfileImage value)? uploadProfileImage,
+    TResult? Function(_NewUser value)? newUser,
+  }) {
+    return updateProfile?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CheckForAuthStatus value)? checkForAuthStatus,
+    TResult Function(_SignInAnonymously value)? signInAnonymously,
+    TResult Function(_Logout value)? logout,
+    TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UploadProfileImage value)? uploadProfileImage,
+    TResult Function(_NewUser value)? newUser,
+    required TResult orElse(),
+  }) {
+    if (updateProfile != null) {
+      return updateProfile(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateProfile implements AuthEvent {
+  const factory _UpdateProfile({required final UpdatedUser updated}) =
+      _$_UpdateProfile;
+
+  UpdatedUser get updated;
+  @JsonKey(ignore: true)
+  _$$_UpdateProfileCopyWith<_$_UpdateProfile> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_UploadProfileImageCopyWith<$Res> {
+  factory _$$_UploadProfileImageCopyWith(_$_UploadProfileImage value,
+          $Res Function(_$_UploadProfileImage) then) =
+      __$$_UploadProfileImageCopyWithImpl<$Res>;
+  @useResult
+  $Res call({File image});
+}
+
+/// @nodoc
+class __$$_UploadProfileImageCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$_UploadProfileImage>
+    implements _$$_UploadProfileImageCopyWith<$Res> {
+  __$$_UploadProfileImageCopyWithImpl(
+      _$_UploadProfileImage _value, $Res Function(_$_UploadProfileImage) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? image = null,
+  }) {
+    return _then(_$_UploadProfileImage(
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as File,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_UploadProfileImage
+    with DiagnosticableTreeMixin
+    implements _UploadProfileImage {
+  const _$_UploadProfileImage({required this.image});
+
+  @override
+  final File image;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AuthEvent.uploadProfileImage(image: $image)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'AuthEvent.uploadProfileImage'))
+      ..add(DiagnosticsProperty('image', image));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UploadProfileImage &&
+            (identical(other.image, image) || other.image == image));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, image);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UploadProfileImageCopyWith<_$_UploadProfileImage> get copyWith =>
+      __$$_UploadProfileImageCopyWithImpl<_$_UploadProfileImage>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() checkForAuthStatus,
+    required TResult Function() signInAnonymously,
+    required TResult Function() logout,
+    required TResult Function(UpdatedUser updated) updateProfile,
+    required TResult Function(File image) uploadProfileImage,
+    required TResult Function(User user) newUser,
+  }) {
+    return uploadProfileImage(image);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? checkForAuthStatus,
+    TResult? Function()? signInAnonymously,
+    TResult? Function()? logout,
+    TResult? Function(UpdatedUser updated)? updateProfile,
+    TResult? Function(File image)? uploadProfileImage,
+    TResult? Function(User user)? newUser,
+  }) {
+    return uploadProfileImage?.call(image);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? checkForAuthStatus,
+    TResult Function()? signInAnonymously,
+    TResult Function()? logout,
+    TResult Function(UpdatedUser updated)? updateProfile,
+    TResult Function(File image)? uploadProfileImage,
+    TResult Function(User user)? newUser,
+    required TResult orElse(),
+  }) {
+    if (uploadProfileImage != null) {
+      return uploadProfileImage(image);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CheckForAuthStatus value) checkForAuthStatus,
+    required TResult Function(_SignInAnonymously value) signInAnonymously,
+    required TResult Function(_Logout value) logout,
+    required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UploadProfileImage value) uploadProfileImage,
+    required TResult Function(_NewUser value) newUser,
+  }) {
+    return uploadProfileImage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CheckForAuthStatus value)? checkForAuthStatus,
+    TResult? Function(_SignInAnonymously value)? signInAnonymously,
+    TResult? Function(_Logout value)? logout,
+    TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UploadProfileImage value)? uploadProfileImage,
+    TResult? Function(_NewUser value)? newUser,
+  }) {
+    return uploadProfileImage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CheckForAuthStatus value)? checkForAuthStatus,
+    TResult Function(_SignInAnonymously value)? signInAnonymously,
+    TResult Function(_Logout value)? logout,
+    TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UploadProfileImage value)? uploadProfileImage,
+    TResult Function(_NewUser value)? newUser,
+    required TResult orElse(),
+  }) {
+    if (uploadProfileImage != null) {
+      return uploadProfileImage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UploadProfileImage implements AuthEvent {
+  const factory _UploadProfileImage({required final File image}) =
+      _$_UploadProfileImage;
+
+  File get image;
+  @JsonKey(ignore: true)
+  _$$_UploadProfileImageCopyWith<_$_UploadProfileImage> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_NewUserCopyWith<$Res> {
+  factory _$$_NewUserCopyWith(
+          _$_NewUser value, $Res Function(_$_NewUser) then) =
+      __$$_NewUserCopyWithImpl<$Res>;
+  @useResult
+  $Res call({User user});
+}
+
+/// @nodoc
+class __$$_NewUserCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$_NewUser>
+    implements _$$_NewUserCopyWith<$Res> {
+  __$$_NewUserCopyWithImpl(_$_NewUser _value, $Res Function(_$_NewUser) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user = null,
+  }) {
+    return _then(_$_NewUser(
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_NewUser with DiagnosticableTreeMixin implements _NewUser {
+  const _$_NewUser({required this.user});
+
+  @override
+  final User user;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AuthEvent.newUser(user: $user)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'AuthEvent.newUser'))
+      ..add(DiagnosticsProperty('user', user));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_NewUser &&
+            (identical(other.user, user) || other.user == user));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, user);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_NewUserCopyWith<_$_NewUser> get copyWith =>
+      __$$_NewUserCopyWithImpl<_$_NewUser>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() checkForAuthStatus,
+    required TResult Function() signInAnonymously,
+    required TResult Function() logout,
+    required TResult Function(UpdatedUser updated) updateProfile,
+    required TResult Function(File image) uploadProfileImage,
+    required TResult Function(User user) newUser,
+  }) {
+    return newUser(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? checkForAuthStatus,
+    TResult? Function()? signInAnonymously,
+    TResult? Function()? logout,
+    TResult? Function(UpdatedUser updated)? updateProfile,
+    TResult? Function(File image)? uploadProfileImage,
+    TResult? Function(User user)? newUser,
+  }) {
+    return newUser?.call(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? checkForAuthStatus,
+    TResult Function()? signInAnonymously,
+    TResult Function()? logout,
+    TResult Function(UpdatedUser updated)? updateProfile,
+    TResult Function(File image)? uploadProfileImage,
+    TResult Function(User user)? newUser,
+    required TResult orElse(),
+  }) {
+    if (newUser != null) {
+      return newUser(user);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CheckForAuthStatus value) checkForAuthStatus,
+    required TResult Function(_SignInAnonymously value) signInAnonymously,
+    required TResult Function(_Logout value) logout,
+    required TResult Function(_UpdateProfile value) updateProfile,
+    required TResult Function(_UploadProfileImage value) uploadProfileImage,
+    required TResult Function(_NewUser value) newUser,
+  }) {
+    return newUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CheckForAuthStatus value)? checkForAuthStatus,
+    TResult? Function(_SignInAnonymously value)? signInAnonymously,
+    TResult? Function(_Logout value)? logout,
+    TResult? Function(_UpdateProfile value)? updateProfile,
+    TResult? Function(_UploadProfileImage value)? uploadProfileImage,
+    TResult? Function(_NewUser value)? newUser,
+  }) {
+    return newUser?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CheckForAuthStatus value)? checkForAuthStatus,
+    TResult Function(_SignInAnonymously value)? signInAnonymously,
+    TResult Function(_Logout value)? logout,
+    TResult Function(_UpdateProfile value)? updateProfile,
+    TResult Function(_UploadProfileImage value)? uploadProfileImage,
+    TResult Function(_NewUser value)? newUser,
+    required TResult orElse(),
+  }) {
+    if (newUser != null) {
+      return newUser(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NewUser implements AuthEvent {
+  const factory _NewUser({required final User user}) = _$_NewUser;
+
+  User get user;
+  @JsonKey(ignore: true)
+  _$$_NewUserCopyWith<_$_NewUser> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -12,12 +12,13 @@ class LandingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthBloc, AuthState>(
+      buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         switch (state.status) {
           case AuthStatus.unKnown:
             return const SplashScreen();
           case AuthStatus.authzorized:
-            return HomeScreen();
+            return const HomeScreen();
           case AuthStatus.unAuthzorized:
             return const LoginScreen();
         }

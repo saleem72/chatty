@@ -16,13 +16,18 @@ extension DataSnapshotPretty on DataSnapshot {
   }
 
   Map<String, dynamic> toJson() {
-    if (value != null) {
-      var spaces = ' ' * 4;
-      var encoder = JsonEncoder.withIndent(spaces);
-      final temp = encoder.convert(value);
-      return jsonDecode(temp);
-    } else {
-      return {};
+    try {
+      if (value != null) {
+        var spaces = ' ' * 4;
+        var encoder = JsonEncoder.withIndent(spaces);
+        final temp = encoder.convert(value);
+        return jsonDecode(temp);
+      } else {
+        return <String, dynamic>{};
+      }
+    } catch (e) {
+      print('🔥 DataSnapshotPretty:\n${e.toString()}\n$this');
+      return <String, dynamic>{};
     }
   }
 }

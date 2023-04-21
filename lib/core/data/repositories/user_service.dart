@@ -20,6 +20,7 @@ import '../../domain/repositories/i_user_service.dart';
 class UserService implements IUserService {
   final auth = FirebaseAuth.instance;
   final db = FirebaseDatabase.instance.ref();
+  final usersTable = FirebaseDatabase.instance.ref("users");
   @override
   Future<Either<UserFailure, AppUser>> currentUser() async {
     final user = auth.currentUser;
@@ -122,7 +123,7 @@ class UserService implements IUserService {
     final uid = user.uid;
 
     try {
-      DatabaseReference ref = FirebaseDatabase.instance.ref("users").child(uid);
+      DatabaseReference ref = usersTable.child(uid);
 
       await ref.update(map);
 

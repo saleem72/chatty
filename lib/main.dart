@@ -1,7 +1,6 @@
 import 'package:chatty/configuration/routing/app_router.dart';
 import 'package:chatty/configuration/routing/app_screens.dart';
 import 'package:chatty/core/presentation/auth_bloc/auth_bloc.dart';
-import 'package:chatty/core/presentation/user_cubit/user_cubit.dart';
 import 'package:chatty/dependancy_injection.dart' as di;
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';

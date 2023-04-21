@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/domain/models/app_user.dart';
 import '../cubit/online_users_cubit.dart';
-import '../users_bloc/users_bloc.dart';
+import '../home_bloc/home_bloc.dart';
 import 'on_line_user_tile.dart';
 
 class OnlineUsersListView extends StatelessWidget {
@@ -13,7 +13,7 @@ class OnlineUsersListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<UsersBloc, UsersState>(
+    return BlocListener<HomeBloc, HomeState>(
       listenWhen: (previous, current) =>
           current.maybeMap(newUser: (_) => true, orElse: () => false),
       listener: (context, state) {

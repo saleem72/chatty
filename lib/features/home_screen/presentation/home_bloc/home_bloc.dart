@@ -10,14 +10,14 @@ import '../../../../core/domain/models/app_user.dart';
 import '../../../../core/domain/repositories/i_auth_service.dart';
 import '../failure/home_failure.dart';
 
-part 'users_event.dart';
-part 'users_state.dart';
-part 'users_bloc.freezed.dart';
+part 'home_event.dart';
+part 'home_state.dart';
+part 'home_bloc.freezed.dart';
 
-class UsersBloc extends Bloc<UsersEvent, UsersState> {
+class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final IAuthService authManager;
   final IChatsService chatsService;
-  UsersBloc({
+  HomeBloc({
     required this.authManager,
     required this.chatsService,
   }) : super(const _Initial()) {
@@ -28,11 +28,11 @@ class UsersBloc extends Bloc<UsersEvent, UsersState> {
 
   StreamSubscription<AppUser>? streamSubscription;
 
-  _onNewChats(_NewChats event, Emitter<UsersState> emit) {
-    emit(UsersState.newUser(user: event.user));
+  _onNewChats(_NewChats event, Emitter<HomeState> emit) {
+    emit(HomeState.newUser(user: event.user));
   }
 
-  _onSubscripToChats(_SubscripToChats event, Emitter<UsersState> emit) async {
+  _onSubscripToChats(_SubscripToChats event, Emitter<HomeState> emit) async {
     // final users = await chatsService.fetchOnlineUsers(event.userId);
     // emit(UsersState.onlineUsers(users: users));
     if (streamSubscription != null) {
@@ -44,11 +44,11 @@ class UsersBloc extends Bloc<UsersEvent, UsersState> {
     }
     streamSubscription =
         chatsService.subscripForUser(event.userId).listen((event) {
-      add(UsersEvent.newChats(user: event));
+      add(HomeEvent.newChats(user: event));
     });
   }
 
-  _onLogout(_Logout event, Emitter<UsersState> emit) async {
+  _onLogout(_Logout event, Emitter<HomeState> emit) async {
     authManager.logout();
     // final either = await authManager.logout();
     // either.fold(

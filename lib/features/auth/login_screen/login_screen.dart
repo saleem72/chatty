@@ -2,7 +2,6 @@
 
 import 'package:chatty/configuration/assets/app_icons.dart';
 import 'package:chatty/core/presentation/auth_bloc/auth_bloc.dart';
-import 'package:chatty/core/presentation/user_cubit/user_cubit.dart';
 import 'package:chatty/dependancy_injection.dart';
 import 'package:chatty/features/auth/login_screen/presentation/bloc/login_entries_bloc.dart';
 import 'package:flutter/material.dart';
@@ -48,9 +47,6 @@ class LoginScreenContents extends StatelessWidget {
         }
       },
       listener: (context, state) {
-        if (state is LoginSuccess) {
-          context.read<UserCubit>().setUser(state.user);
-        }
         context.read<AuthBloc>().add(const AuthEvent.checkForAuthStatus());
       },
       builder: (context, state) {

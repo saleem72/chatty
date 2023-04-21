@@ -1,7 +1,6 @@
 //
 
 import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 import '../error/auth_failure.dart';
 import '../models/app_user.dart';
@@ -13,6 +12,6 @@ abstract class IAuthService {
       String emailAddress, String password);
   Future<Either<AuthFailure, AppUser>> googleSignIn();
   Future<Either<AuthFailure, AppUser>> signInAnonymously();
-  Future<Either<AuthFailure, User>> currrentUser();
+  Future<Either<AuthFailure, AppUser>> currrentUser();
   Future<Either<AuthFailure, Unit>> logout();
 }
