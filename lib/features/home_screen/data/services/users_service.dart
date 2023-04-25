@@ -9,9 +9,9 @@ import 'package:chatty/core/data/firebase_auth_manager/extension/data_snapshot_e
 import 'package:chatty/core/domain/models/app_user.dart';
 import 'package:flutter/material.dart';
 
-import '../../domain/services/i_chats_service.dart';
+import '../../domain/services/i_users_service.dart';
 
-class ChatsService implements IChatsService {
+class UsersService implements IUsersService {
   final StreamController<AppUser> _gettingUsers =
       StreamController<AppUser>.broadcast();
   StreamSubscription? _gettingUsersSubscription;
@@ -21,7 +21,7 @@ class ChatsService implements IChatsService {
   StreamSubscription? _updatingUsersSubscription;
 
   final FirebaseDatabase db;
-  ChatsService({
+  UsersService({
     required this.db,
   }) : usersTable = db.ref().child('users');
   final DatabaseReference usersTable;

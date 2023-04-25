@@ -1,11 +1,13 @@
 //
 
+import 'package:chatty/core/extensions/build_context_extension.dart';
 import 'package:chatty/core/presentation/auth_bloc/auth_bloc.dart';
 import 'package:chatty/features/home_screen/presentation/cubit/online_users_cubit.dart';
+import 'package:chatty/features/home_screen/presentation/widgets/chats_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../core/presentation/widgets/app_nav_bar.dart';
+import '../../core/presentation/chats_bloc/chats_bloc.dart';
 import '../../dependancy_injection.dart' as di;
 import 'presentation/home_bloc/home_bloc.dart';
 import 'presentation/widgets/home_drawer.dart';
@@ -17,18 +19,28 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
   @override
   Widget build(BuildContext context) {
+    final userId = context.read<AuthBloc>().state.user?.uid ?? '';
     return MultiBlocProvider(
       providers: [
         BlocProvider(
           create: (context) {
-            final userId = context.read<AuthBloc>().state.user?.uid ?? '';
-            return di.locator<HomeBloc>()
-              ..add(HomeEvent.subscripToChats(userId: userId));
+            return di.locator<HomeBloc>();
           },
         ),
-        BlocProvider(create: (_) => OnlineUsersCubit()),
+        BlocProvider(
+          create: (_) => OnlineUsersCubit(
+            service: di.locator(),
+          )..fetchUsers(userId),
+        ),
+        BlocProvider(
+          create: (context) => ChatsBloc(
+            service: di.locator(),
+          ),
+        )
       ],
-      child: const _HomeScreenContent(),
+      child: _HomeScreenContent(
+        userId: userId,
+      ),
     );
   }
 }

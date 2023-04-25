@@ -33,17 +33,31 @@ class _ChatScreenContent extends StatelessWidget {
               color: const Color(0xFFF7F7FC),
             ),
           ),
-          const SendMessageView(),
+          SendMessageView(user: user),
         ],
       ),
     );
   }
 }
 
-class SendMessageView extends StatelessWidget {
+class SendMessageView extends StatefulWidget {
   const SendMessageView({
     super.key,
+    required this.user,
   });
+  final AppUser user;
+  @override
+  State<SendMessageView> createState() => _SendMessageViewState();
+}
+
+class _SendMessageViewState extends State<SendMessageView> {
+  final TextEditingController _message = TextEditingController();
+
+  @override
+  void dispose() {
+    _message.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,11 +75,11 @@ class SendMessageView extends StatelessWidget {
                 color: Color(0xFFADB5BD),
               ),
             ),
-            const Expanded(
-              child: SendMessageTextField(),
+            Expanded(
+              child: SendMessageTextField(controller: _message),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () => _sendMessage(context),
               icon: Icon(
                 Icons.send_rounded,
                 color: context.colorScheme.primary,
@@ -76,13 +90,27 @@ class SendMessageView extends StatelessWidget {
       ),
     );
   }
+
+  _sendMessage(BuildContext context) {
+    final sender = context.read<AuthBloc>().state.user?.uid ?? '';
+    final receiver = widget.user.uid;
+    final message = Message(
+      sender: sender,
+      receiver: receiver,
+      content: _message.text,
+      timestamp: DateTime.now(),
+      status: MessageDeliverStatus.sent,
+    );
+    context.read<ChatsBloc>().add(ChatsEvent.sendMessage(message: message));
+  }
 }
 
 class SendMessageTextField extends StatelessWidget {
   const SendMessageTextField({
     super.key,
+    required this.controller,
   });
-
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -92,6 +120,7 @@ class SendMessageTextField extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       child: TextField(
+        controller: controller,
         style: context.bodyTextStyle?.copyWith(
           fontSize: 14,
           fontWeight: FontWeight.w500,

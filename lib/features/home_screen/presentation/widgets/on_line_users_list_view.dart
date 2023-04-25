@@ -1,30 +1,22 @@
 //
 
+import 'package:chatty/dependancy_injection.dart' as di;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/domain/models/app_user.dart';
 import '../cubit/online_users_cubit.dart';
-import '../home_bloc/home_bloc.dart';
 import 'on_line_user_tile.dart';
 
 class OnlineUsersListView extends StatelessWidget {
-  const OnlineUsersListView({super.key});
-
+  const OnlineUsersListView({
+    super.key,
+    required this.userId,
+  });
+  final String userId;
   @override
   Widget build(BuildContext context) {
-    return BlocListener<HomeBloc, HomeState>(
-      listenWhen: (previous, current) =>
-          current.maybeMap(newUser: (_) => true, orElse: () => false),
-      listener: (context, state) {
-        state.maybeMap(
-          newUser: (value) =>
-              context.read<OnlineUsersCubit>().addUser(value.user),
-          orElse: () => null,
-        );
-      },
-      child: _widgetBuilder(context),
-    );
+    return _widgetBuilder(context);
   }
 
   Widget _widgetBuilder(BuildContext context) {

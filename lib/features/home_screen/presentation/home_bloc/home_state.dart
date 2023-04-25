@@ -9,9 +9,6 @@ class HomeState with _$HomeState {
   const factory HomeState.newUser({
     required AppUser user,
   }) = NewUserState;
-  const factory HomeState.onlineUsers({
-    required List<AppUser> users,
-  }) = _OnLineUsers;
   const factory HomeState.failure({required HomeFailure failure}) =
       HomeFailureState;
 }

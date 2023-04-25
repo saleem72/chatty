@@ -8,12 +8,15 @@ import 'package:chatty/core/domain/repositories/i_user_service.dart';
 import 'package:chatty/core/presentation/auth_bloc/auth_bloc.dart';
 import 'package:chatty/features/auth/login_screen/presentation/bloc/login_entries_bloc.dart';
 import 'package:chatty/features/auth/login_screen/presentation/login_bloc/login_bloc.dart';
-import 'package:chatty/features/home_screen/data/services/chats_service.dart';
-import 'package:chatty/features/home_screen/domain/services/i_chats_service.dart';
+import 'package:chatty/features/home_screen/data/services/users_service.dart';
+import 'package:chatty/features/home_screen/domain/services/i_users_service.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'core/data/repositories/remote_messaging_service.dart';
+import 'core/domain/repositories/i_remote_messaging_service.dart';
+import 'core/presentation/chats_bloc/chats_bloc.dart';
 import 'features/home_screen/presentation/home_bloc/home_bloc.dart';
 
 final locator = GetIt.instance;
@@ -25,10 +28,9 @@ Future<void> initDependancies() async {
   locator.registerFactory(() => LoginEntriesBloc());
 
   // Home
-  locator.registerFactory(
-      () => HomeBloc(authManager: locator(), chatsService: locator()));
-  locator.registerFactory<IChatsService>(
-      () => ChatsService(db: FirebaseDatabase.instance));
+  locator.registerFactory(() => HomeBloc(authManager: locator()));
+  locator.registerFactory<IUsersService>(
+      () => UsersService(db: FirebaseDatabase.instance));
 
   // core
   locator.registerLazySingleton<IAuthService>(() => FirebaseAuthManager());
@@ -36,6 +38,11 @@ Future<void> initDependancies() async {
       () => AuthBloc(authManager: locator(), userService: locator()));
   locator.registerLazySingleton(() => Safe(storage: locator()));
   locator.registerLazySingleton<IUserService>(() => UserService());
+
+  locator.registerFactory(() => ChatsBloc(service: locator()));
+  locator.registerFactory<IRemoteMessagingService>(
+      () => RemoteMessagingService(db: FirebaseDatabase.instance));
+
   // external
   final sharedPreferences = await SharedPreferences.getInstance();
   locator.registerSingleton<SharedPreferences>(sharedPreferences);
