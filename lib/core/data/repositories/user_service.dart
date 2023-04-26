@@ -134,4 +134,9 @@ class UserService implements IUserService {
       return const Left(UserFailure.unKnown());
     }
   }
+
+  @override
+  Future<AppUser> userForId(String userId) {
+    return _getUser(userId);
+  }
 }

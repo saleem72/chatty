@@ -18,39 +18,39 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ChatsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Message message) sendMessage,
     required TResult Function(String userId) subscribe,
+    required TResult Function(List<Chat> chats) updateState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Message message)? sendMessage,
     TResult? Function(String userId)? subscribe,
+    TResult? Function(List<Chat> chats)? updateState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Message message)? sendMessage,
     TResult Function(String userId)? subscribe,
+    TResult Function(List<Chat> chats)? updateState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SendMessage value) sendMessage,
     required TResult Function(_Subscribe value) subscribe,
+    required TResult Function(_UpdateState value) updateState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SendMessage value)? sendMessage,
     TResult? Function(_Subscribe value)? subscribe,
+    TResult? Function(_UpdateState value)? updateState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SendMessage value)? sendMessage,
     TResult Function(_Subscribe value)? subscribe,
+    TResult Function(_UpdateState value)? updateState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -72,139 +72,6 @@ class _$ChatsEventCopyWithImpl<$Res, $Val extends ChatsEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$_SendMessageCopyWith<$Res> {
-  factory _$$_SendMessageCopyWith(
-          _$_SendMessage value, $Res Function(_$_SendMessage) then) =
-      __$$_SendMessageCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Message message});
-}
-
-/// @nodoc
-class __$$_SendMessageCopyWithImpl<$Res>
-    extends _$ChatsEventCopyWithImpl<$Res, _$_SendMessage>
-    implements _$$_SendMessageCopyWith<$Res> {
-  __$$_SendMessageCopyWithImpl(
-      _$_SendMessage _value, $Res Function(_$_SendMessage) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? message = null,
-  }) {
-    return _then(_$_SendMessage(
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as Message,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_SendMessage implements _SendMessage {
-  const _$_SendMessage({required this.message});
-
-  @override
-  final Message message;
-
-  @override
-  String toString() {
-    return 'ChatsEvent.sendMessage(message: $message)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_SendMessage &&
-            (identical(other.message, message) || other.message == message));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, message);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_SendMessageCopyWith<_$_SendMessage> get copyWith =>
-      __$$_SendMessageCopyWithImpl<_$_SendMessage>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Message message) sendMessage,
-    required TResult Function(String userId) subscribe,
-  }) {
-    return sendMessage(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Message message)? sendMessage,
-    TResult? Function(String userId)? subscribe,
-  }) {
-    return sendMessage?.call(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Message message)? sendMessage,
-    TResult Function(String userId)? subscribe,
-    required TResult orElse(),
-  }) {
-    if (sendMessage != null) {
-      return sendMessage(message);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SendMessage value) sendMessage,
-    required TResult Function(_Subscribe value) subscribe,
-  }) {
-    return sendMessage(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SendMessage value)? sendMessage,
-    TResult? Function(_Subscribe value)? subscribe,
-  }) {
-    return sendMessage?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SendMessage value)? sendMessage,
-    TResult Function(_Subscribe value)? subscribe,
-    required TResult orElse(),
-  }) {
-    if (sendMessage != null) {
-      return sendMessage(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SendMessage implements ChatsEvent {
-  const factory _SendMessage({required final Message message}) = _$_SendMessage;
-
-  Message get message;
-  @JsonKey(ignore: true)
-  _$$_SendMessageCopyWith<_$_SendMessage> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -271,8 +138,8 @@ class _$_Subscribe implements _Subscribe {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Message message) sendMessage,
     required TResult Function(String userId) subscribe,
+    required TResult Function(List<Chat> chats) updateState,
   }) {
     return subscribe(userId);
   }
@@ -280,8 +147,8 @@ class _$_Subscribe implements _Subscribe {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Message message)? sendMessage,
     TResult? Function(String userId)? subscribe,
+    TResult? Function(List<Chat> chats)? updateState,
   }) {
     return subscribe?.call(userId);
   }
@@ -289,8 +156,8 @@ class _$_Subscribe implements _Subscribe {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Message message)? sendMessage,
     TResult Function(String userId)? subscribe,
+    TResult Function(List<Chat> chats)? updateState,
     required TResult orElse(),
   }) {
     if (subscribe != null) {
@@ -302,8 +169,8 @@ class _$_Subscribe implements _Subscribe {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SendMessage value) sendMessage,
     required TResult Function(_Subscribe value) subscribe,
+    required TResult Function(_UpdateState value) updateState,
   }) {
     return subscribe(this);
   }
@@ -311,8 +178,8 @@ class _$_Subscribe implements _Subscribe {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SendMessage value)? sendMessage,
     TResult? Function(_Subscribe value)? subscribe,
+    TResult? Function(_UpdateState value)? updateState,
   }) {
     return subscribe?.call(this);
   }
@@ -320,8 +187,8 @@ class _$_Subscribe implements _Subscribe {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SendMessage value)? sendMessage,
     TResult Function(_Subscribe value)? subscribe,
+    TResult Function(_UpdateState value)? updateState,
     required TResult orElse(),
   }) {
     if (subscribe != null) {
@@ -337,6 +204,146 @@ abstract class _Subscribe implements ChatsEvent {
   String get userId;
   @JsonKey(ignore: true)
   _$$_SubscribeCopyWith<_$_Subscribe> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_UpdateStateCopyWith<$Res> {
+  factory _$$_UpdateStateCopyWith(
+          _$_UpdateState value, $Res Function(_$_UpdateState) then) =
+      __$$_UpdateStateCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<Chat> chats});
+}
+
+/// @nodoc
+class __$$_UpdateStateCopyWithImpl<$Res>
+    extends _$ChatsEventCopyWithImpl<$Res, _$_UpdateState>
+    implements _$$_UpdateStateCopyWith<$Res> {
+  __$$_UpdateStateCopyWithImpl(
+      _$_UpdateState _value, $Res Function(_$_UpdateState) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? chats = null,
+  }) {
+    return _then(_$_UpdateState(
+      chats: null == chats
+          ? _value._chats
+          : chats // ignore: cast_nullable_to_non_nullable
+              as List<Chat>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_UpdateState implements _UpdateState {
+  const _$_UpdateState({required final List<Chat> chats}) : _chats = chats;
+
+  final List<Chat> _chats;
+  @override
+  List<Chat> get chats {
+    if (_chats is EqualUnmodifiableListView) return _chats;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_chats);
+  }
+
+  @override
+  String toString() {
+    return 'ChatsEvent.updateState(chats: $chats)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateState &&
+            const DeepCollectionEquality().equals(other._chats, _chats));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_chats));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UpdateStateCopyWith<_$_UpdateState> get copyWith =>
+      __$$_UpdateStateCopyWithImpl<_$_UpdateState>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) subscribe,
+    required TResult Function(List<Chat> chats) updateState,
+  }) {
+    return updateState(chats);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String userId)? subscribe,
+    TResult? Function(List<Chat> chats)? updateState,
+  }) {
+    return updateState?.call(chats);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? subscribe,
+    TResult Function(List<Chat> chats)? updateState,
+    required TResult orElse(),
+  }) {
+    if (updateState != null) {
+      return updateState(chats);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Subscribe value) subscribe,
+    required TResult Function(_UpdateState value) updateState,
+  }) {
+    return updateState(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Subscribe value)? subscribe,
+    TResult? Function(_UpdateState value)? updateState,
+  }) {
+    return updateState?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Subscribe value)? subscribe,
+    TResult Function(_UpdateState value)? updateState,
+    required TResult orElse(),
+  }) {
+    if (updateState != null) {
+      return updateState(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateState implements ChatsEvent {
+  const factory _UpdateState({required final List<Chat> chats}) =
+      _$_UpdateState;
+
+  List<Chat> get chats;
+  @JsonKey(ignore: true)
+  _$$_UpdateStateCopyWith<_$_UpdateState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

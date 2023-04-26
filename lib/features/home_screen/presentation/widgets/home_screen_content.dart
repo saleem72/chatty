@@ -3,7 +3,7 @@
 part of '../../home_screen.dart';
 
 class _HomeScreenContent extends StatelessWidget {
-  _HomeScreenContent({
+  const _HomeScreenContent({
     //   super.key,
     required this.userId,
   });
@@ -35,8 +35,8 @@ class _HomeScreenContent extends StatelessWidget {
           ],
           bottom: TabBar(
             indicatorColor: context.colorScheme.primary,
-            unselectedLabelColor: Colors.blue,
-            labelColor: Colors.green,
+            unselectedLabelColor: Colors.grey.shade400,
+            labelColor: context.colorScheme.primary,
             tabs: const [
               Tab(icon: Icon(Icons.groups)),
               Tab(icon: Icon(Icons.view_list_rounded)),

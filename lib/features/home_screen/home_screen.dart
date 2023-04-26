@@ -32,10 +32,9 @@ class HomeScreen extends StatelessWidget {
             service: di.locator(),
           )..fetchUsers(userId),
         ),
-        BlocProvider(
-          create: (context) => ChatsBloc(
-            service: di.locator(),
-          ),
+        BlocProvider<ChatsBloc>(
+          create: (context) =>
+              di.locator()..add(ChatsEvent.subscribe(userId: userId)),
         )
       ],
       child: _HomeScreenContent(

@@ -12,4 +12,5 @@ abstract class IUserService {
   Future<Either<UserFailure, AppUser>> currentUser();
   Future<Either<UserFailure, AppUser>> uploadImage(File image);
   Future<Either<UserFailure, AppUser>> updateProfile(UpdatedUserWithId user);
+  Future<AppUser> userForId(String userId);
 }

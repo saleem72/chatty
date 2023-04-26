@@ -15,19 +15,37 @@ enum MessageDeliverStatus {
 }
 
 class Message extends Equatable {
+  final String id;
   final String sender;
   final String receiver;
   final String content;
   final DateTime timestamp;
   final MessageDeliverStatus status;
 
-  const Message({
+  const Message._({
+    required this.id,
     required this.sender,
     required this.receiver,
     required this.content,
     required this.timestamp,
     required this.status,
   });
+
+  factory Message({
+    required String sender,
+    required String receiver,
+    required String content,
+    required DateTime timestamp,
+    required MessageDeliverStatus status,
+  }) =>
+      Message._(
+        id: '',
+        sender: sender,
+        receiver: receiver,
+        content: content,
+        timestamp: timestamp,
+        status: status,
+      );
 
   @override
   String toString() {
@@ -47,8 +65,9 @@ class Message extends Equatable {
     };
   }
 
-  factory Message.fromMap(Map<String, dynamic> map) {
-    return Message(
+  factory Message.fromMap(Map<String, dynamic> map, String id) {
+    return Message._(
+      id: id,
       sender: map['sender'] as String,
       receiver: map['receiver'] as String,
       content: map['content'] as String,

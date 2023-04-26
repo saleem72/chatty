@@ -92,8 +92,8 @@ class _SendMessageViewState extends State<SendMessageView> {
   }
 
   _sendMessage(BuildContext context) {
-    final sender = context.read<AuthBloc>().state.user?.uid ?? '';
-    final receiver = widget.user.uid;
+    final sender = widget.user.uid;
+    final receiver = context.read<AuthBloc>().state.user?.uid ?? '';
     final message = Message(
       sender: sender,
       receiver: receiver,
@@ -101,7 +101,9 @@ class _SendMessageViewState extends State<SendMessageView> {
       timestamp: DateTime.now(),
       status: MessageDeliverStatus.sent,
     );
-    context.read<ChatsBloc>().add(ChatsEvent.sendMessage(message: message));
+    context
+        .read<UserChatBloc>()
+        .add(UserChatEvent.sendMessage(message: message));
   }
 }
 

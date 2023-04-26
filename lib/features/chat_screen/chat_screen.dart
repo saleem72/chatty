@@ -6,6 +6,8 @@ import 'package:chatty/core/extensions/build_context_extension.dart';
 import 'package:chatty/core/presentation/auth_bloc/auth_bloc.dart';
 import 'package:chatty/core/presentation/chats_bloc/chats_bloc.dart';
 import 'package:chatty/core/presentation/widgets/app_nav_bar.dart';
+import 'package:chatty/dependancy_injection.dart' as di;
+import 'package:chatty/features/chat_screen/presentation/bloc/user_chat_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,6 +22,15 @@ class ChatScreen extends StatelessWidget {
   final AppUser user;
   @override
   Widget build(BuildContext context) {
-    return _ChatScreenContent(user: user);
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => UserChatBloc(
+            remoteMessagingService: di.locator(),
+          ),
+        )
+      ],
+      child: _ChatScreenContent(user: user),
+    );
   }
 }

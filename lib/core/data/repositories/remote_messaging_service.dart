@@ -3,6 +3,7 @@
 
 import 'dart:async';
 
+import 'package:chatty/core/data/firebase_auth_manager/extension/data_snapshot_extension.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 import 'package:chatty/core/domain/models/message.dart';
@@ -39,14 +40,33 @@ class RemoteMessagingService implements IRemoteMessagingService {
     return _controller.stream;
   }
 
-  _createStreamForSubscriber(String userId) {
+  Future<List<Message>> fetchMessages(String userId) async {
+    final snapshot =
+        await _messagesTable.orderByChild('receiver').equalTo(userId).get();
+
+    final json = snapshot.toJson();
+    List<Message> messages = [];
+    json.forEach((key, value) {
+      final user = Message.fromMap(value, key);
+      messages.add(user);
+    });
+
+    return messages;
+  }
+
+  _createStreamForSubscriber(String userId) async {
     if (_subscription != null) {
       _subscription?.cancel();
     }
+
     _subscription = _messagesTable
         .orderByChild('receiver')
         .equalTo(userId)
         .onChildAdded
-        .listen((event) {});
+        .listen((event) {
+      final json = event.snapshot.toJson();
+      final message = Message.fromMap(json, event.snapshot.key ?? '');
+      _controller.sink.add(message);
+    });
   }
 }

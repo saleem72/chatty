@@ -19,44 +19,32 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() logout,
-    required TResult Function(AppUser user) newChats,
-    required TResult Function(String userId) subscripToChats,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? logout,
-    TResult? Function(AppUser user)? newChats,
-    TResult? Function(String userId)? subscripToChats,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? logout,
-    TResult Function(AppUser user)? newChats,
-    TResult Function(String userId)? subscripToChats,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Logout value) logout,
-    required TResult Function(_NewChats value) newChats,
-    required TResult Function(_SubscripToChats value) subscripToChats,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Logout value)? logout,
-    TResult? Function(_NewChats value)? newChats,
-    TResult? Function(_SubscripToChats value)? subscripToChats,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Logout value)? logout,
-    TResult Function(_NewChats value)? newChats,
-    TResult Function(_SubscripToChats value)? subscripToChats,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -116,8 +104,6 @@ class _$_Logout implements _Logout {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() logout,
-    required TResult Function(AppUser user) newChats,
-    required TResult Function(String userId) subscripToChats,
   }) {
     return logout();
   }
@@ -126,8 +112,6 @@ class _$_Logout implements _Logout {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? logout,
-    TResult? Function(AppUser user)? newChats,
-    TResult? Function(String userId)? subscripToChats,
   }) {
     return logout?.call();
   }
@@ -136,8 +120,6 @@ class _$_Logout implements _Logout {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? logout,
-    TResult Function(AppUser user)? newChats,
-    TResult Function(String userId)? subscripToChats,
     required TResult orElse(),
   }) {
     if (logout != null) {
@@ -150,8 +132,6 @@ class _$_Logout implements _Logout {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Logout value) logout,
-    required TResult Function(_NewChats value) newChats,
-    required TResult Function(_SubscripToChats value) subscripToChats,
   }) {
     return logout(this);
   }
@@ -160,8 +140,6 @@ class _$_Logout implements _Logout {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Logout value)? logout,
-    TResult? Function(_NewChats value)? newChats,
-    TResult? Function(_SubscripToChats value)? subscripToChats,
   }) {
     return logout?.call(this);
   }
@@ -170,8 +148,6 @@ class _$_Logout implements _Logout {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Logout value)? logout,
-    TResult Function(_NewChats value)? newChats,
-    TResult Function(_SubscripToChats value)? subscripToChats,
     required TResult orElse(),
   }) {
     if (logout != null) {
@@ -186,285 +162,6 @@ abstract class _Logout implements HomeEvent {
 }
 
 /// @nodoc
-abstract class _$$_NewChatsCopyWith<$Res> {
-  factory _$$_NewChatsCopyWith(
-          _$_NewChats value, $Res Function(_$_NewChats) then) =
-      __$$_NewChatsCopyWithImpl<$Res>;
-  @useResult
-  $Res call({AppUser user});
-}
-
-/// @nodoc
-class __$$_NewChatsCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res, _$_NewChats>
-    implements _$$_NewChatsCopyWith<$Res> {
-  __$$_NewChatsCopyWithImpl(
-      _$_NewChats _value, $Res Function(_$_NewChats) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? user = null,
-  }) {
-    return _then(_$_NewChats(
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as AppUser,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_NewChats implements _NewChats {
-  const _$_NewChats({required this.user});
-
-  @override
-  final AppUser user;
-
-  @override
-  String toString() {
-    return 'HomeEvent.newChats(user: $user)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_NewChats &&
-            (identical(other.user, user) || other.user == user));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, user);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_NewChatsCopyWith<_$_NewChats> get copyWith =>
-      __$$_NewChatsCopyWithImpl<_$_NewChats>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() logout,
-    required TResult Function(AppUser user) newChats,
-    required TResult Function(String userId) subscripToChats,
-  }) {
-    return newChats(user);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? logout,
-    TResult? Function(AppUser user)? newChats,
-    TResult? Function(String userId)? subscripToChats,
-  }) {
-    return newChats?.call(user);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? logout,
-    TResult Function(AppUser user)? newChats,
-    TResult Function(String userId)? subscripToChats,
-    required TResult orElse(),
-  }) {
-    if (newChats != null) {
-      return newChats(user);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Logout value) logout,
-    required TResult Function(_NewChats value) newChats,
-    required TResult Function(_SubscripToChats value) subscripToChats,
-  }) {
-    return newChats(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Logout value)? logout,
-    TResult? Function(_NewChats value)? newChats,
-    TResult? Function(_SubscripToChats value)? subscripToChats,
-  }) {
-    return newChats?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Logout value)? logout,
-    TResult Function(_NewChats value)? newChats,
-    TResult Function(_SubscripToChats value)? subscripToChats,
-    required TResult orElse(),
-  }) {
-    if (newChats != null) {
-      return newChats(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _NewChats implements HomeEvent {
-  const factory _NewChats({required final AppUser user}) = _$_NewChats;
-
-  AppUser get user;
-  @JsonKey(ignore: true)
-  _$$_NewChatsCopyWith<_$_NewChats> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_SubscripToChatsCopyWith<$Res> {
-  factory _$$_SubscripToChatsCopyWith(
-          _$_SubscripToChats value, $Res Function(_$_SubscripToChats) then) =
-      __$$_SubscripToChatsCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String userId});
-}
-
-/// @nodoc
-class __$$_SubscripToChatsCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res, _$_SubscripToChats>
-    implements _$$_SubscripToChatsCopyWith<$Res> {
-  __$$_SubscripToChatsCopyWithImpl(
-      _$_SubscripToChats _value, $Res Function(_$_SubscripToChats) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? userId = null,
-  }) {
-    return _then(_$_SubscripToChats(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_SubscripToChats implements _SubscripToChats {
-  const _$_SubscripToChats({required this.userId});
-
-  @override
-  final String userId;
-
-  @override
-  String toString() {
-    return 'HomeEvent.subscripToChats(userId: $userId)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_SubscripToChats &&
-            (identical(other.userId, userId) || other.userId == userId));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, userId);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_SubscripToChatsCopyWith<_$_SubscripToChats> get copyWith =>
-      __$$_SubscripToChatsCopyWithImpl<_$_SubscripToChats>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() logout,
-    required TResult Function(AppUser user) newChats,
-    required TResult Function(String userId) subscripToChats,
-  }) {
-    return subscripToChats(userId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? logout,
-    TResult? Function(AppUser user)? newChats,
-    TResult? Function(String userId)? subscripToChats,
-  }) {
-    return subscripToChats?.call(userId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? logout,
-    TResult Function(AppUser user)? newChats,
-    TResult Function(String userId)? subscripToChats,
-    required TResult orElse(),
-  }) {
-    if (subscripToChats != null) {
-      return subscripToChats(userId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Logout value) logout,
-    required TResult Function(_NewChats value) newChats,
-    required TResult Function(_SubscripToChats value) subscripToChats,
-  }) {
-    return subscripToChats(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Logout value)? logout,
-    TResult? Function(_NewChats value)? newChats,
-    TResult? Function(_SubscripToChats value)? subscripToChats,
-  }) {
-    return subscripToChats?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Logout value)? logout,
-    TResult Function(_NewChats value)? newChats,
-    TResult Function(_SubscripToChats value)? subscripToChats,
-    required TResult orElse(),
-  }) {
-    if (subscripToChats != null) {
-      return subscripToChats(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SubscripToChats implements HomeEvent {
-  const factory _SubscripToChats({required final String userId}) =
-      _$_SubscripToChats;
-
-  String get userId;
-  @JsonKey(ignore: true)
-  _$$_SubscripToChatsCopyWith<_$_SubscripToChats> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
 mixin _$HomeState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -473,7 +170,6 @@ mixin _$HomeState {
     required TResult Function(AppUser user) loaded,
     required TResult Function(AppUser user) loading,
     required TResult Function(AppUser user) newUser,
-    required TResult Function(List<AppUser> users) onlineUsers,
     required TResult Function(HomeFailure failure) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -484,7 +180,6 @@ mixin _$HomeState {
     TResult? Function(AppUser user)? loaded,
     TResult? Function(AppUser user)? loading,
     TResult? Function(AppUser user)? newUser,
-    TResult? Function(List<AppUser> users)? onlineUsers,
     TResult? Function(HomeFailure failure)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -495,7 +190,6 @@ mixin _$HomeState {
     TResult Function(AppUser user)? loaded,
     TResult Function(AppUser user)? loading,
     TResult Function(AppUser user)? newUser,
-    TResult Function(List<AppUser> users)? onlineUsers,
     TResult Function(HomeFailure failure)? failure,
     required TResult orElse(),
   }) =>
@@ -507,7 +201,6 @@ mixin _$HomeState {
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Loading value) loading,
     required TResult Function(NewUserState value) newUser,
-    required TResult Function(_OnLineUsers value) onlineUsers,
     required TResult Function(HomeFailureState value) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -518,7 +211,6 @@ mixin _$HomeState {
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Loading value)? loading,
     TResult? Function(NewUserState value)? newUser,
-    TResult? Function(_OnLineUsers value)? onlineUsers,
     TResult? Function(HomeFailureState value)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -529,7 +221,6 @@ mixin _$HomeState {
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Loading value)? loading,
     TResult Function(NewUserState value)? newUser,
-    TResult Function(_OnLineUsers value)? onlineUsers,
     TResult Function(HomeFailureState value)? failure,
     required TResult orElse(),
   }) =>
@@ -595,7 +286,6 @@ class _$_Initial implements _Initial {
     required TResult Function(AppUser user) loaded,
     required TResult Function(AppUser user) loading,
     required TResult Function(AppUser user) newUser,
-    required TResult Function(List<AppUser> users) onlineUsers,
     required TResult Function(HomeFailure failure) failure,
   }) {
     return initial();
@@ -609,7 +299,6 @@ class _$_Initial implements _Initial {
     TResult? Function(AppUser user)? loaded,
     TResult? Function(AppUser user)? loading,
     TResult? Function(AppUser user)? newUser,
-    TResult? Function(List<AppUser> users)? onlineUsers,
     TResult? Function(HomeFailure failure)? failure,
   }) {
     return initial?.call();
@@ -623,7 +312,6 @@ class _$_Initial implements _Initial {
     TResult Function(AppUser user)? loaded,
     TResult Function(AppUser user)? loading,
     TResult Function(AppUser user)? newUser,
-    TResult Function(List<AppUser> users)? onlineUsers,
     TResult Function(HomeFailure failure)? failure,
     required TResult orElse(),
   }) {
@@ -641,7 +329,6 @@ class _$_Initial implements _Initial {
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Loading value) loading,
     required TResult Function(NewUserState value) newUser,
-    required TResult Function(_OnLineUsers value) onlineUsers,
     required TResult Function(HomeFailureState value) failure,
   }) {
     return initial(this);
@@ -655,7 +342,6 @@ class _$_Initial implements _Initial {
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Loading value)? loading,
     TResult? Function(NewUserState value)? newUser,
-    TResult? Function(_OnLineUsers value)? onlineUsers,
     TResult? Function(HomeFailureState value)? failure,
   }) {
     return initial?.call(this);
@@ -669,7 +355,6 @@ class _$_Initial implements _Initial {
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Loading value)? loading,
     TResult Function(NewUserState value)? newUser,
-    TResult Function(_OnLineUsers value)? onlineUsers,
     TResult Function(HomeFailureState value)? failure,
     required TResult orElse(),
   }) {
@@ -727,7 +412,6 @@ class _$HomeLoggedOut implements HomeLoggedOut {
     required TResult Function(AppUser user) loaded,
     required TResult Function(AppUser user) loading,
     required TResult Function(AppUser user) newUser,
-    required TResult Function(List<AppUser> users) onlineUsers,
     required TResult Function(HomeFailure failure) failure,
   }) {
     return loggedOut();
@@ -741,7 +425,6 @@ class _$HomeLoggedOut implements HomeLoggedOut {
     TResult? Function(AppUser user)? loaded,
     TResult? Function(AppUser user)? loading,
     TResult? Function(AppUser user)? newUser,
-    TResult? Function(List<AppUser> users)? onlineUsers,
     TResult? Function(HomeFailure failure)? failure,
   }) {
     return loggedOut?.call();
@@ -755,7 +438,6 @@ class _$HomeLoggedOut implements HomeLoggedOut {
     TResult Function(AppUser user)? loaded,
     TResult Function(AppUser user)? loading,
     TResult Function(AppUser user)? newUser,
-    TResult Function(List<AppUser> users)? onlineUsers,
     TResult Function(HomeFailure failure)? failure,
     required TResult orElse(),
   }) {
@@ -773,7 +455,6 @@ class _$HomeLoggedOut implements HomeLoggedOut {
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Loading value) loading,
     required TResult Function(NewUserState value) newUser,
-    required TResult Function(_OnLineUsers value) onlineUsers,
     required TResult Function(HomeFailureState value) failure,
   }) {
     return loggedOut(this);
@@ -787,7 +468,6 @@ class _$HomeLoggedOut implements HomeLoggedOut {
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Loading value)? loading,
     TResult? Function(NewUserState value)? newUser,
-    TResult? Function(_OnLineUsers value)? onlineUsers,
     TResult? Function(HomeFailureState value)? failure,
   }) {
     return loggedOut?.call(this);
@@ -801,7 +481,6 @@ class _$HomeLoggedOut implements HomeLoggedOut {
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Loading value)? loading,
     TResult Function(NewUserState value)? newUser,
-    TResult Function(_OnLineUsers value)? onlineUsers,
     TResult Function(HomeFailureState value)? failure,
     required TResult orElse(),
   }) {
@@ -883,7 +562,6 @@ class _$_Loaded implements _Loaded {
     required TResult Function(AppUser user) loaded,
     required TResult Function(AppUser user) loading,
     required TResult Function(AppUser user) newUser,
-    required TResult Function(List<AppUser> users) onlineUsers,
     required TResult Function(HomeFailure failure) failure,
   }) {
     return loaded(user);
@@ -897,7 +575,6 @@ class _$_Loaded implements _Loaded {
     TResult? Function(AppUser user)? loaded,
     TResult? Function(AppUser user)? loading,
     TResult? Function(AppUser user)? newUser,
-    TResult? Function(List<AppUser> users)? onlineUsers,
     TResult? Function(HomeFailure failure)? failure,
   }) {
     return loaded?.call(user);
@@ -911,7 +588,6 @@ class _$_Loaded implements _Loaded {
     TResult Function(AppUser user)? loaded,
     TResult Function(AppUser user)? loading,
     TResult Function(AppUser user)? newUser,
-    TResult Function(List<AppUser> users)? onlineUsers,
     TResult Function(HomeFailure failure)? failure,
     required TResult orElse(),
   }) {
@@ -929,7 +605,6 @@ class _$_Loaded implements _Loaded {
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Loading value) loading,
     required TResult Function(NewUserState value) newUser,
-    required TResult Function(_OnLineUsers value) onlineUsers,
     required TResult Function(HomeFailureState value) failure,
   }) {
     return loaded(this);
@@ -943,7 +618,6 @@ class _$_Loaded implements _Loaded {
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Loading value)? loading,
     TResult? Function(NewUserState value)? newUser,
-    TResult? Function(_OnLineUsers value)? onlineUsers,
     TResult? Function(HomeFailureState value)? failure,
   }) {
     return loaded?.call(this);
@@ -957,7 +631,6 @@ class _$_Loaded implements _Loaded {
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Loading value)? loading,
     TResult Function(NewUserState value)? newUser,
-    TResult Function(_OnLineUsers value)? onlineUsers,
     TResult Function(HomeFailureState value)? failure,
     required TResult orElse(),
   }) {
@@ -1045,7 +718,6 @@ class _$_Loading implements _Loading {
     required TResult Function(AppUser user) loaded,
     required TResult Function(AppUser user) loading,
     required TResult Function(AppUser user) newUser,
-    required TResult Function(List<AppUser> users) onlineUsers,
     required TResult Function(HomeFailure failure) failure,
   }) {
     return loading(user);
@@ -1059,7 +731,6 @@ class _$_Loading implements _Loading {
     TResult? Function(AppUser user)? loaded,
     TResult? Function(AppUser user)? loading,
     TResult? Function(AppUser user)? newUser,
-    TResult? Function(List<AppUser> users)? onlineUsers,
     TResult? Function(HomeFailure failure)? failure,
   }) {
     return loading?.call(user);
@@ -1073,7 +744,6 @@ class _$_Loading implements _Loading {
     TResult Function(AppUser user)? loaded,
     TResult Function(AppUser user)? loading,
     TResult Function(AppUser user)? newUser,
-    TResult Function(List<AppUser> users)? onlineUsers,
     TResult Function(HomeFailure failure)? failure,
     required TResult orElse(),
   }) {
@@ -1091,7 +761,6 @@ class _$_Loading implements _Loading {
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Loading value) loading,
     required TResult Function(NewUserState value) newUser,
-    required TResult Function(_OnLineUsers value) onlineUsers,
     required TResult Function(HomeFailureState value) failure,
   }) {
     return loading(this);
@@ -1105,7 +774,6 @@ class _$_Loading implements _Loading {
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Loading value)? loading,
     TResult? Function(NewUserState value)? newUser,
-    TResult? Function(_OnLineUsers value)? onlineUsers,
     TResult? Function(HomeFailureState value)? failure,
   }) {
     return loading?.call(this);
@@ -1119,7 +787,6 @@ class _$_Loading implements _Loading {
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Loading value)? loading,
     TResult Function(NewUserState value)? newUser,
-    TResult Function(_OnLineUsers value)? onlineUsers,
     TResult Function(HomeFailureState value)? failure,
     required TResult orElse(),
   }) {
@@ -1208,7 +875,6 @@ class _$NewUserState implements NewUserState {
     required TResult Function(AppUser user) loaded,
     required TResult Function(AppUser user) loading,
     required TResult Function(AppUser user) newUser,
-    required TResult Function(List<AppUser> users) onlineUsers,
     required TResult Function(HomeFailure failure) failure,
   }) {
     return newUser(user);
@@ -1222,7 +888,6 @@ class _$NewUserState implements NewUserState {
     TResult? Function(AppUser user)? loaded,
     TResult? Function(AppUser user)? loading,
     TResult? Function(AppUser user)? newUser,
-    TResult? Function(List<AppUser> users)? onlineUsers,
     TResult? Function(HomeFailure failure)? failure,
   }) {
     return newUser?.call(user);
@@ -1236,7 +901,6 @@ class _$NewUserState implements NewUserState {
     TResult Function(AppUser user)? loaded,
     TResult Function(AppUser user)? loading,
     TResult Function(AppUser user)? newUser,
-    TResult Function(List<AppUser> users)? onlineUsers,
     TResult Function(HomeFailure failure)? failure,
     required TResult orElse(),
   }) {
@@ -1254,7 +918,6 @@ class _$NewUserState implements NewUserState {
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Loading value) loading,
     required TResult Function(NewUserState value) newUser,
-    required TResult Function(_OnLineUsers value) onlineUsers,
     required TResult Function(HomeFailureState value) failure,
   }) {
     return newUser(this);
@@ -1268,7 +931,6 @@ class _$NewUserState implements NewUserState {
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Loading value)? loading,
     TResult? Function(NewUserState value)? newUser,
-    TResult? Function(_OnLineUsers value)? onlineUsers,
     TResult? Function(HomeFailureState value)? failure,
   }) {
     return newUser?.call(this);
@@ -1282,7 +944,6 @@ class _$NewUserState implements NewUserState {
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Loading value)? loading,
     TResult Function(NewUserState value)? newUser,
-    TResult Function(_OnLineUsers value)? onlineUsers,
     TResult Function(HomeFailureState value)? failure,
     required TResult orElse(),
   }) {
@@ -1299,176 +960,6 @@ abstract class NewUserState implements HomeState {
   AppUser get user;
   @JsonKey(ignore: true)
   _$$NewUserStateCopyWith<_$NewUserState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_OnLineUsersCopyWith<$Res> {
-  factory _$$_OnLineUsersCopyWith(
-          _$_OnLineUsers value, $Res Function(_$_OnLineUsers) then) =
-      __$$_OnLineUsersCopyWithImpl<$Res>;
-  @useResult
-  $Res call({List<AppUser> users});
-}
-
-/// @nodoc
-class __$$_OnLineUsersCopyWithImpl<$Res>
-    extends _$HomeStateCopyWithImpl<$Res, _$_OnLineUsers>
-    implements _$$_OnLineUsersCopyWith<$Res> {
-  __$$_OnLineUsersCopyWithImpl(
-      _$_OnLineUsers _value, $Res Function(_$_OnLineUsers) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? users = null,
-  }) {
-    return _then(_$_OnLineUsers(
-      users: null == users
-          ? _value._users
-          : users // ignore: cast_nullable_to_non_nullable
-              as List<AppUser>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_OnLineUsers implements _OnLineUsers {
-  const _$_OnLineUsers({required final List<AppUser> users}) : _users = users;
-
-  final List<AppUser> _users;
-  @override
-  List<AppUser> get users {
-    if (_users is EqualUnmodifiableListView) return _users;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_users);
-  }
-
-  @override
-  String toString() {
-    return 'HomeState.onlineUsers(users: $users)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_OnLineUsers &&
-            const DeepCollectionEquality().equals(other._users, _users));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_users));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_OnLineUsersCopyWith<_$_OnLineUsers> get copyWith =>
-      __$$_OnLineUsersCopyWithImpl<_$_OnLineUsers>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loggedOut,
-    required TResult Function(AppUser user) loaded,
-    required TResult Function(AppUser user) loading,
-    required TResult Function(AppUser user) newUser,
-    required TResult Function(List<AppUser> users) onlineUsers,
-    required TResult Function(HomeFailure failure) failure,
-  }) {
-    return onlineUsers(users);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loggedOut,
-    TResult? Function(AppUser user)? loaded,
-    TResult? Function(AppUser user)? loading,
-    TResult? Function(AppUser user)? newUser,
-    TResult? Function(List<AppUser> users)? onlineUsers,
-    TResult? Function(HomeFailure failure)? failure,
-  }) {
-    return onlineUsers?.call(users);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loggedOut,
-    TResult Function(AppUser user)? loaded,
-    TResult Function(AppUser user)? loading,
-    TResult Function(AppUser user)? newUser,
-    TResult Function(List<AppUser> users)? onlineUsers,
-    TResult Function(HomeFailure failure)? failure,
-    required TResult orElse(),
-  }) {
-    if (onlineUsers != null) {
-      return onlineUsers(users);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(HomeLoggedOut value) loggedOut,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(NewUserState value) newUser,
-    required TResult Function(_OnLineUsers value) onlineUsers,
-    required TResult Function(HomeFailureState value) failure,
-  }) {
-    return onlineUsers(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(HomeLoggedOut value)? loggedOut,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(NewUserState value)? newUser,
-    TResult? Function(_OnLineUsers value)? onlineUsers,
-    TResult? Function(HomeFailureState value)? failure,
-  }) {
-    return onlineUsers?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(HomeLoggedOut value)? loggedOut,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Loading value)? loading,
-    TResult Function(NewUserState value)? newUser,
-    TResult Function(_OnLineUsers value)? onlineUsers,
-    TResult Function(HomeFailureState value)? failure,
-    required TResult orElse(),
-  }) {
-    if (onlineUsers != null) {
-      return onlineUsers(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _OnLineUsers implements HomeState {
-  const factory _OnLineUsers({required final List<AppUser> users}) =
-      _$_OnLineUsers;
-
-  List<AppUser> get users;
-  @JsonKey(ignore: true)
-  _$$_OnLineUsersCopyWith<_$_OnLineUsers> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1551,7 +1042,6 @@ class _$HomeFailureState implements HomeFailureState {
     required TResult Function(AppUser user) loaded,
     required TResult Function(AppUser user) loading,
     required TResult Function(AppUser user) newUser,
-    required TResult Function(List<AppUser> users) onlineUsers,
     required TResult Function(HomeFailure failure) failure,
   }) {
     return failure(this.failure);
@@ -1565,7 +1055,6 @@ class _$HomeFailureState implements HomeFailureState {
     TResult? Function(AppUser user)? loaded,
     TResult? Function(AppUser user)? loading,
     TResult? Function(AppUser user)? newUser,
-    TResult? Function(List<AppUser> users)? onlineUsers,
     TResult? Function(HomeFailure failure)? failure,
   }) {
     return failure?.call(this.failure);
@@ -1579,7 +1068,6 @@ class _$HomeFailureState implements HomeFailureState {
     TResult Function(AppUser user)? loaded,
     TResult Function(AppUser user)? loading,
     TResult Function(AppUser user)? newUser,
-    TResult Function(List<AppUser> users)? onlineUsers,
     TResult Function(HomeFailure failure)? failure,
     required TResult orElse(),
   }) {
@@ -1597,7 +1085,6 @@ class _$HomeFailureState implements HomeFailureState {
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Loading value) loading,
     required TResult Function(NewUserState value) newUser,
-    required TResult Function(_OnLineUsers value) onlineUsers,
     required TResult Function(HomeFailureState value) failure,
   }) {
     return failure(this);
@@ -1611,7 +1098,6 @@ class _$HomeFailureState implements HomeFailureState {
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Loading value)? loading,
     TResult? Function(NewUserState value)? newUser,
-    TResult? Function(_OnLineUsers value)? onlineUsers,
     TResult? Function(HomeFailureState value)? failure,
   }) {
     return failure?.call(this);
@@ -1625,7 +1111,6 @@ class _$HomeFailureState implements HomeFailureState {
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Loading value)? loading,
     TResult Function(NewUserState value)? newUser,
-    TResult Function(_OnLineUsers value)? onlineUsers,
     TResult Function(HomeFailureState value)? failure,
     required TResult orElse(),
   }) {
