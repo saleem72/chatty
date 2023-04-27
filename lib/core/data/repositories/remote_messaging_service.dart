@@ -40,6 +40,10 @@ class RemoteMessagingService implements IRemoteMessagingService {
     return _controller.stream;
   }
 
+  Future<void> deleteMessage(Message message) async {
+    await _messagesTable.child(message.id).remove();
+  }
+
   Future<List<Message>> fetchMessages(String userId) async {
     final snapshot =
         await _messagesTable.orderByChild('receiver').equalTo(userId).get();

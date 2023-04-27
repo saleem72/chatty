@@ -3,9 +3,7 @@
 import 'dart:async';
 
 import 'package:chatty/core/domain/models/chat.dart';
-import 'package:collection/collection.dart';
 
-import '../../../../core/domain/models/message.dart';
 import '../../../../core/domain/repositories/i_local_chats.dart';
 import '../../../../core/domain/repositories/i_remote_messaging_service.dart';
 import '../../../../core/domain/repositories/i_user_service.dart';
@@ -41,9 +39,11 @@ class ChatsFacade implements IChatsFacade {
   @override
   Stream<List<Chat>> subscribeFor(String userId) {
     _messagesSubscription?.cancel();
-    // _messagesSubscription = _service.subscribeFor(userId).listen((event) {
-    //   _localDatabase.addMessage(event);
-    // });
+    _messagesSubscription = _service.subscribeFor(userId).listen((event) {
+      _localDatabase.addMessage(event);
+      _service.deleteMessage(event);
+    });
+
     _chatsSubscription?.cancel();
     _chatsSubscription = _localDatabase.chats().listen((event) {
       _controller.sink.add(event);
@@ -61,5 +61,10 @@ class ChatsFacade implements IChatsFacade {
   Future<void> dispose() async {
     _messagesSubscription?.cancel();
     _controller.close();
+  }
+
+  @override
+  Future<void> checkUp() async {
+    _localDatabase.checkUp();
   }
 }

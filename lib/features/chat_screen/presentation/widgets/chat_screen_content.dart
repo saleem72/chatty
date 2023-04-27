@@ -92,8 +92,8 @@ class _SendMessageViewState extends State<SendMessageView> {
   }
 
   _sendMessage(BuildContext context) {
-    final sender = widget.user.uid;
-    final receiver = context.read<AuthBloc>().state.user?.uid ?? '';
+    final sender = context.read<AuthBloc>().state.user?.uid ?? '';
+    final receiver = widget.user.uid;
     final message = Message(
       sender: sender,
       receiver: receiver,

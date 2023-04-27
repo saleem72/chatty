@@ -85,22 +85,12 @@ class LocalChats implements ILocalChats {
     _dao.insertMessage(messageEntity);
 
     if (chat == null) {
-      final partner = await _userService.userForId(sender);
-      final chatToAdd = Chat(
+      final entity = ChatEntityData(
         id: sender,
         lastMessage: message.content,
-        unRead: 1,
-        partner: partner,
-        messages: const [],
-      );
-      final entity = ChatEntityData(
-        id: chatToAdd.id,
-        lastMessage: chatToAdd.lastMessage,
         lastUpdate: DateTime.now().microsecondsSinceEpoch,
       );
       await _dao.insertChat(entity);
-      // final newChats = chats.map((e) => e).toList()..add(chatToAdd);
-      // add(ChatsEvent.updateState(chats: newChats));
     } else {
       final chatToUpdate = chat.copyWith(
         lastMessage: message.content,
@@ -133,5 +123,14 @@ class LocalChats implements ILocalChats {
   @override
   Future<void> deleteAll() async {
     await _dao.deleteAll();
+  }
+
+  @override
+  Future<void> checkUp() async {
+    // await _dao.;
+    final before = await _dao.fetchAllMessages();
+    await _dao.deleteAll();
+    final after = await _dao.fetchAllMessages();
+    print(after.length);
   }
 }

@@ -68,10 +68,14 @@ class _HomeScreenContent extends StatelessWidget {
         ),
 
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () => dothings(context),
           child: const Icon(Icons.message),
         ),
       ),
     );
+  }
+
+  dothings(BuildContext context) {
+    context.read<ChatsBloc>().add(const ChatsEvent.checkUp());
   }
 }

@@ -10,4 +10,5 @@ abstract class ILocalChats {
   Future<void> dispose();
   Future<void> addMessage(Message message);
   Future<void> deleteAll();
+  Future<void> checkUp();
 }

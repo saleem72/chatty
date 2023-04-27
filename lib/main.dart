@@ -8,7 +8,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'configuration/theme/app_theme.dart';
-import 'core/presentation/chats_bloc/chats_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,9 +26,6 @@ class MyApp extends StatelessWidget {
         BlocProvider<AuthBloc>(
           create: (context) => di.locator(),
         ),
-        // BlocProvider<ChatsBloc>(
-        //   create: (context) => di.locator(),
-        // )
       ],
       child: const ChattyApp(),
     );

@@ -7,4 +7,5 @@ abstract class IRemoteMessagingService {
   Stream<Message> subscribeFor(String userId);
   Future<void> dispose();
   Future<List<Message>> fetchMessages(String userId);
+  Future<void> deleteMessage(Message message);
 }

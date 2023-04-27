@@ -21,7 +21,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'core/data/local_datasource/app_database.dart';
 import 'core/data/repositories/remote_messaging_service.dart';
 import 'core/domain/repositories/i_remote_messaging_service.dart';
-import 'core/presentation/chats_bloc/chats_bloc.dart';
+import 'features/home_screen/presentation/chats_bloc/chats_bloc.dart';
 import 'features/home_screen/presentation/home_bloc/home_bloc.dart';
 
 final locator = GetIt.instance;
@@ -45,9 +45,6 @@ Future<void> initDependancies() async {
   locator.registerLazySingleton<IUserService>(() => UserService());
 
   locator.registerFactory(() => ChatsBloc(
-        service: locator(),
-        usersService: locator(),
-        localDatabase: locator(),
         repository: locator(),
       ));
   locator.registerLazySingleton<IChatsFacade>(() => ChatsFacade(

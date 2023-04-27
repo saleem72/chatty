@@ -29,11 +29,12 @@ class ChatsDAO extends DatabaseAccessor<AppDatabase> with _$ChatsDAOMixin {
   }
 
   Future<void> insertMessage(MessageEntityData message) async {
+    print(message.id);
     await into(messageEntity).insert(message);
   }
 
   Future<void> insertChat(ChatEntityData chat) async {
-    await into(chatEntity).insert(chat);
+    await into(chatEntity).insertOnConflictUpdate(chat);
   }
 
   Future<void> updateChat(ChatEntityData chat) async {

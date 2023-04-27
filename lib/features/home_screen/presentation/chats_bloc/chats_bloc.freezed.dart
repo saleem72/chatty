@@ -20,18 +20,21 @@ mixin _$ChatsEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) subscribe,
     required TResult Function(List<Chat> chats) updateState,
+    required TResult Function() checkUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userId)? subscribe,
     TResult? Function(List<Chat> chats)? updateState,
+    TResult? Function()? checkUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? subscribe,
     TResult Function(List<Chat> chats)? updateState,
+    TResult Function()? checkUp,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$ChatsEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Subscribe value) subscribe,
     required TResult Function(_UpdateState value) updateState,
+    required TResult Function(_CheckUp value) checkUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Subscribe value)? subscribe,
     TResult? Function(_UpdateState value)? updateState,
+    TResult? Function(_CheckUp value)? checkUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Subscribe value)? subscribe,
     TResult Function(_UpdateState value)? updateState,
+    TResult Function(_CheckUp value)? checkUp,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -140,6 +146,7 @@ class _$_Subscribe implements _Subscribe {
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) subscribe,
     required TResult Function(List<Chat> chats) updateState,
+    required TResult Function() checkUp,
   }) {
     return subscribe(userId);
   }
@@ -149,6 +156,7 @@ class _$_Subscribe implements _Subscribe {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userId)? subscribe,
     TResult? Function(List<Chat> chats)? updateState,
+    TResult? Function()? checkUp,
   }) {
     return subscribe?.call(userId);
   }
@@ -158,6 +166,7 @@ class _$_Subscribe implements _Subscribe {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? subscribe,
     TResult Function(List<Chat> chats)? updateState,
+    TResult Function()? checkUp,
     required TResult orElse(),
   }) {
     if (subscribe != null) {
@@ -171,6 +180,7 @@ class _$_Subscribe implements _Subscribe {
   TResult map<TResult extends Object?>({
     required TResult Function(_Subscribe value) subscribe,
     required TResult Function(_UpdateState value) updateState,
+    required TResult Function(_CheckUp value) checkUp,
   }) {
     return subscribe(this);
   }
@@ -180,6 +190,7 @@ class _$_Subscribe implements _Subscribe {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Subscribe value)? subscribe,
     TResult? Function(_UpdateState value)? updateState,
+    TResult? Function(_CheckUp value)? checkUp,
   }) {
     return subscribe?.call(this);
   }
@@ -189,6 +200,7 @@ class _$_Subscribe implements _Subscribe {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Subscribe value)? subscribe,
     TResult Function(_UpdateState value)? updateState,
+    TResult Function(_CheckUp value)? checkUp,
     required TResult orElse(),
   }) {
     if (subscribe != null) {
@@ -279,6 +291,7 @@ class _$_UpdateState implements _UpdateState {
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) subscribe,
     required TResult Function(List<Chat> chats) updateState,
+    required TResult Function() checkUp,
   }) {
     return updateState(chats);
   }
@@ -288,6 +301,7 @@ class _$_UpdateState implements _UpdateState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String userId)? subscribe,
     TResult? Function(List<Chat> chats)? updateState,
+    TResult? Function()? checkUp,
   }) {
     return updateState?.call(chats);
   }
@@ -297,6 +311,7 @@ class _$_UpdateState implements _UpdateState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? subscribe,
     TResult Function(List<Chat> chats)? updateState,
+    TResult Function()? checkUp,
     required TResult orElse(),
   }) {
     if (updateState != null) {
@@ -310,6 +325,7 @@ class _$_UpdateState implements _UpdateState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Subscribe value) subscribe,
     required TResult Function(_UpdateState value) updateState,
+    required TResult Function(_CheckUp value) checkUp,
   }) {
     return updateState(this);
   }
@@ -319,6 +335,7 @@ class _$_UpdateState implements _UpdateState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Subscribe value)? subscribe,
     TResult? Function(_UpdateState value)? updateState,
+    TResult? Function(_CheckUp value)? checkUp,
   }) {
     return updateState?.call(this);
   }
@@ -328,6 +345,7 @@ class _$_UpdateState implements _UpdateState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Subscribe value)? subscribe,
     TResult Function(_UpdateState value)? updateState,
+    TResult Function(_CheckUp value)? checkUp,
     required TResult orElse(),
   }) {
     if (updateState != null) {
@@ -345,6 +363,113 @@ abstract class _UpdateState implements ChatsEvent {
   @JsonKey(ignore: true)
   _$$_UpdateStateCopyWith<_$_UpdateState> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_CheckUpCopyWith<$Res> {
+  factory _$$_CheckUpCopyWith(
+          _$_CheckUp value, $Res Function(_$_CheckUp) then) =
+      __$$_CheckUpCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_CheckUpCopyWithImpl<$Res>
+    extends _$ChatsEventCopyWithImpl<$Res, _$_CheckUp>
+    implements _$$_CheckUpCopyWith<$Res> {
+  __$$_CheckUpCopyWithImpl(_$_CheckUp _value, $Res Function(_$_CheckUp) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_CheckUp implements _CheckUp {
+  const _$_CheckUp();
+
+  @override
+  String toString() {
+    return 'ChatsEvent.checkUp()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_CheckUp);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) subscribe,
+    required TResult Function(List<Chat> chats) updateState,
+    required TResult Function() checkUp,
+  }) {
+    return checkUp();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String userId)? subscribe,
+    TResult? Function(List<Chat> chats)? updateState,
+    TResult? Function()? checkUp,
+  }) {
+    return checkUp?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? subscribe,
+    TResult Function(List<Chat> chats)? updateState,
+    TResult Function()? checkUp,
+    required TResult orElse(),
+  }) {
+    if (checkUp != null) {
+      return checkUp();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Subscribe value) subscribe,
+    required TResult Function(_UpdateState value) updateState,
+    required TResult Function(_CheckUp value) checkUp,
+  }) {
+    return checkUp(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Subscribe value)? subscribe,
+    TResult? Function(_UpdateState value)? updateState,
+    TResult? Function(_CheckUp value)? checkUp,
+  }) {
+    return checkUp?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Subscribe value)? subscribe,
+    TResult Function(_UpdateState value)? updateState,
+    TResult Function(_CheckUp value)? checkUp,
+    required TResult orElse(),
+  }) {
+    if (checkUp != null) {
+      return checkUp(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CheckUp implements ChatsEvent {
+  const factory _CheckUp() = _$_CheckUp;
 }
 
 /// @nodoc

@@ -1,11 +1,9 @@
 //
 
-import 'package:chatty/dependancy_injection.dart' as di;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import '../online_users_cubit/online_users_cubit.dart';
 import '../../../../core/domain/models/app_user.dart';
-import '../cubit/online_users_cubit.dart';
 import 'on_line_user_tile.dart';
 
 class OnlineUsersListView extends StatelessWidget {

@@ -5,7 +5,7 @@ import 'package:chatty/features/home_screen/presentation/widgets/chat_tile.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/presentation/chats_bloc/chats_bloc.dart';
+import '../chats_bloc/chats_bloc.dart';
 
 class ChatsListView extends StatelessWidget {
   const ChatsListView({

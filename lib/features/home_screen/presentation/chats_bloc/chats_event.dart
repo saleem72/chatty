@@ -13,4 +13,6 @@ class ChatsEvent with _$ChatsEvent {
   const factory ChatsEvent.updateState({
     required List<Chat> chats,
   }) = _UpdateState;
+
+  const factory ChatsEvent.checkUp() = _CheckUp;
 }

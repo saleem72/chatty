@@ -18,15 +18,23 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      _navigate(context);
-    });
+    if (mounted) {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        if (mounted) {
+          _navigate(context);
+        }
+        //
+      });
+    }
   }
 
   _navigate(BuildContext context) async {
-    await Future.delayed(const Duration(seconds: 2));
-    if (mounted) {}
-    context.read<AuthBloc>().add(const AuthEvent.checkForAuthStatus());
+    if (mounted) {
+      await Future.delayed(const Duration(seconds: 2));
+      if (mounted) {
+        context.read<AuthBloc>().add(const AuthEvent.checkForAuthStatus());
+      }
+    }
   }
 
   @override
