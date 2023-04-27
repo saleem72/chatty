@@ -16,42 +16,55 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$UserChatEvent {
-  Message get message => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Message message) sendMessage,
+    required TResult Function(FBMessage message) sendMessage,
+    required TResult Function(String userId) subscribe,
+    required TResult Function(List<UIMessage> chats) updateState,
+    required TResult Function() checkUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Message message)? sendMessage,
+    TResult? Function(FBMessage message)? sendMessage,
+    TResult? Function(String userId)? subscribe,
+    TResult? Function(List<UIMessage> chats)? updateState,
+    TResult? Function()? checkUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Message message)? sendMessage,
+    TResult Function(FBMessage message)? sendMessage,
+    TResult Function(String userId)? subscribe,
+    TResult Function(List<UIMessage> chats)? updateState,
+    TResult Function()? checkUp,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SendMessage value) sendMessage,
+    required TResult Function(_Subscribe value) subscribe,
+    required TResult Function(_UpdateState value) updateState,
+    required TResult Function(_CheckUp value) checkUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SendMessage value)? sendMessage,
+    TResult? Function(_Subscribe value)? subscribe,
+    TResult? Function(_UpdateState value)? updateState,
+    TResult? Function(_CheckUp value)? checkUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SendMessage value)? sendMessage,
+    TResult Function(_Subscribe value)? subscribe,
+    TResult Function(_UpdateState value)? updateState,
+    TResult Function(_CheckUp value)? checkUp,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $UserChatEventCopyWith<UserChatEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -60,8 +73,6 @@ abstract class $UserChatEventCopyWith<$Res> {
   factory $UserChatEventCopyWith(
           UserChatEvent value, $Res Function(UserChatEvent) then) =
       _$UserChatEventCopyWithImpl<$Res, UserChatEvent>;
-  @useResult
-  $Res call({Message message});
 }
 
 /// @nodoc
@@ -73,30 +84,15 @@ class _$UserChatEventCopyWithImpl<$Res, $Val extends UserChatEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? message = null,
-  }) {
-    return _then(_value.copyWith(
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as Message,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$_SendMessageCopyWith<$Res>
-    implements $UserChatEventCopyWith<$Res> {
+abstract class _$$_SendMessageCopyWith<$Res> {
   factory _$$_SendMessageCopyWith(
           _$_SendMessage value, $Res Function(_$_SendMessage) then) =
       __$$_SendMessageCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call({Message message});
+  $Res call({FBMessage message});
 }
 
 /// @nodoc
@@ -116,7 +112,7 @@ class __$$_SendMessageCopyWithImpl<$Res>
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as Message,
+              as FBMessage,
     ));
   }
 }
@@ -127,7 +123,7 @@ class _$_SendMessage implements _SendMessage {
   const _$_SendMessage({required this.message});
 
   @override
-  final Message message;
+  final FBMessage message;
 
   @override
   String toString() {
@@ -154,7 +150,10 @@ class _$_SendMessage implements _SendMessage {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Message message) sendMessage,
+    required TResult Function(FBMessage message) sendMessage,
+    required TResult Function(String userId) subscribe,
+    required TResult Function(List<UIMessage> chats) updateState,
+    required TResult Function() checkUp,
   }) {
     return sendMessage(message);
   }
@@ -162,7 +161,10 @@ class _$_SendMessage implements _SendMessage {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Message message)? sendMessage,
+    TResult? Function(FBMessage message)? sendMessage,
+    TResult? Function(String userId)? subscribe,
+    TResult? Function(List<UIMessage> chats)? updateState,
+    TResult? Function()? checkUp,
   }) {
     return sendMessage?.call(message);
   }
@@ -170,7 +172,10 @@ class _$_SendMessage implements _SendMessage {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Message message)? sendMessage,
+    TResult Function(FBMessage message)? sendMessage,
+    TResult Function(String userId)? subscribe,
+    TResult Function(List<UIMessage> chats)? updateState,
+    TResult Function()? checkUp,
     required TResult orElse(),
   }) {
     if (sendMessage != null) {
@@ -183,6 +188,9 @@ class _$_SendMessage implements _SendMessage {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SendMessage value) sendMessage,
+    required TResult Function(_Subscribe value) subscribe,
+    required TResult Function(_UpdateState value) updateState,
+    required TResult Function(_CheckUp value) checkUp,
   }) {
     return sendMessage(this);
   }
@@ -191,6 +199,9 @@ class _$_SendMessage implements _SendMessage {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SendMessage value)? sendMessage,
+    TResult? Function(_Subscribe value)? subscribe,
+    TResult? Function(_UpdateState value)? updateState,
+    TResult? Function(_CheckUp value)? checkUp,
   }) {
     return sendMessage?.call(this);
   }
@@ -199,6 +210,9 @@ class _$_SendMessage implements _SendMessage {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SendMessage value)? sendMessage,
+    TResult Function(_Subscribe value)? subscribe,
+    TResult Function(_UpdateState value)? updateState,
+    TResult Function(_CheckUp value)? checkUp,
     required TResult orElse(),
   }) {
     if (sendMessage != null) {
@@ -209,14 +223,423 @@ class _$_SendMessage implements _SendMessage {
 }
 
 abstract class _SendMessage implements UserChatEvent {
-  const factory _SendMessage({required final Message message}) = _$_SendMessage;
+  const factory _SendMessage({required final FBMessage message}) =
+      _$_SendMessage;
 
-  @override
-  Message get message;
-  @override
+  FBMessage get message;
   @JsonKey(ignore: true)
   _$$_SendMessageCopyWith<_$_SendMessage> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_SubscribeCopyWith<$Res> {
+  factory _$$_SubscribeCopyWith(
+          _$_Subscribe value, $Res Function(_$_Subscribe) then) =
+      __$$_SubscribeCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String userId});
+}
+
+/// @nodoc
+class __$$_SubscribeCopyWithImpl<$Res>
+    extends _$UserChatEventCopyWithImpl<$Res, _$_Subscribe>
+    implements _$$_SubscribeCopyWith<$Res> {
+  __$$_SubscribeCopyWithImpl(
+      _$_Subscribe _value, $Res Function(_$_Subscribe) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userId = null,
+  }) {
+    return _then(_$_Subscribe(
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Subscribe implements _Subscribe {
+  const _$_Subscribe({required this.userId});
+
+  @override
+  final String userId;
+
+  @override
+  String toString() {
+    return 'UserChatEvent.subscribe(userId: $userId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Subscribe &&
+            (identical(other.userId, userId) || other.userId == userId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, userId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SubscribeCopyWith<_$_Subscribe> get copyWith =>
+      __$$_SubscribeCopyWithImpl<_$_Subscribe>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(FBMessage message) sendMessage,
+    required TResult Function(String userId) subscribe,
+    required TResult Function(List<UIMessage> chats) updateState,
+    required TResult Function() checkUp,
+  }) {
+    return subscribe(userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(FBMessage message)? sendMessage,
+    TResult? Function(String userId)? subscribe,
+    TResult? Function(List<UIMessage> chats)? updateState,
+    TResult? Function()? checkUp,
+  }) {
+    return subscribe?.call(userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(FBMessage message)? sendMessage,
+    TResult Function(String userId)? subscribe,
+    TResult Function(List<UIMessage> chats)? updateState,
+    TResult Function()? checkUp,
+    required TResult orElse(),
+  }) {
+    if (subscribe != null) {
+      return subscribe(userId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SendMessage value) sendMessage,
+    required TResult Function(_Subscribe value) subscribe,
+    required TResult Function(_UpdateState value) updateState,
+    required TResult Function(_CheckUp value) checkUp,
+  }) {
+    return subscribe(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SendMessage value)? sendMessage,
+    TResult? Function(_Subscribe value)? subscribe,
+    TResult? Function(_UpdateState value)? updateState,
+    TResult? Function(_CheckUp value)? checkUp,
+  }) {
+    return subscribe?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SendMessage value)? sendMessage,
+    TResult Function(_Subscribe value)? subscribe,
+    TResult Function(_UpdateState value)? updateState,
+    TResult Function(_CheckUp value)? checkUp,
+    required TResult orElse(),
+  }) {
+    if (subscribe != null) {
+      return subscribe(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Subscribe implements UserChatEvent {
+  const factory _Subscribe({required final String userId}) = _$_Subscribe;
+
+  String get userId;
+  @JsonKey(ignore: true)
+  _$$_SubscribeCopyWith<_$_Subscribe> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_UpdateStateCopyWith<$Res> {
+  factory _$$_UpdateStateCopyWith(
+          _$_UpdateState value, $Res Function(_$_UpdateState) then) =
+      __$$_UpdateStateCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<UIMessage> chats});
+}
+
+/// @nodoc
+class __$$_UpdateStateCopyWithImpl<$Res>
+    extends _$UserChatEventCopyWithImpl<$Res, _$_UpdateState>
+    implements _$$_UpdateStateCopyWith<$Res> {
+  __$$_UpdateStateCopyWithImpl(
+      _$_UpdateState _value, $Res Function(_$_UpdateState) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? chats = null,
+  }) {
+    return _then(_$_UpdateState(
+      chats: null == chats
+          ? _value._chats
+          : chats // ignore: cast_nullable_to_non_nullable
+              as List<UIMessage>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_UpdateState implements _UpdateState {
+  const _$_UpdateState({required final List<UIMessage> chats}) : _chats = chats;
+
+  final List<UIMessage> _chats;
+  @override
+  List<UIMessage> get chats {
+    if (_chats is EqualUnmodifiableListView) return _chats;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_chats);
+  }
+
+  @override
+  String toString() {
+    return 'UserChatEvent.updateState(chats: $chats)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateState &&
+            const DeepCollectionEquality().equals(other._chats, _chats));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_chats));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UpdateStateCopyWith<_$_UpdateState> get copyWith =>
+      __$$_UpdateStateCopyWithImpl<_$_UpdateState>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(FBMessage message) sendMessage,
+    required TResult Function(String userId) subscribe,
+    required TResult Function(List<UIMessage> chats) updateState,
+    required TResult Function() checkUp,
+  }) {
+    return updateState(chats);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(FBMessage message)? sendMessage,
+    TResult? Function(String userId)? subscribe,
+    TResult? Function(List<UIMessage> chats)? updateState,
+    TResult? Function()? checkUp,
+  }) {
+    return updateState?.call(chats);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(FBMessage message)? sendMessage,
+    TResult Function(String userId)? subscribe,
+    TResult Function(List<UIMessage> chats)? updateState,
+    TResult Function()? checkUp,
+    required TResult orElse(),
+  }) {
+    if (updateState != null) {
+      return updateState(chats);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SendMessage value) sendMessage,
+    required TResult Function(_Subscribe value) subscribe,
+    required TResult Function(_UpdateState value) updateState,
+    required TResult Function(_CheckUp value) checkUp,
+  }) {
+    return updateState(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SendMessage value)? sendMessage,
+    TResult? Function(_Subscribe value)? subscribe,
+    TResult? Function(_UpdateState value)? updateState,
+    TResult? Function(_CheckUp value)? checkUp,
+  }) {
+    return updateState?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SendMessage value)? sendMessage,
+    TResult Function(_Subscribe value)? subscribe,
+    TResult Function(_UpdateState value)? updateState,
+    TResult Function(_CheckUp value)? checkUp,
+    required TResult orElse(),
+  }) {
+    if (updateState != null) {
+      return updateState(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateState implements UserChatEvent {
+  const factory _UpdateState({required final List<UIMessage> chats}) =
+      _$_UpdateState;
+
+  List<UIMessage> get chats;
+  @JsonKey(ignore: true)
+  _$$_UpdateStateCopyWith<_$_UpdateState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_CheckUpCopyWith<$Res> {
+  factory _$$_CheckUpCopyWith(
+          _$_CheckUp value, $Res Function(_$_CheckUp) then) =
+      __$$_CheckUpCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_CheckUpCopyWithImpl<$Res>
+    extends _$UserChatEventCopyWithImpl<$Res, _$_CheckUp>
+    implements _$$_CheckUpCopyWith<$Res> {
+  __$$_CheckUpCopyWithImpl(_$_CheckUp _value, $Res Function(_$_CheckUp) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_CheckUp implements _CheckUp {
+  const _$_CheckUp();
+
+  @override
+  String toString() {
+    return 'UserChatEvent.checkUp()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_CheckUp);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(FBMessage message) sendMessage,
+    required TResult Function(String userId) subscribe,
+    required TResult Function(List<UIMessage> chats) updateState,
+    required TResult Function() checkUp,
+  }) {
+    return checkUp();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(FBMessage message)? sendMessage,
+    TResult? Function(String userId)? subscribe,
+    TResult? Function(List<UIMessage> chats)? updateState,
+    TResult? Function()? checkUp,
+  }) {
+    return checkUp?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(FBMessage message)? sendMessage,
+    TResult Function(String userId)? subscribe,
+    TResult Function(List<UIMessage> chats)? updateState,
+    TResult Function()? checkUp,
+    required TResult orElse(),
+  }) {
+    if (checkUp != null) {
+      return checkUp();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SendMessage value) sendMessage,
+    required TResult Function(_Subscribe value) subscribe,
+    required TResult Function(_UpdateState value) updateState,
+    required TResult Function(_CheckUp value) checkUp,
+  }) {
+    return checkUp(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SendMessage value)? sendMessage,
+    TResult? Function(_Subscribe value)? subscribe,
+    TResult? Function(_UpdateState value)? updateState,
+    TResult? Function(_CheckUp value)? checkUp,
+  }) {
+    return checkUp?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SendMessage value)? sendMessage,
+    TResult Function(_Subscribe value)? subscribe,
+    TResult Function(_UpdateState value)? updateState,
+    TResult Function(_CheckUp value)? checkUp,
+    required TResult orElse(),
+  }) {
+    if (checkUp != null) {
+      return checkUp(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CheckUp implements UserChatEvent {
+  const factory _CheckUp() = _$_CheckUp;
 }
 
 /// @nodoc

@@ -6,7 +6,7 @@ import 'dart:async';
 import 'package:chatty/core/data/firebase_auth_manager/extension/data_snapshot_extension.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-import 'package:chatty/core/domain/models/message.dart';
+import 'package:chatty/core/domain/models/fb_message.dart';
 import 'package:chatty/core/domain/repositories/i_remote_messaging_service.dart';
 
 class RemoteMessagingService implements IRemoteMessagingService {
@@ -17,14 +17,15 @@ class RemoteMessagingService implements IRemoteMessagingService {
   })  : _db = db,
         _messagesTable = db.ref('messages');
 
-  final StreamController<Message> _controller =
-      StreamController<Message>.broadcast();
+  final StreamController<FBMessage> _controller =
+      StreamController<FBMessage>.broadcast();
   StreamSubscription? _subscription;
 
   @override
-  Future<void> sendMessage(Message message) async {
+  Future<String> sendMessage(FBMessage message) async {
     final newMessage = _messagesTable.push();
     await newMessage.set(message.toMap());
+    return newMessage.key ?? '';
   }
 
   @override
@@ -35,23 +36,23 @@ class RemoteMessagingService implements IRemoteMessagingService {
 
   // receiver
   @override
-  Stream<Message> subscribeFor(String userId) {
+  Stream<FBMessage> subscribeFor(String userId) {
     _createStreamForSubscriber(userId);
     return _controller.stream;
   }
 
-  Future<void> deleteMessage(Message message) async {
+  Future<void> deleteMessage(FBMessage message) async {
     await _messagesTable.child(message.id).remove();
   }
 
-  Future<List<Message>> fetchMessages(String userId) async {
+  Future<List<FBMessage>> fetchMessages(String userId) async {
     final snapshot =
         await _messagesTable.orderByChild('receiver').equalTo(userId).get();
 
     final json = snapshot.toJson();
-    List<Message> messages = [];
+    List<FBMessage> messages = [];
     json.forEach((key, value) {
-      final user = Message.fromMap(value, key);
+      final user = FBMessage.fromMap(value, key);
       messages.add(user);
     });
 
@@ -69,7 +70,7 @@ class RemoteMessagingService implements IRemoteMessagingService {
         .onChildAdded
         .listen((event) {
       final json = event.snapshot.toJson();
-      final message = Message.fromMap(json, event.snapshot.key ?? '');
+      final message = FBMessage.fromMap(json, event.snapshot.key ?? '');
       _controller.sink.add(message);
     });
   }

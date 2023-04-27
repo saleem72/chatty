@@ -31,11 +31,38 @@ class _ChatScreenContent extends StatelessWidget {
           Expanded(
             child: Container(
               color: const Color(0xFFF7F7FC),
+              child: MessagesForChat(partner: user),
             ),
           ),
           SendMessageView(user: user),
         ],
       ),
+    );
+  }
+}
+
+class MessagesForChat extends StatelessWidget {
+  const MessagesForChat({
+    super.key,
+    required this.partner,
+  });
+  final AppUser partner;
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<UserChatBloc, List<UIMessage>>(
+      builder: (context, state) {
+        return _buildList(context, state);
+      },
+    );
+  }
+
+  Widget _buildList(BuildContext context, List<UIMessage> messages) {
+    return ListView.builder(
+      itemCount: messages.length,
+      itemBuilder: (context, index) {
+        final message = messages[index];
+        return Text(message.content);
+      },
     );
   }
 }
@@ -94,7 +121,7 @@ class _SendMessageViewState extends State<SendMessageView> {
   _sendMessage(BuildContext context) {
     final sender = context.read<AuthBloc>().state.user?.uid ?? '';
     final receiver = widget.user.uid;
-    final message = Message(
+    final message = FBMessage(
       sender: sender,
       receiver: receiver,
       content: _message.text,
@@ -104,6 +131,7 @@ class _SendMessageViewState extends State<SendMessageView> {
     context
         .read<UserChatBloc>()
         .add(UserChatEvent.sendMessage(message: message));
+    _message.text = '';
   }
 }
 

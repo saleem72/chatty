@@ -4,14 +4,14 @@
 import 'package:equatable/equatable.dart';
 
 import 'package:chatty/core/domain/models/app_user.dart';
-import 'package:chatty/core/domain/models/message.dart';
+import 'package:chatty/core/domain/models/fb_message.dart';
 
 class Chat extends Equatable {
   final String id;
   final String lastMessage;
   final int unRead;
   final AppUser partner;
-  final List<Message> messages;
+  final List<FBMessage> messages;
 
   const Chat({
     required this.id,
@@ -33,7 +33,7 @@ class Chat extends Equatable {
     String? lastMessage,
     int? unRead,
     AppUser? partner,
-    List<Message>? messages,
+    List<FBMessage>? messages,
   }) {
     return Chat(
       id: id ?? this.id,

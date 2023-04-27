@@ -2,12 +2,13 @@
 
 import 'dart:async';
 
-import 'package:chatty/core/domain/models/message.dart';
+import 'package:chatty/core/domain/models/fb_message.dart';
 
 import 'package:chatty/core/domain/models/chat.dart';
 import 'package:chatty/core/domain/repositories/i_user_service.dart';
 import 'package:collection/collection.dart';
 
+import '../../domain/models/message_deliver_status.dart';
 import '../../domain/repositories/i_local_chats.dart';
 import '../local_datasource/app_database.dart';
 import '../local_datasource/daos/chats_dao.dart';
@@ -56,7 +57,7 @@ class LocalChats implements ILocalChats {
   }
 
   @override
-  Future<List<Message>> messageForChat(String chatId) {
+  Future<List<FBMessage>> messageForChat(String chatId) {
     // TODO: implement messageForChat
     throw UnimplementedError();
   }
@@ -68,44 +69,17 @@ class LocalChats implements ILocalChats {
   }
 
   @override
-  Future<void> addMessage(Message message) async {
-    final sender = message.sender;
-    final chats = await _dao.fetchChats();
-    final chat = chats.firstWhereOrNull((element) => element.id == sender);
-
+  Future<void> receiveMessage(FBMessage message) async {
     final messageEntity = MessageEntityData(
       id: message.id,
-      sender: sender,
-      receiver: message.receiver,
+      toMe: true,
+      partner: message.sender,
       content: message.content,
       status: message.status.value,
       receivedAt: message.timestamp.millisecondsSinceEpoch,
     );
 
-    _dao.insertMessage(messageEntity);
-
-    if (chat == null) {
-      final entity = ChatEntityData(
-        id: sender,
-        lastMessage: message.content,
-        lastUpdate: DateTime.now().microsecondsSinceEpoch,
-      );
-      await _dao.insertChat(entity);
-    } else {
-      final chatToUpdate = chat.copyWith(
-        lastMessage: message.content,
-      );
-      final entity = ChatEntityData(
-        id: chatToUpdate.id,
-        lastMessage: chatToUpdate.lastMessage,
-        lastUpdate: DateTime.now().microsecondsSinceEpoch,
-      );
-
-      await _dao.updateChat(entity);
-      // final newChats =
-      //     chats.map((e) => e.id == chatToUpdate.id ? chatToUpdate : e).toList();
-      // add(ChatsEvent.updateState(chats: newChats));
-    }
+    _dao.addMesssageToLocalDB(messageEntity);
   }
 
   @override
@@ -133,4 +107,47 @@ class LocalChats implements ILocalChats {
     final after = await _dao.fetchAllMessages();
     print(after.length);
   }
+
+  @override
+  Future<void> sendMessage(FBMessage message) async {
+    final messageEntity = MessageEntityData(
+      id: message.id,
+      toMe: false,
+      partner: message.receiver,
+      content: message.content,
+      status: message.status.value,
+      receivedAt: message.timestamp.millisecondsSinceEpoch,
+    );
+
+    _dao.addMesssageToLocalDB(messageEntity);
+  }
+/*
+  Future<void> _addMesssageToLocalDB(MessageEntityData messageToAdd) async {
+    final chats = await _dao.fetchChats();
+    final chat =
+        chats.firstWhereOrNull((element) => element.id == messageToAdd.partner);
+
+    _dao.insertMessage(messageToAdd);
+
+    if (chat == null) {
+      final entity = ChatEntityData(
+        id: messageToAdd.partner,
+        lastMessage: messageToAdd.content,
+        lastUpdate: DateTime.now().microsecondsSinceEpoch,
+      );
+      await _dao.insertChat(entity);
+    } else {
+      final chatToUpdate = chat.copyWith(
+        lastMessage: messageToAdd.content,
+      );
+      final entity = ChatEntityData(
+        id: chatToUpdate.id,
+        lastMessage: chatToUpdate.lastMessage,
+        lastUpdate: DateTime.now().microsecondsSinceEpoch,
+      );
+
+      await _dao.updateChat(entity);
+    }
+  }
+  */
 }

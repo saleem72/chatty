@@ -3,18 +3,9 @@
 
 import 'package:equatable/equatable.dart';
 
-enum MessageDeliverStatus {
-  sent,
-  delivered;
+import 'message_deliver_status.dart';
 
-  String get value => toString().split('.').last;
-
-  factory MessageDeliverStatus.fromString(String value) =>
-      MessageDeliverStatus.values
-          .firstWhere((element) => element.value == value);
-}
-
-class Message extends Equatable {
+class FBMessage extends Equatable {
   final String id;
   final String sender;
   final String receiver;
@@ -22,7 +13,7 @@ class Message extends Equatable {
   final DateTime timestamp;
   final MessageDeliverStatus status;
 
-  const Message._({
+  const FBMessage._({
     required this.id,
     required this.sender,
     required this.receiver,
@@ -31,14 +22,14 @@ class Message extends Equatable {
     required this.status,
   });
 
-  factory Message({
+  factory FBMessage({
     required String sender,
     required String receiver,
     required String content,
     required DateTime timestamp,
     required MessageDeliverStatus status,
   }) =>
-      Message._(
+      FBMessage._(
         id: '',
         sender: sender,
         receiver: receiver,
@@ -53,7 +44,7 @@ class Message extends Equatable {
   }
 
   @override
-  List<Object?> get props => [sender, receiver, content, timestamp, status];
+  List<Object?> get props => [id, sender, receiver, content, timestamp, status];
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -65,14 +56,32 @@ class Message extends Equatable {
     };
   }
 
-  factory Message.fromMap(Map<String, dynamic> map, String id) {
-    return Message._(
+  factory FBMessage.fromMap(Map<String, dynamic> map, String id) {
+    return FBMessage._(
       id: id,
       sender: map['sender'] as String,
       receiver: map['receiver'] as String,
       content: map['content'] as String,
       timestamp: DateTime.fromMillisecondsSinceEpoch(map['timestamp'] as int),
       status: MessageDeliverStatus.fromString(map['status'] as String),
+    );
+  }
+
+  FBMessage copyWith({
+    String? id,
+    String? sender,
+    String? receiver,
+    String? content,
+    DateTime? timestamp,
+    MessageDeliverStatus? status,
+  }) {
+    return FBMessage._(
+      id: id ?? this.id,
+      sender: sender ?? this.sender,
+      receiver: receiver ?? this.receiver,
+      content: content ?? this.content,
+      timestamp: timestamp ?? this.timestamp,
+      status: status ?? this.status,
     );
   }
 }

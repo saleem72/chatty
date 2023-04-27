@@ -5,9 +5,9 @@ class MessageEntity extends Table {
   Set<Column> get primaryKey => {id};
 
   TextColumn get id => text()();
-  TextColumn get sender => text()();
-  TextColumn get receiver => text()();
+  BoolColumn get toMe => boolean()();
+  TextColumn get partner => text()();
   TextColumn get content => text()();
-  TextColumn get status => text()();
   IntColumn get receivedAt => integer()();
+  TextColumn get status => text()();
 }

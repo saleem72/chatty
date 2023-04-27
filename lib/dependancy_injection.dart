@@ -10,6 +10,7 @@ import 'package:chatty/core/domain/repositories/i_user_service.dart';
 import 'package:chatty/core/presentation/auth_bloc/auth_bloc.dart';
 import 'package:chatty/features/auth/login_screen/presentation/bloc/login_entries_bloc.dart';
 import 'package:chatty/features/auth/login_screen/presentation/login_bloc/login_bloc.dart';
+import 'package:chatty/features/chat_screen/data/repository/user_chat_facade.dart';
 import 'package:chatty/features/home_screen/data/chats_facade/chats_facade.dart';
 import 'package:chatty/features/home_screen/data/services/users_service.dart';
 import 'package:chatty/features/home_screen/domain/chats_facade/i_chats_facade.dart';
@@ -21,6 +22,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'core/data/local_datasource/app_database.dart';
 import 'core/data/repositories/remote_messaging_service.dart';
 import 'core/domain/repositories/i_remote_messaging_service.dart';
+import 'features/chat_screen/data/repository/local_user_chats.dart';
+import 'features/chat_screen/domain/repository/i_local_user_chats.dart';
+import 'features/chat_screen/domain/repository/i_user_chat_facade.dart';
+import 'features/chat_screen/presentation/bloc/user_chat_bloc.dart';
 import 'features/home_screen/presentation/chats_bloc/chats_bloc.dart';
 import 'features/home_screen/presentation/home_bloc/home_bloc.dart';
 
@@ -60,6 +65,10 @@ Future<void> initDependancies() async {
         userService: locator(),
       ));
 
+  locator.registerFactory(() => UserChatBloc(repository: locator()));
+  locator.registerFactory<IUserChatFacade>(() =>
+      UserChatFacade(remoteMessagingService: locator(), localChats: locator()));
+  locator.registerFactory<ILocalUserChats>(() => LocalUserChats(db: locator()));
   // external
   final sharedPreferences = await SharedPreferences.getInstance();
   locator.registerSingleton<SharedPreferences>(sharedPreferences);

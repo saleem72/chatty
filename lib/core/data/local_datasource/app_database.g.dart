@@ -14,16 +14,22 @@ class $MessageEntityTable extends MessageEntity
   late final GeneratedColumn<String> id = GeneratedColumn<String>(
       'id', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
-  static const VerificationMeta _senderMeta = const VerificationMeta('sender');
+  static const VerificationMeta _toMeMeta = const VerificationMeta('toMe');
   @override
-  late final GeneratedColumn<String> sender = GeneratedColumn<String>(
-      'sender', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
-  static const VerificationMeta _receiverMeta =
-      const VerificationMeta('receiver');
+  late final GeneratedColumn<bool> toMe =
+      GeneratedColumn<bool>('to_me', aliasedName, false,
+          type: DriftSqlType.bool,
+          requiredDuringInsert: true,
+          defaultConstraints: GeneratedColumn.constraintsDependsOnDialect({
+            SqlDialect.sqlite: 'CHECK ("to_me" IN (0, 1))',
+            SqlDialect.mysql: '',
+            SqlDialect.postgres: '',
+          }));
+  static const VerificationMeta _partnerMeta =
+      const VerificationMeta('partner');
   @override
-  late final GeneratedColumn<String> receiver = GeneratedColumn<String>(
-      'receiver', aliasedName, false,
+  late final GeneratedColumn<String> partner = GeneratedColumn<String>(
+      'partner', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
   static const VerificationMeta _contentMeta =
       const VerificationMeta('content');
@@ -31,20 +37,20 @@ class $MessageEntityTable extends MessageEntity
   late final GeneratedColumn<String> content = GeneratedColumn<String>(
       'content', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
-  static const VerificationMeta _statusMeta = const VerificationMeta('status');
-  @override
-  late final GeneratedColumn<String> status = GeneratedColumn<String>(
-      'status', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
   static const VerificationMeta _receivedAtMeta =
       const VerificationMeta('receivedAt');
   @override
   late final GeneratedColumn<int> receivedAt = GeneratedColumn<int>(
       'received_at', aliasedName, false,
       type: DriftSqlType.int, requiredDuringInsert: true);
+  static const VerificationMeta _statusMeta = const VerificationMeta('status');
+  @override
+  late final GeneratedColumn<String> status = GeneratedColumn<String>(
+      'status', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
   @override
   List<GeneratedColumn> get $columns =>
-      [id, sender, receiver, content, status, receivedAt];
+      [id, toMe, partner, content, receivedAt, status];
   @override
   String get aliasedName => _alias ?? 'message_entity';
   @override
@@ -59,29 +65,23 @@ class $MessageEntityTable extends MessageEntity
     } else if (isInserting) {
       context.missing(_idMeta);
     }
-    if (data.containsKey('sender')) {
-      context.handle(_senderMeta,
-          sender.isAcceptableOrUnknown(data['sender']!, _senderMeta));
+    if (data.containsKey('to_me')) {
+      context.handle(
+          _toMeMeta, toMe.isAcceptableOrUnknown(data['to_me']!, _toMeMeta));
     } else if (isInserting) {
-      context.missing(_senderMeta);
+      context.missing(_toMeMeta);
     }
-    if (data.containsKey('receiver')) {
-      context.handle(_receiverMeta,
-          receiver.isAcceptableOrUnknown(data['receiver']!, _receiverMeta));
+    if (data.containsKey('partner')) {
+      context.handle(_partnerMeta,
+          partner.isAcceptableOrUnknown(data['partner']!, _partnerMeta));
     } else if (isInserting) {
-      context.missing(_receiverMeta);
+      context.missing(_partnerMeta);
     }
     if (data.containsKey('content')) {
       context.handle(_contentMeta,
           content.isAcceptableOrUnknown(data['content']!, _contentMeta));
     } else if (isInserting) {
       context.missing(_contentMeta);
-    }
-    if (data.containsKey('status')) {
-      context.handle(_statusMeta,
-          status.isAcceptableOrUnknown(data['status']!, _statusMeta));
-    } else if (isInserting) {
-      context.missing(_statusMeta);
     }
     if (data.containsKey('received_at')) {
       context.handle(
@@ -90,6 +90,12 @@ class $MessageEntityTable extends MessageEntity
               data['received_at']!, _receivedAtMeta));
     } else if (isInserting) {
       context.missing(_receivedAtMeta);
+    }
+    if (data.containsKey('status')) {
+      context.handle(_statusMeta,
+          status.isAcceptableOrUnknown(data['status']!, _statusMeta));
+    } else if (isInserting) {
+      context.missing(_statusMeta);
     }
     return context;
   }
@@ -102,16 +108,16 @@ class $MessageEntityTable extends MessageEntity
     return MessageEntityData(
       id: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
-      sender: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}sender'])!,
-      receiver: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}receiver'])!,
+      toMe: attachedDatabase.typeMapping
+          .read(DriftSqlType.bool, data['${effectivePrefix}to_me'])!,
+      partner: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}partner'])!,
       content: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}content'])!,
-      status: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}status'])!,
       receivedAt: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}received_at'])!,
+      status: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}status'])!,
     );
   }
 
@@ -124,38 +130,38 @@ class $MessageEntityTable extends MessageEntity
 class MessageEntityData extends DataClass
     implements Insertable<MessageEntityData> {
   final String id;
-  final String sender;
-  final String receiver;
+  final bool toMe;
+  final String partner;
   final String content;
-  final String status;
   final int receivedAt;
+  final String status;
   const MessageEntityData(
       {required this.id,
-      required this.sender,
-      required this.receiver,
+      required this.toMe,
+      required this.partner,
       required this.content,
-      required this.status,
-      required this.receivedAt});
+      required this.receivedAt,
+      required this.status});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['id'] = Variable<String>(id);
-    map['sender'] = Variable<String>(sender);
-    map['receiver'] = Variable<String>(receiver);
+    map['to_me'] = Variable<bool>(toMe);
+    map['partner'] = Variable<String>(partner);
     map['content'] = Variable<String>(content);
-    map['status'] = Variable<String>(status);
     map['received_at'] = Variable<int>(receivedAt);
+    map['status'] = Variable<String>(status);
     return map;
   }
 
   MessageEntityCompanion toCompanion(bool nullToAbsent) {
     return MessageEntityCompanion(
       id: Value(id),
-      sender: Value(sender),
-      receiver: Value(receiver),
+      toMe: Value(toMe),
+      partner: Value(partner),
       content: Value(content),
-      status: Value(status),
       receivedAt: Value(receivedAt),
+      status: Value(status),
     );
   }
 
@@ -164,11 +170,11 @@ class MessageEntityData extends DataClass
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return MessageEntityData(
       id: serializer.fromJson<String>(json['id']),
-      sender: serializer.fromJson<String>(json['sender']),
-      receiver: serializer.fromJson<String>(json['receiver']),
+      toMe: serializer.fromJson<bool>(json['toMe']),
+      partner: serializer.fromJson<String>(json['partner']),
       content: serializer.fromJson<String>(json['content']),
-      status: serializer.fromJson<String>(json['status']),
       receivedAt: serializer.fromJson<int>(json['receivedAt']),
+      status: serializer.fromJson<String>(json['status']),
     );
   }
   @override
@@ -176,123 +182,123 @@ class MessageEntityData extends DataClass
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'id': serializer.toJson<String>(id),
-      'sender': serializer.toJson<String>(sender),
-      'receiver': serializer.toJson<String>(receiver),
+      'toMe': serializer.toJson<bool>(toMe),
+      'partner': serializer.toJson<String>(partner),
       'content': serializer.toJson<String>(content),
-      'status': serializer.toJson<String>(status),
       'receivedAt': serializer.toJson<int>(receivedAt),
+      'status': serializer.toJson<String>(status),
     };
   }
 
   MessageEntityData copyWith(
           {String? id,
-          String? sender,
-          String? receiver,
+          bool? toMe,
+          String? partner,
           String? content,
-          String? status,
-          int? receivedAt}) =>
+          int? receivedAt,
+          String? status}) =>
       MessageEntityData(
         id: id ?? this.id,
-        sender: sender ?? this.sender,
-        receiver: receiver ?? this.receiver,
+        toMe: toMe ?? this.toMe,
+        partner: partner ?? this.partner,
         content: content ?? this.content,
-        status: status ?? this.status,
         receivedAt: receivedAt ?? this.receivedAt,
+        status: status ?? this.status,
       );
   @override
   String toString() {
     return (StringBuffer('MessageEntityData(')
           ..write('id: $id, ')
-          ..write('sender: $sender, ')
-          ..write('receiver: $receiver, ')
+          ..write('toMe: $toMe, ')
+          ..write('partner: $partner, ')
           ..write('content: $content, ')
-          ..write('status: $status, ')
-          ..write('receivedAt: $receivedAt')
+          ..write('receivedAt: $receivedAt, ')
+          ..write('status: $status')
           ..write(')'))
         .toString();
   }
 
   @override
   int get hashCode =>
-      Object.hash(id, sender, receiver, content, status, receivedAt);
+      Object.hash(id, toMe, partner, content, receivedAt, status);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is MessageEntityData &&
           other.id == this.id &&
-          other.sender == this.sender &&
-          other.receiver == this.receiver &&
+          other.toMe == this.toMe &&
+          other.partner == this.partner &&
           other.content == this.content &&
-          other.status == this.status &&
-          other.receivedAt == this.receivedAt);
+          other.receivedAt == this.receivedAt &&
+          other.status == this.status);
 }
 
 class MessageEntityCompanion extends UpdateCompanion<MessageEntityData> {
   final Value<String> id;
-  final Value<String> sender;
-  final Value<String> receiver;
+  final Value<bool> toMe;
+  final Value<String> partner;
   final Value<String> content;
-  final Value<String> status;
   final Value<int> receivedAt;
+  final Value<String> status;
   final Value<int> rowid;
   const MessageEntityCompanion({
     this.id = const Value.absent(),
-    this.sender = const Value.absent(),
-    this.receiver = const Value.absent(),
+    this.toMe = const Value.absent(),
+    this.partner = const Value.absent(),
     this.content = const Value.absent(),
-    this.status = const Value.absent(),
     this.receivedAt = const Value.absent(),
+    this.status = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   MessageEntityCompanion.insert({
     required String id,
-    required String sender,
-    required String receiver,
+    required bool toMe,
+    required String partner,
     required String content,
-    required String status,
     required int receivedAt,
+    required String status,
     this.rowid = const Value.absent(),
   })  : id = Value(id),
-        sender = Value(sender),
-        receiver = Value(receiver),
+        toMe = Value(toMe),
+        partner = Value(partner),
         content = Value(content),
-        status = Value(status),
-        receivedAt = Value(receivedAt);
+        receivedAt = Value(receivedAt),
+        status = Value(status);
   static Insertable<MessageEntityData> custom({
     Expression<String>? id,
-    Expression<String>? sender,
-    Expression<String>? receiver,
+    Expression<bool>? toMe,
+    Expression<String>? partner,
     Expression<String>? content,
-    Expression<String>? status,
     Expression<int>? receivedAt,
+    Expression<String>? status,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
-      if (sender != null) 'sender': sender,
-      if (receiver != null) 'receiver': receiver,
+      if (toMe != null) 'to_me': toMe,
+      if (partner != null) 'partner': partner,
       if (content != null) 'content': content,
-      if (status != null) 'status': status,
       if (receivedAt != null) 'received_at': receivedAt,
+      if (status != null) 'status': status,
       if (rowid != null) 'rowid': rowid,
     });
   }
 
   MessageEntityCompanion copyWith(
       {Value<String>? id,
-      Value<String>? sender,
-      Value<String>? receiver,
+      Value<bool>? toMe,
+      Value<String>? partner,
       Value<String>? content,
-      Value<String>? status,
       Value<int>? receivedAt,
+      Value<String>? status,
       Value<int>? rowid}) {
     return MessageEntityCompanion(
       id: id ?? this.id,
-      sender: sender ?? this.sender,
-      receiver: receiver ?? this.receiver,
+      toMe: toMe ?? this.toMe,
+      partner: partner ?? this.partner,
       content: content ?? this.content,
-      status: status ?? this.status,
       receivedAt: receivedAt ?? this.receivedAt,
+      status: status ?? this.status,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -303,20 +309,20 @@ class MessageEntityCompanion extends UpdateCompanion<MessageEntityData> {
     if (id.present) {
       map['id'] = Variable<String>(id.value);
     }
-    if (sender.present) {
-      map['sender'] = Variable<String>(sender.value);
+    if (toMe.present) {
+      map['to_me'] = Variable<bool>(toMe.value);
     }
-    if (receiver.present) {
-      map['receiver'] = Variable<String>(receiver.value);
+    if (partner.present) {
+      map['partner'] = Variable<String>(partner.value);
     }
     if (content.present) {
       map['content'] = Variable<String>(content.value);
     }
-    if (status.present) {
-      map['status'] = Variable<String>(status.value);
-    }
     if (receivedAt.present) {
       map['received_at'] = Variable<int>(receivedAt.value);
+    }
+    if (status.present) {
+      map['status'] = Variable<String>(status.value);
     }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
@@ -328,11 +334,11 @@ class MessageEntityCompanion extends UpdateCompanion<MessageEntityData> {
   String toString() {
     return (StringBuffer('MessageEntityCompanion(')
           ..write('id: $id, ')
-          ..write('sender: $sender, ')
-          ..write('receiver: $receiver, ')
+          ..write('toMe: $toMe, ')
+          ..write('partner: $partner, ')
           ..write('content: $content, ')
-          ..write('status: $status, ')
           ..write('receivedAt: $receivedAt, ')
+          ..write('status: $status, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();

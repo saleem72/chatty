@@ -40,7 +40,7 @@ class ChatsFacade implements IChatsFacade {
   Stream<List<Chat>> subscribeFor(String userId) {
     _messagesSubscription?.cancel();
     _messagesSubscription = _service.subscribeFor(userId).listen((event) {
-      _localDatabase.addMessage(event);
+      _localDatabase.receiveMessage(event);
       _service.deleteMessage(event);
     });
 
