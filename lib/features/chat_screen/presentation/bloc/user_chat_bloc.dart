@@ -24,6 +24,11 @@ class UserChatBloc extends Bloc<UserChatEvent, List<UIMessage>> {
         super(const []) {
     on<_SendMessage>(_onSendMessage);
     on<_Subscribe>(_onSubscribe);
+    on<_UpdateState>(_onUpdateState);
+  }
+
+  _onUpdateState(_UpdateState event, Emitter<List<UIMessage>> emit) {
+    emit(event.chats);
   }
 
   _onSubscribe(_Subscribe event, Emitter<List<UIMessage>> emit) {

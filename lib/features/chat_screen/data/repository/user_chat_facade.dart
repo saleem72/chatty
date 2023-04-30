@@ -34,13 +34,9 @@ class UserChatFacade implements IUserChatFacade {
   @override
   Stream<List<UIMessage>> messagesStream(String partnerId) {
     _subscription?.cancel();
-    _subscription = _localChats
-        .messages(partnerId)
-        .map(
-          (entities) => entities.map((e) => UIMessage.fromEntity(e)).toList(),
-        )
-        .listen((event) {
-      _messagesController.sink.add(event);
+    _subscription = _localChats.messages(partnerId).listen((event) {
+      final result = event.map((e) => UIMessage.fromEntity(e)).toList();
+      _messagesController.sink.add(result);
     });
     return _messagesController.stream;
   }

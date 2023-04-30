@@ -10,8 +10,8 @@ import '../../../../core/data/local_datasource/daos/chats_dao.dart';
 import '../../domain/repository/i_local_user_chats.dart';
 
 class LocalUserChats implements ILocalUserChats {
-  final StreamController<List<UIMessage>> _chatsController =
-      StreamController<List<UIMessage>>.broadcast();
+  final StreamController<List<MessageEntityData>> _chatsController =
+      StreamController<List<MessageEntityData>>.broadcast();
 
   StreamSubscription? _subscription;
 
@@ -36,8 +36,12 @@ class LocalUserChats implements ILocalUserChats {
 
   @override
   Stream<List<MessageEntityData>> messages(String partnerId) {
-    _subscription?.cancel();
-    return _dao.messagesForPartner(partnerId);
+    _subscription = _dao.messages().listen((event) {
+      final messages =
+          event.where((element) => element.partner == partnerId).toList();
+      _chatsController.sink.add(messages);
+    });
+    return _chatsController.stream;
   }
 
   @override

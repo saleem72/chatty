@@ -24,6 +24,10 @@ class ChatsDAO extends DatabaseAccessor<AppDatabase> with _$ChatsDAOMixin {
         .watch();
   }
 
+  Stream<List<MessageEntityData>> messages() {
+    return select(messageEntity).watch();
+  }
+
   Future<List<ChatEntityData>> fetchChats() {
     return select(chatEntity).get();
   }
