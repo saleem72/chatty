@@ -40,6 +40,9 @@ class UserChatBloc extends Bloc<UserChatEvent, List<UIMessage>> {
   }
 
   _onSendMessage(_SendMessage event, Emitter<List<UIMessage>> emit) async {
+    final newList = state.map((e) => e).toList()
+      ..add(UIMessage.fromFBMessage(event.message));
+    emit(newList);
     _repository.sendMessage(event.message);
   }
 

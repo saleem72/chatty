@@ -1,5 +1,6 @@
 //
 
+import 'package:chatty/core/domain/models/fb_message.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../data/local_datasource/app_database.dart';
@@ -56,6 +57,15 @@ class UIMessage extends Equatable {
         receivedAt: DateTime.fromMillisecondsSinceEpoch(entity.receivedAt),
         status: MessageDeliverStatus.fromString(entity.status),
       );
+  factory UIMessage.fromFBMessage(FBMessage message) {
+    return UIMessage(
+      toMe: true,
+      receiver: message.receiver,
+      content: message.content,
+      timestamp: message.timestamp,
+      status: MessageDeliverStatus.sent,
+    );
+  }
   @override
   String toString() {
     return 'Message(To me: ${toMe.toString()}, receiver: $partner, content: $content, timestamp: $receivedAt, status: $status)';
