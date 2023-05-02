@@ -27,7 +27,7 @@ class OnlineUsersListView extends StatelessWidget {
 
   Widget _buildChatsList(BuildContext context, List<AppUser> users) {
     return ListView.separated(
-      padding: const EdgeInsets.only(top: 16),
+      padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
       itemCount: users.length,
       itemBuilder: (BuildContext context, int index) {
         final user = users[index];

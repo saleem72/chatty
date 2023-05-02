@@ -1,3 +1,4 @@
+import 'package:chatty/core/domain/models/receipt.dart';
 import 'package:collection/collection.dart';
 import 'package:drift/drift.dart';
 
@@ -118,5 +119,16 @@ class ChatsDAO extends DatabaseAccessor<AppDatabase> with _$ChatsDAOMixin {
     //     .get();
 
     // await update(chatEntity).replace(chats.first.copyWith(unread: 0));
+  }
+
+  Future<void> updateMessageStatus(Receipt reciept) async {
+    final messages = await (select(messageEntity)
+          ..where((tbl) => tbl.id.equals(reciept.messageId)))
+        .get();
+
+    final message = messages.first;
+
+    update(messageEntity)
+        .replace(message.copyWith(status: reciept.status.value));
   }
 }

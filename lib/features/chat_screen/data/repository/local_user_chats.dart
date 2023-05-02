@@ -62,10 +62,11 @@ class LocalUserChats implements ILocalUserChats {
         final ids = unreadMessages
             .map(
               (e) => Receipt(
-                  owner: partnerId,
-                  messageId: e.id,
-                  status: MessageDeliverStatus.received.value,
-                  timeStamp: DateTime.now().millisecondsSinceEpoch),
+                owner: partnerId,
+                messageId: e.id,
+                status: MessageDeliverStatus.received,
+                timeStamp: DateTime.now(),
+              ),
             )
             .toList();
         _remoteReceiptService.sendReceivedReciept(ids);

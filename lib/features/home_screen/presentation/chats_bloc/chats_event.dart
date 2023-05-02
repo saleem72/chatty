@@ -15,4 +15,7 @@ class ChatsEvent with _$ChatsEvent {
   }) = _UpdateState;
 
   const factory ChatsEvent.checkUp() = _CheckUp;
+
+  const factory ChatsEvent.goOffline() = _GoOffline;
+  const factory ChatsEvent.goOnline() = _GoOnline;
 }

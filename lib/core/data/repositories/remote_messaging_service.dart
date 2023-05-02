@@ -25,7 +25,8 @@ class RemoteMessagingService implements IRemoteMessagingService {
   @override
   Future<String> sendMessage(FBMessage message) async {
     final newMessage = _messagesTable.push();
-    await newMessage.set(message.toMap());
+    final map = message.toMap();
+    await newMessage.set(map);
     return newMessage.key ?? '';
   }
 
@@ -39,13 +40,23 @@ class RemoteMessagingService implements IRemoteMessagingService {
   @override
   Stream<FBMessage> subscribeFor(String userId) {
     _createStreamForSubscriber(userId);
+    _db.ref('users').child(userId).update({
+      'isOnline': true,
+      'lastOnline': DateTime.now().millisecondsSinceEpoch,
+    });
+    _db.ref('users').child(userId).onDisconnect().update({
+      'isOnline': false,
+      'lastOnline': DateTime.now().millisecondsSinceEpoch,
+    });
     return _controller.stream;
   }
 
+  @override
   Future<void> deleteMessage(FBMessage message) async {
     await _messagesTable.child(message.id).remove();
   }
 
+  @override
   Future<List<FBMessage>> fetchMessages(String userId) async {
     final snapshot =
         await _messagesTable.orderByChild('receiver').equalTo(userId).get();

@@ -2,6 +2,7 @@
 //
 
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:firebase_database/firebase_database.dart';
 
@@ -12,8 +13,8 @@ import 'package:flutter/material.dart';
 import '../../domain/services/i_users_service.dart';
 
 class UsersService implements IUsersService {
-  final StreamController<AppUser> _gettingUsers =
-      StreamController<AppUser>.broadcast();
+  final StreamController<List<AppUser>> _gettingUsers =
+      StreamController<List<AppUser>>.broadcast();
   StreamSubscription? _gettingUsersSubscription;
 
   final StreamController<AppUser> _updatingUsers =
@@ -27,12 +28,6 @@ class UsersService implements IUsersService {
   final DatabaseReference usersTable;
 
   @override
-  Future<void> connect(String userId) {
-    // TODO: implement connect
-    throw UnimplementedError();
-  }
-
-  @override
   Future<void> dispose() async {
     _updatingUsers.close();
     _updatingUsersSubscription?.cancel();
@@ -41,7 +36,7 @@ class UsersService implements IUsersService {
   }
 
   @override
-  Stream<AppUser> subscripForUser(String userId) {
+  Stream<List<AppUser>> subscripForUser(String userId) {
     _subscripeForUsers(userId);
     return _gettingUsers.stream;
   }
@@ -71,15 +66,21 @@ class UsersService implements IUsersService {
     if (_gettingUsersSubscription != null) {
       _gettingUsersSubscription?.cancel();
     }
-    _gettingUsersSubscription = usersTable.onChildAdded.listen((event) {
+    _gettingUsersSubscription = usersTable.onValue.listen((event) {
       try {
         if (event.snapshot.exists && event.snapshot.value != null) {
-          final snapshot = event.snapshot;
-          final json = snapshot.toJson();
-          if ((snapshot.key ?? '') != userId) {
-            final user = AppUser.fromMap(json, snapshot.key ?? '');
-            _gettingUsers.sink.add(user);
+          final map = event.snapshot.value as Map;
+          final List<AppUser> users = [];
+          for (final key in map.keys) {
+            if (key != userId) {
+              final value = Map<String, dynamic>.from(map[key]);
+              final user = AppUser.fromMap(value, key);
+              users.add(user);
+            }
           }
+          final count = map.values.length;
+          print('_subscripeForUsers: $count');
+          _gettingUsers.sink.add(users);
         }
       } catch (e) {
         debugPrint('🔥 _subscripeForUsers:\n${e.toString()}');

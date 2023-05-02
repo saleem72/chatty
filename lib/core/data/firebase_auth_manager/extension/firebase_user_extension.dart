@@ -14,6 +14,7 @@ extension UserMapper on User {
       isAnonymous: isAnonymous,
       provider: provider,
       isOnline: true,
+      lastOnline: DateTime.now(),
     );
   }
 }

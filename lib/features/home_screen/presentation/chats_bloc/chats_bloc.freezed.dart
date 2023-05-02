@@ -21,6 +21,8 @@ mixin _$ChatsEvent {
     required TResult Function(String userId) subscribe,
     required TResult Function(List<Chat> chats) updateState,
     required TResult Function() checkUp,
+    required TResult Function() goOffline,
+    required TResult Function() goOnline,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +30,8 @@ mixin _$ChatsEvent {
     TResult? Function(String userId)? subscribe,
     TResult? Function(List<Chat> chats)? updateState,
     TResult? Function()? checkUp,
+    TResult? Function()? goOffline,
+    TResult? Function()? goOnline,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +39,8 @@ mixin _$ChatsEvent {
     TResult Function(String userId)? subscribe,
     TResult Function(List<Chat> chats)? updateState,
     TResult Function()? checkUp,
+    TResult Function()? goOffline,
+    TResult Function()? goOnline,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +49,8 @@ mixin _$ChatsEvent {
     required TResult Function(_Subscribe value) subscribe,
     required TResult Function(_UpdateState value) updateState,
     required TResult Function(_CheckUp value) checkUp,
+    required TResult Function(_GoOffline value) goOffline,
+    required TResult Function(_GoOnline value) goOnline,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +58,8 @@ mixin _$ChatsEvent {
     TResult? Function(_Subscribe value)? subscribe,
     TResult? Function(_UpdateState value)? updateState,
     TResult? Function(_CheckUp value)? checkUp,
+    TResult? Function(_GoOffline value)? goOffline,
+    TResult? Function(_GoOnline value)? goOnline,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +67,8 @@ mixin _$ChatsEvent {
     TResult Function(_Subscribe value)? subscribe,
     TResult Function(_UpdateState value)? updateState,
     TResult Function(_CheckUp value)? checkUp,
+    TResult Function(_GoOffline value)? goOffline,
+    TResult Function(_GoOnline value)? goOnline,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -147,6 +159,8 @@ class _$_Subscribe implements _Subscribe {
     required TResult Function(String userId) subscribe,
     required TResult Function(List<Chat> chats) updateState,
     required TResult Function() checkUp,
+    required TResult Function() goOffline,
+    required TResult Function() goOnline,
   }) {
     return subscribe(userId);
   }
@@ -157,6 +171,8 @@ class _$_Subscribe implements _Subscribe {
     TResult? Function(String userId)? subscribe,
     TResult? Function(List<Chat> chats)? updateState,
     TResult? Function()? checkUp,
+    TResult? Function()? goOffline,
+    TResult? Function()? goOnline,
   }) {
     return subscribe?.call(userId);
   }
@@ -167,6 +183,8 @@ class _$_Subscribe implements _Subscribe {
     TResult Function(String userId)? subscribe,
     TResult Function(List<Chat> chats)? updateState,
     TResult Function()? checkUp,
+    TResult Function()? goOffline,
+    TResult Function()? goOnline,
     required TResult orElse(),
   }) {
     if (subscribe != null) {
@@ -181,6 +199,8 @@ class _$_Subscribe implements _Subscribe {
     required TResult Function(_Subscribe value) subscribe,
     required TResult Function(_UpdateState value) updateState,
     required TResult Function(_CheckUp value) checkUp,
+    required TResult Function(_GoOffline value) goOffline,
+    required TResult Function(_GoOnline value) goOnline,
   }) {
     return subscribe(this);
   }
@@ -191,6 +211,8 @@ class _$_Subscribe implements _Subscribe {
     TResult? Function(_Subscribe value)? subscribe,
     TResult? Function(_UpdateState value)? updateState,
     TResult? Function(_CheckUp value)? checkUp,
+    TResult? Function(_GoOffline value)? goOffline,
+    TResult? Function(_GoOnline value)? goOnline,
   }) {
     return subscribe?.call(this);
   }
@@ -201,6 +223,8 @@ class _$_Subscribe implements _Subscribe {
     TResult Function(_Subscribe value)? subscribe,
     TResult Function(_UpdateState value)? updateState,
     TResult Function(_CheckUp value)? checkUp,
+    TResult Function(_GoOffline value)? goOffline,
+    TResult Function(_GoOnline value)? goOnline,
     required TResult orElse(),
   }) {
     if (subscribe != null) {
@@ -292,6 +316,8 @@ class _$_UpdateState implements _UpdateState {
     required TResult Function(String userId) subscribe,
     required TResult Function(List<Chat> chats) updateState,
     required TResult Function() checkUp,
+    required TResult Function() goOffline,
+    required TResult Function() goOnline,
   }) {
     return updateState(chats);
   }
@@ -302,6 +328,8 @@ class _$_UpdateState implements _UpdateState {
     TResult? Function(String userId)? subscribe,
     TResult? Function(List<Chat> chats)? updateState,
     TResult? Function()? checkUp,
+    TResult? Function()? goOffline,
+    TResult? Function()? goOnline,
   }) {
     return updateState?.call(chats);
   }
@@ -312,6 +340,8 @@ class _$_UpdateState implements _UpdateState {
     TResult Function(String userId)? subscribe,
     TResult Function(List<Chat> chats)? updateState,
     TResult Function()? checkUp,
+    TResult Function()? goOffline,
+    TResult Function()? goOnline,
     required TResult orElse(),
   }) {
     if (updateState != null) {
@@ -326,6 +356,8 @@ class _$_UpdateState implements _UpdateState {
     required TResult Function(_Subscribe value) subscribe,
     required TResult Function(_UpdateState value) updateState,
     required TResult Function(_CheckUp value) checkUp,
+    required TResult Function(_GoOffline value) goOffline,
+    required TResult Function(_GoOnline value) goOnline,
   }) {
     return updateState(this);
   }
@@ -336,6 +368,8 @@ class _$_UpdateState implements _UpdateState {
     TResult? Function(_Subscribe value)? subscribe,
     TResult? Function(_UpdateState value)? updateState,
     TResult? Function(_CheckUp value)? checkUp,
+    TResult? Function(_GoOffline value)? goOffline,
+    TResult? Function(_GoOnline value)? goOnline,
   }) {
     return updateState?.call(this);
   }
@@ -346,6 +380,8 @@ class _$_UpdateState implements _UpdateState {
     TResult Function(_Subscribe value)? subscribe,
     TResult Function(_UpdateState value)? updateState,
     TResult Function(_CheckUp value)? checkUp,
+    TResult Function(_GoOffline value)? goOffline,
+    TResult Function(_GoOnline value)? goOnline,
     required TResult orElse(),
   }) {
     if (updateState != null) {
@@ -405,6 +441,8 @@ class _$_CheckUp implements _CheckUp {
     required TResult Function(String userId) subscribe,
     required TResult Function(List<Chat> chats) updateState,
     required TResult Function() checkUp,
+    required TResult Function() goOffline,
+    required TResult Function() goOnline,
   }) {
     return checkUp();
   }
@@ -415,6 +453,8 @@ class _$_CheckUp implements _CheckUp {
     TResult? Function(String userId)? subscribe,
     TResult? Function(List<Chat> chats)? updateState,
     TResult? Function()? checkUp,
+    TResult? Function()? goOffline,
+    TResult? Function()? goOnline,
   }) {
     return checkUp?.call();
   }
@@ -425,6 +465,8 @@ class _$_CheckUp implements _CheckUp {
     TResult Function(String userId)? subscribe,
     TResult Function(List<Chat> chats)? updateState,
     TResult Function()? checkUp,
+    TResult Function()? goOffline,
+    TResult Function()? goOnline,
     required TResult orElse(),
   }) {
     if (checkUp != null) {
@@ -439,6 +481,8 @@ class _$_CheckUp implements _CheckUp {
     required TResult Function(_Subscribe value) subscribe,
     required TResult Function(_UpdateState value) updateState,
     required TResult Function(_CheckUp value) checkUp,
+    required TResult Function(_GoOffline value) goOffline,
+    required TResult Function(_GoOnline value) goOnline,
   }) {
     return checkUp(this);
   }
@@ -449,6 +493,8 @@ class _$_CheckUp implements _CheckUp {
     TResult? Function(_Subscribe value)? subscribe,
     TResult? Function(_UpdateState value)? updateState,
     TResult? Function(_CheckUp value)? checkUp,
+    TResult? Function(_GoOffline value)? goOffline,
+    TResult? Function(_GoOnline value)? goOnline,
   }) {
     return checkUp?.call(this);
   }
@@ -459,6 +505,8 @@ class _$_CheckUp implements _CheckUp {
     TResult Function(_Subscribe value)? subscribe,
     TResult Function(_UpdateState value)? updateState,
     TResult Function(_CheckUp value)? checkUp,
+    TResult Function(_GoOffline value)? goOffline,
+    TResult Function(_GoOnline value)? goOnline,
     required TResult orElse(),
   }) {
     if (checkUp != null) {
@@ -470,6 +518,246 @@ class _$_CheckUp implements _CheckUp {
 
 abstract class _CheckUp implements ChatsEvent {
   const factory _CheckUp() = _$_CheckUp;
+}
+
+/// @nodoc
+abstract class _$$_GoOfflineCopyWith<$Res> {
+  factory _$$_GoOfflineCopyWith(
+          _$_GoOffline value, $Res Function(_$_GoOffline) then) =
+      __$$_GoOfflineCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_GoOfflineCopyWithImpl<$Res>
+    extends _$ChatsEventCopyWithImpl<$Res, _$_GoOffline>
+    implements _$$_GoOfflineCopyWith<$Res> {
+  __$$_GoOfflineCopyWithImpl(
+      _$_GoOffline _value, $Res Function(_$_GoOffline) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_GoOffline implements _GoOffline {
+  const _$_GoOffline();
+
+  @override
+  String toString() {
+    return 'ChatsEvent.goOffline()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_GoOffline);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) subscribe,
+    required TResult Function(List<Chat> chats) updateState,
+    required TResult Function() checkUp,
+    required TResult Function() goOffline,
+    required TResult Function() goOnline,
+  }) {
+    return goOffline();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String userId)? subscribe,
+    TResult? Function(List<Chat> chats)? updateState,
+    TResult? Function()? checkUp,
+    TResult? Function()? goOffline,
+    TResult? Function()? goOnline,
+  }) {
+    return goOffline?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? subscribe,
+    TResult Function(List<Chat> chats)? updateState,
+    TResult Function()? checkUp,
+    TResult Function()? goOffline,
+    TResult Function()? goOnline,
+    required TResult orElse(),
+  }) {
+    if (goOffline != null) {
+      return goOffline();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Subscribe value) subscribe,
+    required TResult Function(_UpdateState value) updateState,
+    required TResult Function(_CheckUp value) checkUp,
+    required TResult Function(_GoOffline value) goOffline,
+    required TResult Function(_GoOnline value) goOnline,
+  }) {
+    return goOffline(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Subscribe value)? subscribe,
+    TResult? Function(_UpdateState value)? updateState,
+    TResult? Function(_CheckUp value)? checkUp,
+    TResult? Function(_GoOffline value)? goOffline,
+    TResult? Function(_GoOnline value)? goOnline,
+  }) {
+    return goOffline?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Subscribe value)? subscribe,
+    TResult Function(_UpdateState value)? updateState,
+    TResult Function(_CheckUp value)? checkUp,
+    TResult Function(_GoOffline value)? goOffline,
+    TResult Function(_GoOnline value)? goOnline,
+    required TResult orElse(),
+  }) {
+    if (goOffline != null) {
+      return goOffline(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GoOffline implements ChatsEvent {
+  const factory _GoOffline() = _$_GoOffline;
+}
+
+/// @nodoc
+abstract class _$$_GoOnlineCopyWith<$Res> {
+  factory _$$_GoOnlineCopyWith(
+          _$_GoOnline value, $Res Function(_$_GoOnline) then) =
+      __$$_GoOnlineCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_GoOnlineCopyWithImpl<$Res>
+    extends _$ChatsEventCopyWithImpl<$Res, _$_GoOnline>
+    implements _$$_GoOnlineCopyWith<$Res> {
+  __$$_GoOnlineCopyWithImpl(
+      _$_GoOnline _value, $Res Function(_$_GoOnline) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_GoOnline implements _GoOnline {
+  const _$_GoOnline();
+
+  @override
+  String toString() {
+    return 'ChatsEvent.goOnline()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_GoOnline);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) subscribe,
+    required TResult Function(List<Chat> chats) updateState,
+    required TResult Function() checkUp,
+    required TResult Function() goOffline,
+    required TResult Function() goOnline,
+  }) {
+    return goOnline();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String userId)? subscribe,
+    TResult? Function(List<Chat> chats)? updateState,
+    TResult? Function()? checkUp,
+    TResult? Function()? goOffline,
+    TResult? Function()? goOnline,
+  }) {
+    return goOnline?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? subscribe,
+    TResult Function(List<Chat> chats)? updateState,
+    TResult Function()? checkUp,
+    TResult Function()? goOffline,
+    TResult Function()? goOnline,
+    required TResult orElse(),
+  }) {
+    if (goOnline != null) {
+      return goOnline();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Subscribe value) subscribe,
+    required TResult Function(_UpdateState value) updateState,
+    required TResult Function(_CheckUp value) checkUp,
+    required TResult Function(_GoOffline value) goOffline,
+    required TResult Function(_GoOnline value) goOnline,
+  }) {
+    return goOnline(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Subscribe value)? subscribe,
+    TResult? Function(_UpdateState value)? updateState,
+    TResult? Function(_CheckUp value)? checkUp,
+    TResult? Function(_GoOffline value)? goOffline,
+    TResult? Function(_GoOnline value)? goOnline,
+  }) {
+    return goOnline?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Subscribe value)? subscribe,
+    TResult Function(_UpdateState value)? updateState,
+    TResult Function(_CheckUp value)? checkUp,
+    TResult Function(_GoOffline value)? goOffline,
+    TResult Function(_GoOnline value)? goOnline,
+    required TResult orElse(),
+  }) {
+    if (goOnline != null) {
+      return goOnline(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GoOnline implements ChatsEvent {
+  const factory _GoOnline() = _$_GoOnline;
 }
 
 /// @nodoc

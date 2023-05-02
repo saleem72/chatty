@@ -5,8 +5,8 @@ import 'dart:async';
 import 'package:chatty/core/domain/models/fb_message.dart';
 
 import 'package:chatty/core/domain/models/chat.dart';
+import 'package:chatty/core/domain/models/receipt.dart';
 import 'package:chatty/core/domain/repositories/i_user_service.dart';
-import 'package:collection/collection.dart';
 
 import '../../domain/models/message_deliver_status.dart';
 import '../../domain/repositories/i_local_chats.dart';
@@ -104,5 +104,10 @@ class LocalChats implements ILocalChats {
     // await _dao.deleteAll();
     // final after = await _dao.fetchAllMessages();
     // print(after.length);
+  }
+
+  @override
+  Future<void> updateMessageStatus(Receipt reciept) async {
+    _dao.updateMessageStatus(reciept);
   }
 }

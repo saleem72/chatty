@@ -139,4 +139,23 @@ class UserService implements IUserService {
   Future<AppUser> userForId(String userId) {
     return _getUser(userId);
   }
+
+  @override
+  Future<void> goOffline() async {
+    _changeCurrentUserStatus(false);
+  }
+
+  @override
+  Future<void> goOnline() async {
+    _changeCurrentUserStatus(true);
+  }
+
+  _changeCurrentUserStatus(bool online) {
+    final userId = auth.currentUser?.uid ?? '';
+    // const userId = '8grlDCwTa9Wy9VK6XKgKSWN2NRn1';
+    print('goOffline: $userId');
+    usersTable.child(userId).update({
+      'isOnline': online,
+    });
+  }
 }

@@ -13,9 +13,9 @@ import 'package:chatty/core/presentation/auth_bloc/auth_bloc.dart';
 import 'package:chatty/features/auth/login_screen/presentation/bloc/login_entries_bloc.dart';
 import 'package:chatty/features/auth/login_screen/presentation/login_bloc/login_bloc.dart';
 import 'package:chatty/features/chat_screen/data/repository/user_chat_facade.dart';
-import 'package:chatty/features/home_screen/data/chats_facade/chats_facade.dart';
+import 'package:chatty/features/home_screen/data/facades/chats_facade.dart';
 import 'package:chatty/features/home_screen/data/services/users_service.dart';
-import 'package:chatty/features/home_screen/domain/chats_facade/i_chats_facade.dart';
+import 'package:chatty/features/home_screen/domain/facades/i_chats_facade.dart';
 import 'package:chatty/features/home_screen/domain/services/i_users_service.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:get_it/get_it.dart';
@@ -53,11 +53,11 @@ Future<void> initDependancies() async {
 
   locator.registerFactory(() => ChatsBloc(
         repository: locator(),
+        userService: locator(),
       ));
   locator.registerLazySingleton<IChatsFacade>(() => ChatsFacade(
         remoteMessagingService: locator(),
         remoteReceiptService: locator(),
-        usersService: locator(),
         localDatabase: locator(),
       ));
   // locator.registerSingleton(FirebaseDatabase.instance);

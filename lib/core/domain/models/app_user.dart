@@ -28,6 +28,7 @@ class AppUser extends Equatable {
   final UserProvider provider;
   final bool isOnline;
   final String? about;
+  final DateTime lastOnline;
 
   const AppUser({
     required this.uid,
@@ -38,12 +39,14 @@ class AppUser extends Equatable {
     required this.provider,
     required this.isOnline,
     this.about,
+    required this.lastOnline,
   });
 
-  factory AppUser.initial() => const AppUser(
+  factory AppUser.initial() => AppUser(
         uid: '',
         provider: UserProvider.anonymous,
         isOnline: false,
+        lastOnline: DateTime.now(),
       );
 
   @override
@@ -60,6 +63,7 @@ class AppUser extends Equatable {
       'provider': provider.value(),
       'isOnline': isOnline,
       'about': about,
+      'lastOnline': lastOnline.millisecondsSinceEpoch,
     };
   }
 
@@ -72,20 +76,24 @@ class AppUser extends Equatable {
 
   factory AppUser.fromMap(Map<String, dynamic> map, String userId) {
     return AppUser(
-        uid: userId,
-        name: map['name'] != null ? map['name'] as String : null,
-        email: map['email'] != null ? map['email'] as String : null,
-        imageUrl:
-            (map['imageUrl'] != null || (map['imageUrl'] as String).isNotEmpty)
-                ? map['imageUrl'] as String
-                : null,
-        isAnonymous:
-            map['isAnonymous'] != null ? map['isAnonymous'] as bool : false,
-        provider: map['provider'] != null
-            ? UserProvider.fromString(map['provider'] as String)
-            : UserProvider.anonymous,
-        isOnline: map['isOnline'] != null ? map['isOnline'] as bool : false,
-        about: map['about'] != null ? map['about'] as String : null);
+      uid: userId,
+      name: map['name'] != null ? map['name'] as String : null,
+      email: map['email'] != null ? map['email'] as String : null,
+      imageUrl:
+          (map['imageUrl'] != null || (map['imageUrl'] as String).isNotEmpty)
+              ? map['imageUrl'] as String
+              : null,
+      isAnonymous:
+          map['isAnonymous'] != null ? map['isAnonymous'] as bool : false,
+      provider: map['provider'] != null
+          ? UserProvider.fromString(map['provider'] as String)
+          : UserProvider.anonymous,
+      isOnline: map['isOnline'] != null ? map['isOnline'] as bool : false,
+      about: map['about'] != null ? map['about'] as String : null,
+      lastOnline: map['lastOnline'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map['lastOnline'] as int)
+          : DateTime.now(),
+    );
   }
 
   bool hasImage() {
@@ -98,6 +106,15 @@ class AppUser extends Equatable {
   }
 
   @override
-  List<Object?> get props =>
-      [uid, name, email, imageUrl, isAnonymous, provider, isOnline, about];
+  List<Object?> get props => [
+        uid,
+        name,
+        email,
+        imageUrl,
+        isAnonymous,
+        provider,
+        isOnline,
+        about,
+        lastOnline
+      ];
 }

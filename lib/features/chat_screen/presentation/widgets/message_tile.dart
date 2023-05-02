@@ -1,5 +1,7 @@
 //
 
+import 'package:chatty/configuration/assets/app_icons.dart';
+import 'package:chatty/core/domain/models/message_deliver_status.dart';
 import 'package:chatty/core/extensions/build_context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -38,24 +40,73 @@ class MessageTile extends StatelessWidget {
                 ),
                 padding:
                     const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                child: Row(
-                  mainAxisAlignment: message.toMe
-                      ? MainAxisAlignment.end
-                      : MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      DateFormat('h:mm a').format(message.receivedAt),
-                      style: context.captionTextStyle?.copyWith(
-                        color: const Color(0xFF8A9099),
-                      ),
-                    ),
-                  ],
-                ),
+                child: message.toMe
+                    ? _onlyDate(context)
+                    : _dateWithStatus(context),
               ),
             ],
           ),
         ],
       ),
     );
+  }
+
+  Widget _dateWithStatus(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          DateFormat('h:mm a').format(message.receivedAt),
+          style: context.captionTextStyle?.copyWith(
+            color: const Color(0xFF8A9099),
+          ),
+        ),
+        MessageStatusIcon(status: message.status),
+      ],
+    );
+  }
+
+  Widget _onlyDate(BuildContext context) {
+    return Row(
+      mainAxisAlignment:
+          message.toMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+      children: [
+        Text(
+          DateFormat('h:mm a').format(message.receivedAt),
+          style: context.captionTextStyle?.copyWith(
+            color: const Color(0xFF8A9099),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class MessageStatusIcon extends StatelessWidget {
+  const MessageStatusIcon({
+    super.key,
+    required this.status,
+  });
+  final MessageDeliverStatus status;
+  @override
+  Widget build(BuildContext context) {
+    switch (status) {
+      case MessageDeliverStatus.sent:
+        return Icon(Icons.check, color: context.colorScheme.primaryContainer);
+      case MessageDeliverStatus.delivered:
+        return Image.asset(
+          AppIcons.messageRead,
+          height: 20,
+          width: 20,
+          color: context.colorScheme.primaryContainer,
+        );
+      case MessageDeliverStatus.received:
+        return Image.asset(
+          AppIcons.messageRead,
+          height: 20,
+          width: 20,
+          color: context.colorScheme.primary,
+        );
+    }
   }
 }
