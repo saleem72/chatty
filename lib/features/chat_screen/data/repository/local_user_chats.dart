@@ -3,10 +3,14 @@
 import 'dart:async';
 
 import 'package:chatty/core/domain/models/fb_message.dart';
+import 'package:chatty/core/domain/models/receipt.dart';
 import 'package:chatty/core/domain/models/ui_message.dart';
+import 'package:chatty/core/domain/repositories/i_remote_messaging_service.dart';
 
 import '../../../../core/data/local_datasource/app_database.dart';
 import '../../../../core/data/local_datasource/daos/chats_dao.dart';
+import '../../../../core/domain/models/message_deliver_status.dart';
+import '../../../../core/domain/repositories/i_remote_receipts_service.dart';
 import '../../domain/repository/i_local_user_chats.dart';
 
 class LocalUserChats implements ILocalUserChats {
@@ -17,9 +21,15 @@ class LocalUserChats implements ILocalUserChats {
 
   LocalUserChats({
     required AppDatabase db,
-  }) : _dao = db.chatsDAO;
+    required IRemoteReceiptsService remoteReceiptService,
+    required IRemoteMessagingService remoteMessagingService,
+  })  : _dao = db.chatsDAO,
+        _remoteReceiptService = remoteReceiptService,
+        _remoteMessagingService = remoteMessagingService;
 
   final ChatsDAO _dao;
+  final IRemoteMessagingService _remoteMessagingService;
+  final IRemoteReceiptsService _remoteReceiptService;
   @override
   Future<void> dispose() async {
     _subscription?.cancel();
@@ -39,7 +49,29 @@ class LocalUserChats implements ILocalUserChats {
     _subscription = _dao.messages().listen((event) {
       final messages =
           event.where((element) => element.partner == partnerId).toList();
-      _chatsController.sink.add(messages);
+      final unreadMessages = messages
+          .where((element) =>
+              element.toMe == true &&
+              element.status == MessageDeliverStatus.delivered.value)
+          .toList();
+      if (unreadMessages.isNotEmpty) {
+        // TODO: check if message status need to update
+        // send reciepts for each message;
+        // update status to recieved
+        _dao.messagesHasReceived(partnerId);
+        final ids = unreadMessages
+            .map(
+              (e) => Receipt(
+                  owner: partnerId,
+                  messageId: e.id,
+                  status: MessageDeliverStatus.received.value,
+                  timeStamp: DateTime.now().millisecondsSinceEpoch),
+            )
+            .toList();
+        _remoteReceiptService.sendReceivedReciept(ids);
+      } else {
+        _chatsController.sink.add(messages);
+      }
     });
     return _chatsController.stream;
   }

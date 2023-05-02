@@ -2,10 +2,12 @@
 
 import 'package:chatty/core/data/repositories/auth_service.dart';
 import 'package:chatty/core/data/repositories/local_chats.dart';
+import 'package:chatty/core/data/repositories/remote_receipts_service.dart';
 import 'package:chatty/core/data/repositories/user_service.dart';
 import 'package:chatty/core/data/safe/safe.dart';
 import 'package:chatty/core/domain/repositories/i_auth_service.dart';
 import 'package:chatty/core/domain/repositories/i_local_chats.dart';
+import 'package:chatty/core/domain/repositories/i_remote_receipts_service.dart';
 import 'package:chatty/core/domain/repositories/i_user_service.dart';
 import 'package:chatty/core/presentation/auth_bloc/auth_bloc.dart';
 import 'package:chatty/features/auth/login_screen/presentation/bloc/login_entries_bloc.dart';
@@ -53,12 +55,17 @@ Future<void> initDependancies() async {
         repository: locator(),
       ));
   locator.registerLazySingleton<IChatsFacade>(() => ChatsFacade(
-        service: locator(),
+        remoteMessagingService: locator(),
+        remoteReceiptService: locator(),
         usersService: locator(),
         localDatabase: locator(),
       ));
-  locator.registerFactory<IRemoteMessagingService>(
-      () => RemoteMessagingService(db: FirebaseDatabase.instance));
+  // locator.registerSingleton(FirebaseDatabase.instance);
+  locator.registerLazySingleton(() => FirebaseDatabase.instance);
+  locator.registerFactory<IRemoteReceiptsService>(
+      () => RemoteReceiptsService(db: locator()));
+  locator.registerLazySingleton<IRemoteMessagingService>(
+      () => RemoteMessagingService(db: locator()));
   locator.registerSingleton(AppDatabase());
   locator.registerLazySingleton<ILocalChats>(() => LocalChats(
         db: locator(),
@@ -68,7 +75,11 @@ Future<void> initDependancies() async {
   locator.registerFactory(() => UserChatBloc(repository: locator()));
   locator.registerFactory<IUserChatFacade>(() =>
       UserChatFacade(remoteMessagingService: locator(), localChats: locator()));
-  locator.registerFactory<ILocalUserChats>(() => LocalUserChats(db: locator()));
+  locator.registerFactory<ILocalUserChats>(() => LocalUserChats(
+        db: locator(),
+        remoteMessagingService: locator(),
+        remoteReceiptService: locator(),
+      ));
   // external
   final sharedPreferences = await SharedPreferences.getInstance();
   locator.registerSingleton<SharedPreferences>(sharedPreferences);

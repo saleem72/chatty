@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:drift/drift.dart';
 
+import '../../../domain/models/message_deliver_status.dart';
 import '../app_database.dart';
 import '../entities/chat_entity.dart';
 import '../entities/message_entity.dart';
@@ -73,9 +74,15 @@ class ChatsDAO extends DatabaseAccessor<AppDatabase> with _$ChatsDAOMixin {
         id: messageToAdd.partner,
         lastMessage: messageToAdd.content,
         lastUpdate: DateTime.now().microsecondsSinceEpoch,
+        unread: 0,
       );
       await insertChat(entity);
     } else {
+      final unread = await (select(messageEntity)
+            ..where((tbl) =>
+                tbl.toMe.equals(true) &
+                tbl.status.equals(MessageDeliverStatus.delivered.value)))
+          .get();
       final chatToUpdate = chat.copyWith(
         lastMessage: messageToAdd.content,
       );
@@ -83,9 +90,33 @@ class ChatsDAO extends DatabaseAccessor<AppDatabase> with _$ChatsDAOMixin {
         id: chatToUpdate.id,
         lastMessage: chatToUpdate.lastMessage,
         lastUpdate: DateTime.now().microsecondsSinceEpoch,
+        unread: unread.length,
       );
 
       await updateChat(entity);
     }
+  }
+
+  messagesHasReceived(String partnerId) async {
+    final unreadMessages = await (select(messageEntity)
+          ..where((tbl) =>
+              tbl.partner.equals(partnerId) &
+              tbl.toMe.equals(true) &
+              tbl.status.equals(MessageDeliverStatus.delivered.value)))
+        .get();
+    final updatedMessages = unreadMessages
+        .map((e) => e.copyWith(status: MessageDeliverStatus.received.value))
+        .toList();
+    batch((batch) {
+      for (final row in updatedMessages) {
+        update(messageEntity).replace(row);
+      }
+    });
+
+    // final chats = await (select(chatEntity)
+    //       ..where((tbl) => tbl.id.equals(partnerId)))
+    //     .get();
+
+    // await update(chatEntity).replace(chats.first.copyWith(unread: 0));
   }
 }

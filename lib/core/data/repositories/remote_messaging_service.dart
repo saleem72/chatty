@@ -4,6 +4,7 @@
 import 'dart:async';
 
 import 'package:chatty/core/data/firebase_auth_manager/extension/data_snapshot_extension.dart';
+import 'package:chatty/core/domain/models/message_deliver_status.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 import 'package:chatty/core/domain/models/fb_message.dart';
@@ -70,7 +71,9 @@ class RemoteMessagingService implements IRemoteMessagingService {
         .onChildAdded
         .listen((event) {
       final json = event.snapshot.toJson();
-      final message = FBMessage.fromMap(json, event.snapshot.key ?? '');
+      final receivedMessage = FBMessage.fromMap(json, event.snapshot.key ?? '');
+      final message =
+          receivedMessage.copyWith(status: MessageDeliverStatus.delivered);
       _controller.sink.add(message);
     });
   }

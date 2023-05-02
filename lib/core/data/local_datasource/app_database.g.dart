@@ -368,8 +368,13 @@ class $ChatEntityTable extends ChatEntity
   late final GeneratedColumn<int> lastUpdate = GeneratedColumn<int>(
       'last_update', aliasedName, false,
       type: DriftSqlType.int, requiredDuringInsert: true);
+  static const VerificationMeta _unreadMeta = const VerificationMeta('unread');
   @override
-  List<GeneratedColumn> get $columns => [id, lastMessage, lastUpdate];
+  late final GeneratedColumn<int> unread = GeneratedColumn<int>(
+      'unread', aliasedName, false,
+      type: DriftSqlType.int, requiredDuringInsert: true);
+  @override
+  List<GeneratedColumn> get $columns => [id, lastMessage, lastUpdate, unread];
   @override
   String get aliasedName => _alias ?? 'chat_entity';
   @override
@@ -400,6 +405,12 @@ class $ChatEntityTable extends ChatEntity
     } else if (isInserting) {
       context.missing(_lastUpdateMeta);
     }
+    if (data.containsKey('unread')) {
+      context.handle(_unreadMeta,
+          unread.isAcceptableOrUnknown(data['unread']!, _unreadMeta));
+    } else if (isInserting) {
+      context.missing(_unreadMeta);
+    }
     return context;
   }
 
@@ -415,6 +426,8 @@ class $ChatEntityTable extends ChatEntity
           .read(DriftSqlType.string, data['${effectivePrefix}last_message'])!,
       lastUpdate: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}last_update'])!,
+      unread: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}unread'])!,
     );
   }
 
@@ -428,14 +441,19 @@ class ChatEntityData extends DataClass implements Insertable<ChatEntityData> {
   final String id;
   final String lastMessage;
   final int lastUpdate;
+  final int unread;
   const ChatEntityData(
-      {required this.id, required this.lastMessage, required this.lastUpdate});
+      {required this.id,
+      required this.lastMessage,
+      required this.lastUpdate,
+      required this.unread});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['id'] = Variable<String>(id);
     map['last_message'] = Variable<String>(lastMessage);
     map['last_update'] = Variable<int>(lastUpdate);
+    map['unread'] = Variable<int>(unread);
     return map;
   }
 
@@ -444,6 +462,7 @@ class ChatEntityData extends DataClass implements Insertable<ChatEntityData> {
       id: Value(id),
       lastMessage: Value(lastMessage),
       lastUpdate: Value(lastUpdate),
+      unread: Value(unread),
     );
   }
 
@@ -454,6 +473,7 @@ class ChatEntityData extends DataClass implements Insertable<ChatEntityData> {
       id: serializer.fromJson<String>(json['id']),
       lastMessage: serializer.fromJson<String>(json['lastMessage']),
       lastUpdate: serializer.fromJson<int>(json['lastUpdate']),
+      unread: serializer.fromJson<int>(json['unread']),
     );
   }
   @override
@@ -463,65 +483,76 @@ class ChatEntityData extends DataClass implements Insertable<ChatEntityData> {
       'id': serializer.toJson<String>(id),
       'lastMessage': serializer.toJson<String>(lastMessage),
       'lastUpdate': serializer.toJson<int>(lastUpdate),
+      'unread': serializer.toJson<int>(unread),
     };
   }
 
-  ChatEntityData copyWith({String? id, String? lastMessage, int? lastUpdate}) =>
+  ChatEntityData copyWith(
+          {String? id, String? lastMessage, int? lastUpdate, int? unread}) =>
       ChatEntityData(
         id: id ?? this.id,
         lastMessage: lastMessage ?? this.lastMessage,
         lastUpdate: lastUpdate ?? this.lastUpdate,
+        unread: unread ?? this.unread,
       );
   @override
   String toString() {
     return (StringBuffer('ChatEntityData(')
           ..write('id: $id, ')
           ..write('lastMessage: $lastMessage, ')
-          ..write('lastUpdate: $lastUpdate')
+          ..write('lastUpdate: $lastUpdate, ')
+          ..write('unread: $unread')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(id, lastMessage, lastUpdate);
+  int get hashCode => Object.hash(id, lastMessage, lastUpdate, unread);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is ChatEntityData &&
           other.id == this.id &&
           other.lastMessage == this.lastMessage &&
-          other.lastUpdate == this.lastUpdate);
+          other.lastUpdate == this.lastUpdate &&
+          other.unread == this.unread);
 }
 
 class ChatEntityCompanion extends UpdateCompanion<ChatEntityData> {
   final Value<String> id;
   final Value<String> lastMessage;
   final Value<int> lastUpdate;
+  final Value<int> unread;
   final Value<int> rowid;
   const ChatEntityCompanion({
     this.id = const Value.absent(),
     this.lastMessage = const Value.absent(),
     this.lastUpdate = const Value.absent(),
+    this.unread = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   ChatEntityCompanion.insert({
     required String id,
     required String lastMessage,
     required int lastUpdate,
+    required int unread,
     this.rowid = const Value.absent(),
   })  : id = Value(id),
         lastMessage = Value(lastMessage),
-        lastUpdate = Value(lastUpdate);
+        lastUpdate = Value(lastUpdate),
+        unread = Value(unread);
   static Insertable<ChatEntityData> custom({
     Expression<String>? id,
     Expression<String>? lastMessage,
     Expression<int>? lastUpdate,
+    Expression<int>? unread,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (lastMessage != null) 'last_message': lastMessage,
       if (lastUpdate != null) 'last_update': lastUpdate,
+      if (unread != null) 'unread': unread,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -530,11 +561,13 @@ class ChatEntityCompanion extends UpdateCompanion<ChatEntityData> {
       {Value<String>? id,
       Value<String>? lastMessage,
       Value<int>? lastUpdate,
+      Value<int>? unread,
       Value<int>? rowid}) {
     return ChatEntityCompanion(
       id: id ?? this.id,
       lastMessage: lastMessage ?? this.lastMessage,
       lastUpdate: lastUpdate ?? this.lastUpdate,
+      unread: unread ?? this.unread,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -551,6 +584,9 @@ class ChatEntityCompanion extends UpdateCompanion<ChatEntityData> {
     if (lastUpdate.present) {
       map['last_update'] = Variable<int>(lastUpdate.value);
     }
+    if (unread.present) {
+      map['unread'] = Variable<int>(unread.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -563,6 +599,7 @@ class ChatEntityCompanion extends UpdateCompanion<ChatEntityData> {
           ..write('id: $id, ')
           ..write('lastMessage: $lastMessage, ')
           ..write('lastUpdate: $lastUpdate, ')
+          ..write('unread: $unread, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();

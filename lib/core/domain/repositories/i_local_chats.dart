@@ -4,7 +4,6 @@ import '../models/chat.dart';
 import '../models/fb_message.dart';
 
 abstract class ILocalChats {
-  Future<List<FBMessage>> messageForChat(String chatId);
   Stream<List<Chat>> chats();
   Future<List<Chat>> fetchChats();
   Future<void> dispose();

@@ -27,6 +27,7 @@ class UserChatFacade implements IUserChatFacade {
 
   @override
   Future<void> dispose() async {
+    _localChats.dispose();
     _subscription?.cancel();
     _messagesController.close();
   }

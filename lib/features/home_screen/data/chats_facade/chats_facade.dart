@@ -6,20 +6,24 @@ import 'package:chatty/core/domain/models/chat.dart';
 
 import '../../../../core/domain/repositories/i_local_chats.dart';
 import '../../../../core/domain/repositories/i_remote_messaging_service.dart';
+import '../../../../core/domain/repositories/i_remote_receipts_service.dart';
 import '../../../../core/domain/repositories/i_user_service.dart';
 import '../../domain/chats_facade/i_chats_facade.dart';
 
 class ChatsFacade implements IChatsFacade {
   ChatsFacade({
-    required IRemoteMessagingService service,
+    required IRemoteMessagingService remoteMessagingService,
+    required IRemoteReceiptsService remoteReceiptService,
     required IUserService usersService,
     required ILocalChats localDatabase,
-  })  : _service = service,
+  })  : _remoteMessagingService = remoteMessagingService,
+        _remoteReceiptService = remoteReceiptService,
         _usersService = usersService,
         _localDatabase = localDatabase;
 
   final IUserService _usersService;
-  final IRemoteMessagingService _service;
+  final IRemoteReceiptsService _remoteReceiptService;
+  final IRemoteMessagingService _remoteMessagingService;
   final ILocalChats _localDatabase;
   StreamSubscription? _messagesSubscription;
 
@@ -28,20 +32,13 @@ class ChatsFacade implements IChatsFacade {
       StreamController<List<Chat>>.broadcast();
 
   @override
-  Future<void> handleOldMessages(String userId) async {
-    // _localDatabase.deleteAll();
-    // final messages = await _service.fetchMessages(userId);
-    // for (final message in messages) {
-    //   await _localDatabase.addMessage(message);
-    // }
-  }
-
-  @override
   Stream<List<Chat>> subscribeFor(String userId) {
     _messagesSubscription?.cancel();
-    _messagesSubscription = _service.subscribeFor(userId).listen((event) {
+    _messagesSubscription =
+        _remoteMessagingService.subscribeFor(userId).listen((event) {
       _localDatabase.receiveMessage(event);
-      _service.deleteMessage(event);
+      _remoteMessagingService.deleteMessage(event);
+      _remoteReceiptService.sendDeliverdRecipt(event);
     });
 
     _chatsSubscription?.cancel();

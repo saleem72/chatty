@@ -2,7 +2,8 @@
 
 enum MessageDeliverStatus {
   sent,
-  delivered;
+  delivered,
+  received;
 
   String get value => toString().split('.').last;
 

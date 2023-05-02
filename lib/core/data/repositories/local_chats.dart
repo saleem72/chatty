@@ -45,21 +45,18 @@ class LocalChats implements ILocalChats {
   Future<Chat> entityToLocalChat(ChatEntityData entity) async {
     final localMessages = await _dao.messageForChat(partnerId: entity.id);
     final unRead = (localMessages.where(
-        (element) => element.status == MessageDeliverStatus.sent.value)).length;
+      (element) =>
+          element.toMe == true &&
+          element.status == MessageDeliverStatus.delivered.value,
+    )).length;
     final partner = await _userService.userForId(entity.id);
     return Chat(
       id: entity.id,
       lastMessage: entity.lastMessage,
       unRead: unRead,
       partner: partner,
-      messages: [],
+      messages: const [],
     );
-  }
-
-  @override
-  Future<List<FBMessage>> messageForChat(String chatId) {
-    // TODO: implement messageForChat
-    throw UnimplementedError();
   }
 
   @override
@@ -103,51 +100,9 @@ class LocalChats implements ILocalChats {
   Future<void> checkUp() async {
     // await _dao.;
     final before = await _dao.fetchAllMessages();
-    await _dao.deleteAll();
-    final after = await _dao.fetchAllMessages();
-    print(after.length);
+    print(before.length);
+    // await _dao.deleteAll();
+    // final after = await _dao.fetchAllMessages();
+    // print(after.length);
   }
-
-  @override
-  Future<void> sendMessage(FBMessage message) async {
-    final messageEntity = MessageEntityData(
-      id: message.id,
-      toMe: false,
-      partner: message.receiver,
-      content: message.content,
-      status: message.status.value,
-      receivedAt: message.timestamp.millisecondsSinceEpoch,
-    );
-
-    _dao.addMesssageToLocalDB(messageEntity);
-  }
-/*
-  Future<void> _addMesssageToLocalDB(MessageEntityData messageToAdd) async {
-    final chats = await _dao.fetchChats();
-    final chat =
-        chats.firstWhereOrNull((element) => element.id == messageToAdd.partner);
-
-    _dao.insertMessage(messageToAdd);
-
-    if (chat == null) {
-      final entity = ChatEntityData(
-        id: messageToAdd.partner,
-        lastMessage: messageToAdd.content,
-        lastUpdate: DateTime.now().microsecondsSinceEpoch,
-      );
-      await _dao.insertChat(entity);
-    } else {
-      final chatToUpdate = chat.copyWith(
-        lastMessage: messageToAdd.content,
-      );
-      final entity = ChatEntityData(
-        id: chatToUpdate.id,
-        lastMessage: chatToUpdate.lastMessage,
-        lastUpdate: DateTime.now().microsecondsSinceEpoch,
-      );
-
-      await _dao.updateChat(entity);
-    }
-  }
-  */
 }

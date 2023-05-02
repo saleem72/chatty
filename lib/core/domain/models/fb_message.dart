@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 //
 
+import 'package:chatty/core/data/local_datasource/app_database.dart';
 import 'package:equatable/equatable.dart';
 
 import 'message_deliver_status.dart';
@@ -37,6 +38,16 @@ class FBMessage extends Equatable {
         timestamp: timestamp,
         status: status,
       );
+  factory FBMessage.fromEntity(MessageEntityData entity, String me) {
+    return FBMessage._(
+      id: entity.id,
+      sender: entity.toMe ? entity.partner : me,
+      receiver: entity.toMe ? me : entity.partner,
+      content: entity.content,
+      timestamp: DateTime.fromMillisecondsSinceEpoch(entity.receivedAt),
+      status: MessageDeliverStatus.fromString(entity.status),
+    );
+  }
 
   @override
   String toString() {
