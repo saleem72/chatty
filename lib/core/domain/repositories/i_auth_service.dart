@@ -7,7 +7,7 @@ import '../models/app_user.dart';
 
 abstract class IAuthService {
   Future<Either<AuthFailure, AppUser>> registerWithUsernameAndPassword(
-      String emailAddress, String password);
+      String emailAddress, String password, String username);
   Future<Either<AuthFailure, AppUser>> signinWithUsernameAndPassword(
       String emailAddress, String password);
   Future<Either<AuthFailure, AppUser>> googleSignIn();

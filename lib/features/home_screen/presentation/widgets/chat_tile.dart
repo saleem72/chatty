@@ -29,13 +29,19 @@ class ChatTile extends StatelessWidget {
                 child: chat.partner.hasImage()
                     ? Image.network(
                         chat.partner.imageUrl!,
-                        height: 75,
-                        width: 75,
+                        height: 60,
+                        width: 60,
                         fit: BoxFit.fill,
                       )
-                    : const Icon(
-                        Icons.person,
-                        size: 44,
+                    : Container(
+                        color: Colors.grey.shade400,
+                        height: double.maxFinite,
+                        width: double.maxFinite,
+                        child: const Icon(
+                          Icons.person,
+                          size: 44,
+                          color: Colors.white,
+                        ),
                       ),
               ),
             ),

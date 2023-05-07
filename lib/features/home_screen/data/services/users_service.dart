@@ -2,7 +2,6 @@
 //
 
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:firebase_database/firebase_database.dart';
 
@@ -78,8 +77,6 @@ class UsersService implements IUsersService {
               users.add(user);
             }
           }
-          final count = map.values.length;
-          print('_subscripeForUsers: $count');
           _gettingUsers.sink.add(users);
         }
       } catch (e) {

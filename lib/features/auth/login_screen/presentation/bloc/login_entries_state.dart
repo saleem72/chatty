@@ -5,9 +5,16 @@ class LoginEntriesState with _$LoginEntriesState {
   const factory LoginEntriesState({
     required String username,
     required String password,
-    required bool isFormValid,
+    required String email,
+    required bool isLoginFormValid,
+    required bool isRgisterFormValid,
   }) = _LoginEntriesState;
 
-  factory LoginEntriesState.initial() =>
-      const LoginEntriesState(username: '', password: '', isFormValid: false);
+  factory LoginEntriesState.initial() => const LoginEntriesState(
+        username: '',
+        password: '',
+        email: '',
+        isLoginFormValid: false,
+        isRgisterFormValid: false,
+      );
 }

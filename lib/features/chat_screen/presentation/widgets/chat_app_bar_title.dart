@@ -1,7 +1,7 @@
 //
 
 part of '../../chat_screen.dart';
-
+/*
 class _ChatAppBarTitle extends StatelessWidget {
   const _ChatAppBarTitle({
     // super.key,
@@ -41,3 +41,4 @@ class _ChatAppBarTitle extends StatelessWidget {
     );
   }
 }
+*/

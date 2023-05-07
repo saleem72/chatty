@@ -52,7 +52,7 @@ class ChatsFacade implements IChatsFacade {
     _receiptsSubscription?.cancel();
     _receiptsSubscription =
         _remoteReceiptService.subscripe(userId).listen((event) {
-      print('_subscripeForUserReceipts: ${event.messageId}');
+      // print('_subscripeForUserReceipts: ${event.messageId}');
       _localDatabase.updateMessageStatus(event);
       _remoteReceiptService.deleteReceipt(event);
     });

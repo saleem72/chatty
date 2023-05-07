@@ -20,9 +20,9 @@ mixin _$LoginEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() signInAnonymously,
     required TResult Function() signInWithGoogle,
-    required TResult Function(String username, String password)
+    required TResult Function(String email, String password)
         signInWithUsernameAndPassword,
-    required TResult Function(String username, String password)
+    required TResult Function(String email, String username, String password)
         registerWithUsernameAndPassword,
     required TResult Function() clearError,
   }) =>
@@ -31,9 +31,9 @@ mixin _$LoginEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? signInAnonymously,
     TResult? Function()? signInWithGoogle,
-    TResult? Function(String username, String password)?
+    TResult? Function(String email, String password)?
         signInWithUsernameAndPassword,
-    TResult? Function(String username, String password)?
+    TResult? Function(String email, String username, String password)?
         registerWithUsernameAndPassword,
     TResult? Function()? clearError,
   }) =>
@@ -42,9 +42,9 @@ mixin _$LoginEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? signInAnonymously,
     TResult Function()? signInWithGoogle,
-    TResult Function(String username, String password)?
+    TResult Function(String email, String password)?
         signInWithUsernameAndPassword,
-    TResult Function(String username, String password)?
+    TResult Function(String email, String username, String password)?
         registerWithUsernameAndPassword,
     TResult Function()? clearError,
     required TResult orElse(),
@@ -144,9 +144,9 @@ class _$_SignInAnonymously implements _SignInAnonymously {
   TResult when<TResult extends Object?>({
     required TResult Function() signInAnonymously,
     required TResult Function() signInWithGoogle,
-    required TResult Function(String username, String password)
+    required TResult Function(String email, String password)
         signInWithUsernameAndPassword,
-    required TResult Function(String username, String password)
+    required TResult Function(String email, String username, String password)
         registerWithUsernameAndPassword,
     required TResult Function() clearError,
   }) {
@@ -158,9 +158,9 @@ class _$_SignInAnonymously implements _SignInAnonymously {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? signInAnonymously,
     TResult? Function()? signInWithGoogle,
-    TResult? Function(String username, String password)?
+    TResult? Function(String email, String password)?
         signInWithUsernameAndPassword,
-    TResult? Function(String username, String password)?
+    TResult? Function(String email, String username, String password)?
         registerWithUsernameAndPassword,
     TResult? Function()? clearError,
   }) {
@@ -172,9 +172,9 @@ class _$_SignInAnonymously implements _SignInAnonymously {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? signInAnonymously,
     TResult Function()? signInWithGoogle,
-    TResult Function(String username, String password)?
+    TResult Function(String email, String password)?
         signInWithUsernameAndPassword,
-    TResult Function(String username, String password)?
+    TResult Function(String email, String username, String password)?
         registerWithUsernameAndPassword,
     TResult Function()? clearError,
     required TResult orElse(),
@@ -276,9 +276,9 @@ class _$_SignInWithGoogle implements _SignInWithGoogle {
   TResult when<TResult extends Object?>({
     required TResult Function() signInAnonymously,
     required TResult Function() signInWithGoogle,
-    required TResult Function(String username, String password)
+    required TResult Function(String email, String password)
         signInWithUsernameAndPassword,
-    required TResult Function(String username, String password)
+    required TResult Function(String email, String username, String password)
         registerWithUsernameAndPassword,
     required TResult Function() clearError,
   }) {
@@ -290,9 +290,9 @@ class _$_SignInWithGoogle implements _SignInWithGoogle {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? signInAnonymously,
     TResult? Function()? signInWithGoogle,
-    TResult? Function(String username, String password)?
+    TResult? Function(String email, String password)?
         signInWithUsernameAndPassword,
-    TResult? Function(String username, String password)?
+    TResult? Function(String email, String username, String password)?
         registerWithUsernameAndPassword,
     TResult? Function()? clearError,
   }) {
@@ -304,9 +304,9 @@ class _$_SignInWithGoogle implements _SignInWithGoogle {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? signInAnonymously,
     TResult Function()? signInWithGoogle,
-    TResult Function(String username, String password)?
+    TResult Function(String email, String password)?
         signInWithUsernameAndPassword,
-    TResult Function(String username, String password)?
+    TResult Function(String email, String username, String password)?
         registerWithUsernameAndPassword,
     TResult Function()? clearError,
     required TResult orElse(),
@@ -375,7 +375,7 @@ abstract class _$$_SignInWithUsernameAndPasswordCopyWith<$Res> {
           $Res Function(_$_SignInWithUsernameAndPassword) then) =
       __$$_SignInWithUsernameAndPasswordCopyWithImpl<$Res>;
   @useResult
-  $Res call({String username, String password});
+  $Res call({String email, String password});
 }
 
 /// @nodoc
@@ -390,13 +390,13 @@ class __$$_SignInWithUsernameAndPasswordCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? username = null,
+    Object? email = null,
     Object? password = null,
   }) {
     return _then(_$_SignInWithUsernameAndPassword(
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
       password: null == password
           ? _value.password
@@ -411,16 +411,16 @@ class __$$_SignInWithUsernameAndPasswordCopyWithImpl<$Res>
 class _$_SignInWithUsernameAndPassword
     implements _SignInWithUsernameAndPassword {
   const _$_SignInWithUsernameAndPassword(
-      {required this.username, required this.password});
+      {required this.email, required this.password});
 
   @override
-  final String username;
+  final String email;
   @override
   final String password;
 
   @override
   String toString() {
-    return 'LoginEvent.signInWithUsernameAndPassword(username: $username, password: $password)';
+    return 'LoginEvent.signInWithUsernameAndPassword(email: $email, password: $password)';
   }
 
   @override
@@ -428,14 +428,13 @@ class _$_SignInWithUsernameAndPassword
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SignInWithUsernameAndPassword &&
-            (identical(other.username, username) ||
-                other.username == username) &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, username, password);
+  int get hashCode => Object.hash(runtimeType, email, password);
 
   @JsonKey(ignore: true)
   @override
@@ -449,13 +448,13 @@ class _$_SignInWithUsernameAndPassword
   TResult when<TResult extends Object?>({
     required TResult Function() signInAnonymously,
     required TResult Function() signInWithGoogle,
-    required TResult Function(String username, String password)
+    required TResult Function(String email, String password)
         signInWithUsernameAndPassword,
-    required TResult Function(String username, String password)
+    required TResult Function(String email, String username, String password)
         registerWithUsernameAndPassword,
     required TResult Function() clearError,
   }) {
-    return signInWithUsernameAndPassword(username, password);
+    return signInWithUsernameAndPassword(email, password);
   }
 
   @override
@@ -463,13 +462,13 @@ class _$_SignInWithUsernameAndPassword
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? signInAnonymously,
     TResult? Function()? signInWithGoogle,
-    TResult? Function(String username, String password)?
+    TResult? Function(String email, String password)?
         signInWithUsernameAndPassword,
-    TResult? Function(String username, String password)?
+    TResult? Function(String email, String username, String password)?
         registerWithUsernameAndPassword,
     TResult? Function()? clearError,
   }) {
-    return signInWithUsernameAndPassword?.call(username, password);
+    return signInWithUsernameAndPassword?.call(email, password);
   }
 
   @override
@@ -477,15 +476,15 @@ class _$_SignInWithUsernameAndPassword
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? signInAnonymously,
     TResult Function()? signInWithGoogle,
-    TResult Function(String username, String password)?
+    TResult Function(String email, String password)?
         signInWithUsernameAndPassword,
-    TResult Function(String username, String password)?
+    TResult Function(String email, String username, String password)?
         registerWithUsernameAndPassword,
     TResult Function()? clearError,
     required TResult orElse(),
   }) {
     if (signInWithUsernameAndPassword != null) {
-      return signInWithUsernameAndPassword(username, password);
+      return signInWithUsernameAndPassword(email, password);
     }
     return orElse();
   }
@@ -539,10 +538,10 @@ class _$_SignInWithUsernameAndPassword
 
 abstract class _SignInWithUsernameAndPassword implements LoginEvent {
   const factory _SignInWithUsernameAndPassword(
-      {required final String username,
+      {required final String email,
       required final String password}) = _$_SignInWithUsernameAndPassword;
 
-  String get username;
+  String get email;
   String get password;
   @JsonKey(ignore: true)
   _$$_SignInWithUsernameAndPasswordCopyWith<_$_SignInWithUsernameAndPassword>
@@ -556,7 +555,7 @@ abstract class _$$_RegisterWithUsernameAndPasswordCopyWith<$Res> {
           $Res Function(_$_RegisterWithUsernameAndPassword) then) =
       __$$_RegisterWithUsernameAndPasswordCopyWithImpl<$Res>;
   @useResult
-  $Res call({String username, String password});
+  $Res call({String email, String username, String password});
 }
 
 /// @nodoc
@@ -571,10 +570,15 @@ class __$$_RegisterWithUsernameAndPasswordCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? email = null,
     Object? username = null,
     Object? password = null,
   }) {
     return _then(_$_RegisterWithUsernameAndPassword(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
       username: null == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
@@ -592,8 +596,10 @@ class __$$_RegisterWithUsernameAndPasswordCopyWithImpl<$Res>
 class _$_RegisterWithUsernameAndPassword
     implements _RegisterWithUsernameAndPassword {
   const _$_RegisterWithUsernameAndPassword(
-      {required this.username, required this.password});
+      {required this.email, required this.username, required this.password});
 
+  @override
+  final String email;
   @override
   final String username;
   @override
@@ -601,7 +607,7 @@ class _$_RegisterWithUsernameAndPassword
 
   @override
   String toString() {
-    return 'LoginEvent.registerWithUsernameAndPassword(username: $username, password: $password)';
+    return 'LoginEvent.registerWithUsernameAndPassword(email: $email, username: $username, password: $password)';
   }
 
   @override
@@ -609,6 +615,7 @@ class _$_RegisterWithUsernameAndPassword
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_RegisterWithUsernameAndPassword &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.username, username) ||
                 other.username == username) &&
             (identical(other.password, password) ||
@@ -616,7 +623,7 @@ class _$_RegisterWithUsernameAndPassword
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, username, password);
+  int get hashCode => Object.hash(runtimeType, email, username, password);
 
   @JsonKey(ignore: true)
   @override
@@ -631,13 +638,13 @@ class _$_RegisterWithUsernameAndPassword
   TResult when<TResult extends Object?>({
     required TResult Function() signInAnonymously,
     required TResult Function() signInWithGoogle,
-    required TResult Function(String username, String password)
+    required TResult Function(String email, String password)
         signInWithUsernameAndPassword,
-    required TResult Function(String username, String password)
+    required TResult Function(String email, String username, String password)
         registerWithUsernameAndPassword,
     required TResult Function() clearError,
   }) {
-    return registerWithUsernameAndPassword(username, password);
+    return registerWithUsernameAndPassword(email, username, password);
   }
 
   @override
@@ -645,13 +652,13 @@ class _$_RegisterWithUsernameAndPassword
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? signInAnonymously,
     TResult? Function()? signInWithGoogle,
-    TResult? Function(String username, String password)?
+    TResult? Function(String email, String password)?
         signInWithUsernameAndPassword,
-    TResult? Function(String username, String password)?
+    TResult? Function(String email, String username, String password)?
         registerWithUsernameAndPassword,
     TResult? Function()? clearError,
   }) {
-    return registerWithUsernameAndPassword?.call(username, password);
+    return registerWithUsernameAndPassword?.call(email, username, password);
   }
 
   @override
@@ -659,15 +666,15 @@ class _$_RegisterWithUsernameAndPassword
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? signInAnonymously,
     TResult Function()? signInWithGoogle,
-    TResult Function(String username, String password)?
+    TResult Function(String email, String password)?
         signInWithUsernameAndPassword,
-    TResult Function(String username, String password)?
+    TResult Function(String email, String username, String password)?
         registerWithUsernameAndPassword,
     TResult Function()? clearError,
     required TResult orElse(),
   }) {
     if (registerWithUsernameAndPassword != null) {
-      return registerWithUsernameAndPassword(username, password);
+      return registerWithUsernameAndPassword(email, username, password);
     }
     return orElse();
   }
@@ -721,9 +728,11 @@ class _$_RegisterWithUsernameAndPassword
 
 abstract class _RegisterWithUsernameAndPassword implements LoginEvent {
   const factory _RegisterWithUsernameAndPassword(
-      {required final String username,
+      {required final String email,
+      required final String username,
       required final String password}) = _$_RegisterWithUsernameAndPassword;
 
+  String get email;
   String get username;
   String get password;
   @JsonKey(ignore: true)
@@ -772,9 +781,9 @@ class _$_ClearError implements _ClearError {
   TResult when<TResult extends Object?>({
     required TResult Function() signInAnonymously,
     required TResult Function() signInWithGoogle,
-    required TResult Function(String username, String password)
+    required TResult Function(String email, String password)
         signInWithUsernameAndPassword,
-    required TResult Function(String username, String password)
+    required TResult Function(String email, String username, String password)
         registerWithUsernameAndPassword,
     required TResult Function() clearError,
   }) {
@@ -786,9 +795,9 @@ class _$_ClearError implements _ClearError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? signInAnonymously,
     TResult? Function()? signInWithGoogle,
-    TResult? Function(String username, String password)?
+    TResult? Function(String email, String password)?
         signInWithUsernameAndPassword,
-    TResult? Function(String username, String password)?
+    TResult? Function(String email, String username, String password)?
         registerWithUsernameAndPassword,
     TResult? Function()? clearError,
   }) {
@@ -800,9 +809,9 @@ class _$_ClearError implements _ClearError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? signInAnonymously,
     TResult Function()? signInWithGoogle,
-    TResult Function(String username, String password)?
+    TResult Function(String email, String password)?
         signInWithUsernameAndPassword,
-    TResult Function(String username, String password)?
+    TResult Function(String email, String username, String password)?
         registerWithUsernameAndPassword,
     TResult Function()? clearError,
     required TResult orElse(),

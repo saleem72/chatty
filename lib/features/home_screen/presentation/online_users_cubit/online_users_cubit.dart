@@ -36,4 +36,10 @@ class OnlineUsersCubit extends Cubit<List<AppUser>> {
   goOffline() {
     // _service
   }
+
+  @override
+  Future<void> close() {
+    _subscription?.cancel();
+    return super.close();
+  }
 }

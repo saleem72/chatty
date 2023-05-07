@@ -131,4 +131,12 @@ class ChatsDAO extends DatabaseAccessor<AppDatabase> with _$ChatsDAOMixin {
     update(messageEntity)
         .replace(message.copyWith(status: reciept.status.value));
   }
+
+  void readMessages(String partnerId) {
+    (update(messageEntity)..where((t) => t.partner.equals(partnerId))).write(
+      MessageEntityCompanion(
+        status: Value(MessageDeliverStatus.received.value),
+      ),
+    );
+  }
 }

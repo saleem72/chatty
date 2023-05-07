@@ -43,7 +43,6 @@ class ChatsBloc extends Bloc<ChatsEvent, List<Chat>> {
     _repository.subscribeFor(event.userId);
 
     /// tracking firebase receipts
-    //TODO: create helper to receive firebase receipts
     _messagesSubscription = _repository.chatsStream().listen((localChats) {
       add(ChatsEvent.updateState(chats: localChats));
     });

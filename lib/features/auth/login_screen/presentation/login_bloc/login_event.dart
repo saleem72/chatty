@@ -5,10 +5,11 @@ class LoginEvent with _$LoginEvent {
   const factory LoginEvent.signInAnonymously() = _SignInAnonymously;
   const factory LoginEvent.signInWithGoogle() = _SignInWithGoogle;
   const factory LoginEvent.signInWithUsernameAndPassword({
-    required String username,
+    required String email,
     required String password,
   }) = _SignInWithUsernameAndPassword;
   const factory LoginEvent.registerWithUsernameAndPassword({
+    required String email,
     required String username,
     required String password,
   }) = _RegisterWithUsernameAndPassword;

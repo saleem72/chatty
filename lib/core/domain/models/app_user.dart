@@ -80,7 +80,7 @@ class AppUser extends Equatable {
       name: map['name'] != null ? map['name'] as String : null,
       email: map['email'] != null ? map['email'] as String : null,
       imageUrl:
-          (map['imageUrl'] != null || (map['imageUrl'] as String).isNotEmpty)
+          (map['imageUrl'] != null && (map['imageUrl'] as String).isNotEmpty)
               ? map['imageUrl'] as String
               : null,
       isAnonymous:

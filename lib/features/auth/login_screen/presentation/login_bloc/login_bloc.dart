@@ -29,7 +29,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       _RegisterWithUsernameAndPassword event, Emitter<LoginState> emit) async {
     emit(const LoginState.loading());
     final either = await authManager.registerWithUsernameAndPassword(
-        event.username, event.password);
+      event.email,
+      event.password,
+      event.username,
+    );
     either.fold(
       (failure) => emit(LoginState.failure(failure: failure)),
       (user) => emit(LoginState.success(user: user)),
@@ -40,7 +43,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       _SignInWithUsernameAndPassword event, Emitter<LoginState> emit) async {
     emit(const LoginState.loading());
     final either = await authManager.signinWithUsernameAndPassword(
-        event.username, event.password);
+      event.email,
+      event.password,
+    );
     either.fold(
       (failure) => emit(LoginState.failure(failure: failure)),
       (user) => emit(LoginState.success(user: user)),

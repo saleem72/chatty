@@ -36,9 +36,15 @@ class OnLineUserTile extends StatelessWidget {
                                 width: 60,
                                 fit: BoxFit.fill,
                               )
-                            : const Icon(
-                                Icons.person,
-                                size: 44,
+                            : Container(
+                                color: Colors.grey.shade400,
+                                height: double.maxFinite,
+                                width: double.maxFinite,
+                                child: const Icon(
+                                  Icons.person,
+                                  size: 44,
+                                  color: Colors.white,
+                                ),
                               ),
                       ],
                     ),

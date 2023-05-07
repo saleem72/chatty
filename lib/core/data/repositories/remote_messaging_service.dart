@@ -4,18 +4,18 @@
 import 'dart:async';
 
 import 'package:chatty/core/data/firebase_auth_manager/extension/data_snapshot_extension.dart';
+import 'package:chatty/core/domain/models/fb_message.dart';
 import 'package:chatty/core/domain/models/message_deliver_status.dart';
+import 'package:chatty/core/domain/repositories/i_remote_messaging_service.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-import 'package:chatty/core/domain/models/fb_message.dart';
-import 'package:chatty/core/domain/repositories/i_remote_messaging_service.dart';
-
 class RemoteMessagingService implements IRemoteMessagingService {
-  final FirebaseDatabase _db;
+  // final FirebaseDatabase _db;
   final DatabaseReference _messagesTable;
+  DatabaseReference? userLastOnlineRef;
   RemoteMessagingService({
     required FirebaseDatabase db,
-  })  : _db = db,
+  }) : // _db = db,
         _messagesTable = db.ref('messages');
 
   final StreamController<FBMessage> _controller =
@@ -36,18 +36,23 @@ class RemoteMessagingService implements IRemoteMessagingService {
     _controller.close();
   }
 
+  /*
+     _db.ref('users').child(userId).update({
+      'isOnline': true,
+      'lastOnline': DateTime.now().millisecondsSinceEpoch,
+    });
+    userLastOnlineRef = _db.ref('users').child(userId);
+    userLastOnlineRef?.onDisconnect().update({
+      'isOnline': false,
+      'lastOnline': DateTime.now().millisecondsSinceEpoch,
+    });
+  */
+
   // receiver
   @override
   Stream<FBMessage> subscribeFor(String userId) {
     _createStreamForSubscriber(userId);
-    _db.ref('users').child(userId).update({
-      'isOnline': true,
-      'lastOnline': DateTime.now().millisecondsSinceEpoch,
-    });
-    _db.ref('users').child(userId).onDisconnect().update({
-      'isOnline': false,
-      'lastOnline': DateTime.now().millisecondsSinceEpoch,
-    });
+    // _presenceApp();
     return _controller.stream;
   }
 

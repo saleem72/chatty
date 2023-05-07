@@ -3,6 +3,7 @@
 import 'dart:convert';
 
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
 
 extension DataSnapshotPretty on DataSnapshot {
   String prettyJson() {
@@ -26,7 +27,7 @@ extension DataSnapshotPretty on DataSnapshot {
         return <String, dynamic>{};
       }
     } catch (e) {
-      print('🔥 DataSnapshotPretty:\n${e.toString()}\n$this');
+      debugPrint('🔥 Error DataSnapshotPretty:\n${e.toString()}\n$this');
       return <String, dynamic>{};
     }
   }

@@ -1,15 +1,14 @@
-import 'package:chatty/core/domain/models/app_user.dart';
-import 'package:chatty/core/domain/validation/email_validator.dart';
-import 'package:chatty/core/domain/value_object/email.dart';
-import 'package:chatty/core/domain/value_object/user_name.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../../core/domain/models/app_user.dart';
 import '../../../../core/domain/models/updated_user.dart';
+import '../../../../core/domain/value_object/email.dart';
+import '../../../../core/domain/value_object/user_name.dart';
 
+part 'profile_data_bloc.freezed.dart';
 part 'profile_data_event.dart';
 part 'profile_data_state.dart';
-part 'profile_data_bloc.freezed.dart';
 
 class ProfileDataBloc extends Bloc<ProfileDataEvent, ProfileDataState> {
   ProfileDataBloc() : super(ProfileDataState.initial()) {

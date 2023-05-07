@@ -152,10 +152,9 @@ class UserService implements IUserService {
 
   _changeCurrentUserStatus(bool online) {
     final userId = auth.currentUser?.uid ?? '';
-    // const userId = '8grlDCwTa9Wy9VK6XKgKSWN2NRn1';
-    print('goOffline: $userId');
     usersTable.child(userId).update({
       'isOnline': online,
+      'lastOnline': DateTime.now().millisecondsSinceEpoch,
     });
   }
 }

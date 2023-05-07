@@ -24,11 +24,11 @@ class LocalUserChats implements ILocalUserChats {
     required IRemoteReceiptsService remoteReceiptService,
     required IRemoteMessagingService remoteMessagingService,
   })  : _dao = db.chatsDAO,
-        _remoteReceiptService = remoteReceiptService,
-        _remoteMessagingService = remoteMessagingService;
+        _remoteReceiptService = remoteReceiptService;
+  // _remoteMessagingService = remoteMessagingService;
 
   final ChatsDAO _dao;
-  final IRemoteMessagingService _remoteMessagingService;
+  // final IRemoteMessagingService _remoteMessagingService;
   final IRemoteReceiptsService _remoteReceiptService;
   @override
   Future<void> dispose() async {
@@ -55,7 +55,6 @@ class LocalUserChats implements ILocalUserChats {
               element.status == MessageDeliverStatus.delivered.value)
           .toList();
       if (unreadMessages.isNotEmpty) {
-        // TODO: check if message status need to update
         // send reciepts for each message;
         // update status to recieved
         _dao.messagesHasReceived(partnerId);
@@ -70,6 +69,7 @@ class LocalUserChats implements ILocalUserChats {
             )
             .toList();
         _remoteReceiptService.sendReceivedReciept(ids);
+        _dao.readMessages(partnerId);
       } else {
         _chatsController.sink.add(messages);
       }

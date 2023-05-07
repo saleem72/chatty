@@ -7,6 +7,7 @@ import 'package:chatty/core/domain/models/fb_message.dart';
 import 'package:chatty/core/domain/models/chat.dart';
 import 'package:chatty/core/domain/models/receipt.dart';
 import 'package:chatty/core/domain/repositories/i_user_service.dart';
+import 'package:flutter/material.dart';
 
 import '../../domain/models/message_deliver_status.dart';
 import '../../domain/repositories/i_local_chats.dart';
@@ -100,7 +101,7 @@ class LocalChats implements ILocalChats {
   Future<void> checkUp() async {
     // await _dao.;
     final before = await _dao.fetchAllMessages();
-    print(before.length);
+    debugPrint(before.length.toString());
     // await _dao.deleteAll();
     // final after = await _dao.fetchAllMessages();
     // print(after.length);

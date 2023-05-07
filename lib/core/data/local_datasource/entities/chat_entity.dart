@@ -7,5 +7,4 @@ class ChatEntity extends Table {
   TextColumn get lastMessage => text()();
   IntColumn get lastUpdate => integer()();
   IntColumn get unread => integer()();
-  // TODO add unread amount
 }

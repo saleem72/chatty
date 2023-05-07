@@ -42,6 +42,7 @@ class FirebaseAuthManager implements IAuthService {
 
       final userCredential = await auth.signInWithCredential(credential);
       final tempUser = userCredential.user;
+      final username = googleSignInAccount.displayName ?? '';
       if (tempUser == null) {
         return const Left(AuthFailure.unknownError());
       } else {
@@ -50,7 +51,8 @@ class FirebaseAuthManager implements IAuthService {
         if (storedUser != null) {
           return right(storedUser);
         } else {
-          final user = await _createUser(tempUser, UserProvider.google);
+          final user =
+              await _createUser(tempUser, UserProvider.google, username);
           return right(user);
         }
       }
@@ -117,7 +119,7 @@ class FirebaseAuthManager implements IAuthService {
 
   @override
   Future<Either<AuthFailure, AppUser>> registerWithUsernameAndPassword(
-      String emailAddress, String password) async {
+      String emailAddress, String password, String username) async {
     try {
       final userCredential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -128,7 +130,8 @@ class FirebaseAuthManager implements IAuthService {
       if (tempUser == null) {
         return const Left(AuthFailure.unknownError());
       } else {
-        final user = await _createUser(tempUser, UserProvider.username);
+        final user =
+            await _createUser(tempUser, UserProvider.username, username);
         return right(user);
       }
     } on FirebaseAuthException catch (e) {
@@ -196,11 +199,12 @@ class FirebaseAuthManager implements IAuthService {
     }
   }
 
-  Future<AppUser> _createUser(User user, UserProvider provider) async {
+  Future<AppUser> _createUser(
+      User user, UserProvider provider, String username) async {
     DatabaseReference ref = usersTable.child(user.uid);
     try {
       await ref.set({
-        "name": user.displayName ?? '',
+        "name": username,
         "email": user.email ?? '',
         "imageUrl": user.providerData.first.photoURL ?? '',
         "isAnonymous": false,
