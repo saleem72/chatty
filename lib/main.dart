@@ -1,13 +1,13 @@
-import 'package:chatty/configuration/routing/app_router.dart';
-import 'package:chatty/configuration/routing/app_screens.dart';
-import 'package:chatty/core/presentation/auth_bloc/auth_bloc.dart';
-import 'package:chatty/dependancy_injection.dart' as di;
-import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import 'configuration/routing/app_router.dart';
+import 'configuration/routing/app_screens.dart';
 import 'configuration/theme/app_theme.dart';
+import 'core/presentation/auth_bloc/auth_bloc.dart';
+import 'dependancy_injection.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
